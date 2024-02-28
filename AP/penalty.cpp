@@ -18,8 +18,11 @@ int MatchesInGroup(int teams){
     return GroupSum;
 }
 
-bool checkIfPowerOfTwo(int GroupStage){
-    return 0;
+int checkIfPowerOfTwo(int x){
+    while(x%2==0){
+        x = x/2;
+    }
+    return x;
 }
 
 int main(){
@@ -39,15 +42,27 @@ int main(){
     }
 
 
-    while(KnockoutCountries>0){
-        KnockoutMatches += KnockoutCountries/2;
-        KnockoutCountries = KnockoutCountries/2;
+    while(KC>0){
+        KnockoutMatches += KC/2;
+        KC = KC/2;
     }
+
+    int check = checkIfPowerOfTwo(KnockoutCountries);
+    if(check != 1){
+        int minKnockoutCountries = 1;
+        int temp = 2;
+        while(minKnockoutCountries<KnockoutCountries){
+            minKnockoutCountries = minKnockoutCountries * 2;
+        }
+        cout<<minKnockoutCountries;
+    }
+
+
 
     cout<<"Groups: "<<Groups<<endl;
     cout<<"Advance: "<<Advance<<endl;
     cout<<"Group Matches: "<<GroupStageSum<<endl;
-    cout<<"Knockout Countries: "<<KC<<endl;
+    cout<<"Knockout Countries: "<<KnockoutCountries<<endl;
 
     cout<<KnockoutMatches+GroupStageSum<<"+";
 
