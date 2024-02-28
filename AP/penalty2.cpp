@@ -58,6 +58,7 @@ int main(){
     int KnockoutCountries = (Groups*Advance)+DirectAdv;
 
 
+    if(Groups>0 && TeamsInGroup > 0 && Advance > 0 && DirectAdv >= 0 && Advance <= TeamsInGroup){
     //SPRAWDZ CZY KNOCKOUT STAGE jest potęgą 2'jki
     int check = checkKnockout(KnockoutCountries);
     //Ile trzeba dodac do fazy knockout aby turniej mial sens?
@@ -79,5 +80,6 @@ int main(){
 
     cout<<KnockoutMatches+GroupStageMatches<<"+"<<neeededTeams;
 
+    }
     return 0;
 }
