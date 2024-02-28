@@ -27,10 +27,6 @@ vector<pair<int,int>> CheckIntersectionPoints(const vector<int>& vector1, const 
 
 int main(){
 
-    //int size1 = 10;
-    //int size2 = 8;
-    //int *tab1 = new int[size1];
-    //int *tab2 = new int[size2];
 
     vector<int> vector1;
     vector<int> vector2;
