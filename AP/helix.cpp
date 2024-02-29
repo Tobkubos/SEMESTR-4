@@ -97,19 +97,18 @@ int Sumator(vector<pair<int,int>> Intersections, vector<int> vec1, vector<int> v
     return sum;
 }
 
-
-
-
-
-
 int main(){
 
 
     vector<int> vector1 = {3,5,7,9,20,25,30,40,55,56,57,60,62};
     vector<int> vector2 = {1,4,7,11,14,25,44,47,55,57,100};
 
-    vector<pair<int,int>> Intersections = CheckIntersectionPoints(vector1, vector2);
-    int Sum = Sumator(Intersections, vector1, vector2);
+
+    vector<int>vector3 = {-5,100,1000,1005};
+    vector<int>vector4 = {-12,1000,1001};
+
+    vector<pair<int,int>> Intersections = CheckIntersectionPoints(vector3, vector4);
+    int Sum = Sumator(Intersections, vector3, vector4);
     cout<<Sum<<endl;   
     return 0;
 }
