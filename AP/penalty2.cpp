@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <fstream>
 
 using namespace std;
 
@@ -27,13 +28,13 @@ int checkIfPowerOfTwo(int x){
 
 int checkKnockout(int KnockoutCountries){
     int check = checkIfPowerOfTwo(KnockoutCountries);
-    cout<<"check: "<<check<<endl;
+    //cout<<"check: "<<check<<endl;
     if(check != 1){
         int temp = 1;
         while(temp < KnockoutCountries){
             temp = temp*2;
         }
-        cout<<"Nearest Power of two "<<temp<<endl;
+        //cout<<"Nearest Power of two "<<temp<<endl;
         return temp;
     }
     return KnockoutCountries;
@@ -43,43 +44,53 @@ int AddTeams(int check, int KnockoutCountries){
     if(check ==0){return 0;}
     else{
     int neededTeamsInKnockout = check - KnockoutCountries;
-    cout<<"Needed Teams in Knockout: "<<neededTeamsInKnockout<<endl;
+    //cout<<"Needed Teams in Knockout: "<<neededTeamsInKnockout<<endl;
     return neededTeamsInKnockout;
 }}
 
 int main(){
-    int Groups = 8;
-    int TeamsInGroup = 4;
-    int Advance = 2;
-    int DirectAdv = 1;
 
-    int GroupStageMatches = 0;
-    int KnockoutMatches = 0;
-    int KnockoutCountries = (Groups*Advance)+DirectAdv;
+    ifstream data;
+    data.open("wakawaka.txt");
 
 
-    if(Groups>0 && TeamsInGroup > 0 && Advance > 0 && DirectAdv >= 0 && Advance <= TeamsInGroup){
-    //SPRAWDZ CZY KNOCKOUT STAGE jest potęgą 2'jki
-    int check = checkKnockout(KnockoutCountries);
-    //Ile trzeba dodac do fazy knockout aby turniej mial sens?
-    int neeededTeams = AddTeams(check, KnockoutCountries);
+    int Groups;
+    int TeamsInGroup;
+    int Advance;
+    int DirectAdv;
 
-    int KC = check;
-    GroupStageMatches = Groups * MatchesInGroup(TeamsInGroup);
-    while(KC>0){
-        KnockoutMatches += KC/2;
-        KC = KC/2;
-    }
+    while(!data.eof()){
+        data>>Groups>>TeamsInGroup>>Advance>>DirectAdv;
 
+        int GroupStageMatches = 0;
+        int KnockoutMatches = 0;
+        int KnockoutCountries = (Groups*Advance)+DirectAdv;
 
 
-    cout<<"Groups: "<<Groups<<endl;
-    cout<<"Advance: "<<Advance<<endl;
-    cout<<"Group Matches: "<<GroupStageMatches<<endl;
-    cout<<"Knockout Countries: "<<KnockoutCountries<<endl;
+        if(Groups>0 && TeamsInGroup > 0 && Advance > 0 && DirectAdv >= 0 && Advance <= TeamsInGroup){
+        //SPRAWDZ CZY KNOCKOUT STAGE jest potęgą 2'jki
+        int check = checkKnockout(KnockoutCountries);
+        //Ile trzeba dodac do fazy knockout aby turniej mial sens?
+        int neeededTeams = AddTeams(check, KnockoutCountries);
 
-    cout<<KnockoutMatches+GroupStageMatches<<"+"<<neeededTeams;
+        int KC = check;
+        GroupStageMatches = Groups * MatchesInGroup(TeamsInGroup);
+        while(KC>0){
+            KnockoutMatches += KC/2;
+            KC = KC/2;
+        }
 
+
+        /*
+        cout<<"Groups: "<<Groups<<endl;
+        cout<<"Advance: "<<Advance<<endl;
+        cout<<"Group Matches: "<<GroupStageMatches<<endl;
+        cout<<"Knockout Countries: "<<KnockoutCountries<<endl;
+        */
+
+        cout<<Groups<<"*"<<Advance<<"/"<<TeamsInGroup<<"+"<<DirectAdv<<"="<<KnockoutMatches+GroupStageMatches<<"+"<<neeededTeams<<endl;
+
+        }
     }
     return 0;
 }
