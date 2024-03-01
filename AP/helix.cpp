@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>   
+#include <vector>
 
 using namespace std;
 
@@ -7,7 +7,7 @@ vector<pair<int,int>> CheckIntersectionPoints(const vector<int>& vector1, const 
 
     int v1s = vector1.size();
     int v2s = vector2.size();
-    
+
     vector<pair<int,int>> Intersections;
 
     for(int i=0; i<v1s; i++){
@@ -31,7 +31,7 @@ int Sumator(vector<pair<int,int>> Intersections, vector<int> vec1, vector<int> v
 
     int v2;
     int v1;
-    int start1 = 0; 
+    int start1 = 0;
     int start2 = 0;
     int end1 = 0;
     int end2 = 0;
@@ -52,7 +52,7 @@ int Sumator(vector<pair<int,int>> Intersections, vector<int> vec1, vector<int> v
         for(int r = Intersections[Intersections.size()-1].second; r < vec2.size(); r++){
             end2 += vec2[r];
         }
-        
+
         if(start1>start2){
             sum += start1;
         }
@@ -90,7 +90,7 @@ int Sumator(vector<pair<int,int>> Intersections, vector<int> vec1, vector<int> v
             sum+=v2;
         }
         cout<<"sciezka1: "<<v1<<"   sciezka2: "<<v2<<endl;
-    
+
     }
 
 
@@ -109,6 +109,6 @@ int main(){
 
     vector<pair<int,int>> Intersections = CheckIntersectionPoints(vector3, vector4);
     int Sum = Sumator(Intersections, vector3, vector4);
-    cout<<Sum<<endl;   
+    cout<<Sum<<endl;
     return 0;
 }
