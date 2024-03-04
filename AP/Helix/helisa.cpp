@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <fstream>
 
 using namespace std;
 
@@ -121,11 +120,9 @@ int Sumator(vector<pair<int,int>> Intersections, vector<int> vec1, vector<int> v
 
 int main(){
 
-    ifstream data;
-    data.open("helix.txt");
 
     int vector_size;
-    data>>vector_size;
+    cin>>vector_size;
     while(vector_size!=0)
     {
         vector<int> vector1;
@@ -134,14 +131,14 @@ int main(){
 
         for(int it = 0; it<vector_size; it++)
         {
-            data>>temp;
+            cin>>temp;
             vector1.push_back(temp);
         }
 
-        data>>vector_size;
+        cin>>vector_size;
         for(int it = 0; it<vector_size; it++)
         {
-            data>>temp;
+            cin>>temp;
             vector2.push_back(temp);
         }
 
@@ -152,7 +149,7 @@ int main(){
 
         vector1.clear();
         vector2.clear();
-        data>>vector_size;
+        cin>>vector_size;
     }
     return 0;
 }

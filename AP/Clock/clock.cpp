@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
-#include <fstream>
 
 using namespace std;
 
@@ -32,14 +31,12 @@ int main(){
 
     float radius;
 
-    ifstream data;
-    data.open("clock.txt");
-    data>>q;
+    cin>>q;
 
     for(int i = 0; i<q; i++){
-        data>>h1>>m1>>s1>>u1;
-        data>>h2>>m2>>s2>>u2;
-        data>>radius;
+        cin>>h1>>m1>>s1>>u1;
+        cin>>h2>>m2>>s2>>u2;
+        cin>>radius;
             if(radius > 0 && radius < 10000){
                 int time1 = CalcTime(h1,m1,s1,u1);
                 int time2 = CalcTime(h2,m2,s2,u2);

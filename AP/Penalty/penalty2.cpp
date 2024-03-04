@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <fstream>
 
 using namespace std;
 
@@ -15,7 +14,7 @@ int Factorial(int a){
 
 int MatchesInGroup(int teams){
     int GroupSum = 0;
-    GroupSum = (Factorial(teams)) / (Factorial(2) * Factorial(teams - 2));
+    GroupSum = Factorial(teams-1);
     return GroupSum;
 }
 
@@ -49,18 +48,13 @@ int AddTeams(int check, int KnockoutCountries){
 }}
 
 int main(){
-
-    ifstream data;
-    data.open("wakawaka.txt");
-
-
     int Groups;
     int TeamsInGroup;
     int Advance;
     int DirectAdv;
 
-    while(!data.eof()){
-        data>>Groups>>TeamsInGroup>>Advance>>DirectAdv;
+    while(!cin.eof()){
+        cin>>Groups>>TeamsInGroup>>Advance>>DirectAdv;
 
         int GroupStageMatches = 0;
         int KnockoutMatches = 0;
