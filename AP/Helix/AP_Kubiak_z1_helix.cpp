@@ -120,7 +120,6 @@ int Sumator(vector<pair<int,int>> Intersections, vector<int> vec1, vector<int> v
 
 int main(){
 
-
     int vector_size;
     cin>>vector_size;
     while(vector_size!=0)

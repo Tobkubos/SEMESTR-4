@@ -60,6 +60,7 @@ int main(){
         int KnockoutMatches = 0;
         int KnockoutCountries = (Groups*Advance)+DirectAdv;
 
+        
 
         if(Groups>0 && TeamsInGroup > 0 && Advance > 0 && DirectAdv >= 0 && Advance <= TeamsInGroup){
         //SPRAWDZ CZY KNOCKOUT STAGE jest potęgą 2'jki
