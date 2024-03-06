@@ -1,25 +1,20 @@
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 
-long MatchesInGroup(long teams){
-    long GroupSum = (teams * (teams-1))/2;
-    return GroupSum;
-}
+long long IfPowerOfTwo(long long KP){
+    while(KP%2 == 0){
+        KP = KP / 2;
 
-long checkIfPowerOfTwo(long x){
-    while(x%2==0){
-        x = x/2;
     }
-    return x;
+    return KP;
 }
 
-long checkKnockout(long KnockoutCountries){
-    long check = checkIfPowerOfTwo(KnockoutCountries);
+long long checkKnockout(long long KnockoutCountries){
+    long long check = IfPowerOfTwo(KnockoutCountries);
     //cout<<"check: "<<check<<endl;
     if(check != 1){
-        long temp = 1;
+        long long temp = 1;
         while(temp < KnockoutCountries){
             temp = temp*2;
         }
@@ -29,58 +24,46 @@ long checkKnockout(long KnockoutCountries){
     return KnockoutCountries;
 }
 
-long AddTeams(long check, long KnockoutCountries){
+long long AddTeams(long long check, long long KnockoutCountries){
     if(check ==0){return 0;}
     else{
-    long neededTeamsInKnockout = check - KnockoutCountries;
+    long long neededTeamsInKnockout = check - KnockoutCountries;
     //cout<<"Needed Teams in Knockout: "<<neededTeamsInKnockout<<endl;
     return neededTeamsInKnockout;
 }}
 
-int main(){
-    long Groups;
-    long TeamsInGroup;
-    long Advance;
-    long DirectAdv;
+int main() {
+
+    long long Groups;
+    long long Teams;
+    long long advance;
+    long long DirAdvance;
 
     while(!cin.eof()){
-        cin>>Groups>>TeamsInGroup>>Advance>>DirectAdv;
+    cin>>Groups>>Teams>>advance>>DirAdvance;
 
-        long long GroupStageMatches = 0;
-        long KnockoutMatches = 0;
-        long KnockoutCountries = (Groups*Advance)+DirectAdv;
+    if(Groups>0 && Teams >0 && advance >0 && advance<=Teams && DirAdvance >=0){
+    long long GroupSum = (Teams * (Teams-1))/2;
+    long long GroupStageSum = GroupSum * Groups;
+    long long KnockoutCountries = Groups * advance + DirAdvance;
+    long long KnockoutMatches = 0;
 
-        
 
-        if(Groups>0 && 
-           TeamsInGroup > 0 && 
-           Advance > 0 && 
-           DirectAdv >= 0 && 
-           Advance <= TeamsInGroup){
-        //SPRAWDZ CZY KNOCKOUT STAGE jest potęgą 2'jki
-        long check = checkKnockout(KnockoutCountries);
-        //Ile trzeba dodac do fazy knockout aby turniej mial sens?
-        long neeededTeams = AddTeams(check, KnockoutCountries);
+    //cout<<GroupSum<<endl;
+    //cout<<GroupStageSum<<endl;
 
-        long KC = check;
-        GroupStageMatches = Groups * MatchesInGroup(TeamsInGroup);
+    long long check = checkKnockout(KnockoutCountries);
+    //cout<<check<<endl;
+
+    long long neeededTeams = AddTeams(check, KnockoutCountries);
+
+        long long KC = check;
         while(KC>0){
             KnockoutMatches += KC/2;
             KC = KC/2;
         }
 
-
-        /*
-        cout<<"Groups: "<<Groups<<endl;
-        cout<<"Advance: "<<Advance<<endl;
-        cout<<"Group Matches: "<<GroupStageMatches<<endl;
-        cout<<"Knockout Countries: "<<KnockoutCountries<<endl;
-        //65536 65536 65536 0
-        */
-
-        cout<<Groups<<"*"<<Advance<<"/"<<TeamsInGroup<<"+"<<DirectAdv<<"="<<KnockoutMatches+GroupStageMatches<<"+"<<neeededTeams<<endl;
-
-        }
-    }
+    cout<<Groups<<"*"<<advance<<"/"<<Teams<<"+"<<DirAdvance<<"="<<KnockoutMatches+GroupStageSum<<"+"<<neeededTeams<<endl;
+    }}
     return 0;
 }

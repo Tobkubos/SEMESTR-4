@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/SEMESTR_4/SEMESTR-4/AP/Penalty",
-      "program": "c:/SEMESTR_4/SEMESTR-4/AP/Penalty/build/Debug/outDebug",
+      "cwd": "c:/SEMESTR_4/SEMESTR-4/AP/Clock",
+      "program": "c:/SEMESTR_4/SEMESTR-4/AP/Clock/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
