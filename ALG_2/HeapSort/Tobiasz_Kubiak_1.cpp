@@ -93,10 +93,6 @@ void heapSort(vector<long long> &tab)
     }
     ViewTable(heap, heap.size());
 
-    ///////
-    ///////
-    ///////
-
     for (int i = heap.size() - 1; i >= 0; i--)
     {
         swap(heap[0], tab[i]);
