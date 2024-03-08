@@ -30,7 +30,7 @@ void Heapify(vector<long long> &tab, int i)
     int parent = tab[i];
     int leftChild = tab[left(i)];
     int rightChild = tab[right(i)];
-    int largest_id;
+    int largest_id = i;
 
     if (left(i) < tab.size())
     {
