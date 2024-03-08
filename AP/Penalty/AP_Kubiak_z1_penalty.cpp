@@ -58,7 +58,7 @@ int main() {
     long long neeededTeams = AddTeams(check, KnockoutCountries);
 
         long long KC = check;
-        while(KC>0){
+        while(KC>1){
             KnockoutMatches += KC/2;
             KC = KC/2;
         }
