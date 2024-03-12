@@ -39,32 +39,31 @@ int main() {
     long long advance;
     long long DirAdvance;
 
-    while(true){
+    while(!cin.eof()){
     cin>>Groups>>Teams>>advance>>DirAdvance;
-        if(Groups>0 && Teams >0 && advance >0 && advance<=Teams && DirAdvance >=0){
-        long long GroupSum = (Teams * (Teams-1))/2;
-        long long GroupStageSum = GroupSum * Groups;
-        long long KnockoutCountries = Groups * advance + DirAdvance;
-        long long KnockoutMatches = 0;
 
-        //cout<<GroupSum<<endl;
-        //cout<<GroupStageSum<<endl;
+    if(Groups>0 && Teams >0 && advance >0 && advance<=Teams && DirAdvance >=0){
+    long long GroupSum = (Teams * (Teams-1))/2;
+    long long GroupStageSum = GroupSum * Groups;
+    long long KnockoutCountries = Groups * advance + DirAdvance;
+    long long KnockoutMatches = 0;
+    //65536*1/1+0=65535+0
 
-        long long check = checkKnockout(KnockoutCountries);
-        //cout<<check<<endl;
 
-        long long neeededTeams = AddTeams(check, KnockoutCountries);
+    //cout<<GroupSum<<endl;
+    //cout<<GroupStageSum<<endl;
 
-            long long KC = check;
-            while(KC>1){
-                KnockoutMatches += KC/2;
-                KC = KC/2;
-            }
-        cout<<Groups<<"*"<<advance<<"/"<<Teams<<"+"<<DirAdvance<<"="<<KnockoutMatches+GroupStageSum<<"+"<<neeededTeams<<endl;
+    long long check = checkKnockout(KnockoutCountries);
+    //cout<<check<<endl;
+
+    long long neeededTeams = AddTeams(check, KnockoutCountries);
+
+        long long KC = check;
+        while(KC>1){
+            KnockoutMatches += KC/2;
+            KC = KC/2;
         }
-        else{
-            return 0;
-        }
-    }
+    cout<<Groups<<"*"<<advance<<"/"<<Teams<<"+"<<DirAdvance<<"="<<KnockoutMatches+GroupStageSum<<"+"<<neeededTeams<<endl;
+    }}
     return 0;
 }
