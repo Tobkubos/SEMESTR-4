@@ -1,0 +1,103 @@
+ARP - address resolution protocol 
+broadcast
+
+adres
+maska
+brama
+
+source       destination
+
+
+TCPIP
+
+
+TCP | UTP	TCP - zaczyna polaczenie i patrzy czy sie konczyi sklada strumien bajtów. 
+			Stream protocol. Przestrzen niezaleznych portów
+			UTP - wysyla i zapomina. Przestrzen niezaleznych portów.
+IP			siedzi za naglowkiem payload w ramce, adres ip zrodlowy, ip docelowy, flagi,
+link			ramka - zrodlo, id,
+fizyka
+
+
+
+
+
+Gniazdo - byt logiczny ktory pozwala podpiąć aplikacje pracujaca w tym systemie do stosu TCP i powiedziec ze to gniazdo moze byc albo pod TCP albo pod UTP ///albo RAW. Element API, trzeba zdefiniowac i stworzyc i nalaczyc polaczenie. Na koncu zamknac gniazdo.
+
+
+C:
+fopen fclose
+fread fwrite
+
+socket / open
+read 
+write
+close
+
+BigIndian - network order
+biblioteka resolver
+
+nc -n
+nc -l
+nc -l  -a 0.0.0.0 -p 8080
+
+
+https://www.vctl.eu/dokuwiki/doku.php?id=education:wfis:clntsrvr:simpletcp
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+jar - java archive
+war - web archive
+sar
+
+Hello,java -> java.c (kompilator) -> Hello.class
+system.out.print("hello world");
+
+klasa system na 3 statyczne:
+system -> in out error
+
+klasa system, obiekt out
+
+java Hello
+
+JRE - java runtime enviroment
+JDK - java developement key
+SDK - 
+J2EE - Enterprise Edition - usługi przez serwer - wyparte przez spring framework				
+J2SE - 
+J2ME - mobile edition
+ 
+
+import package - folder w ktorym sie zawiera klasa
+
+CLASSPATH
+w classpath sa pakiety gdzie sa klasy itd. itd.
+
+manifest inf to plik ktory daje dodatkowe informacje, jakiej wersji jest pakiet, kto go zrobil, czy jest samouruchamialny, nie jest niezbędny ale być powinien.
+
+jary mozna podpisać, mozna podpisac klasy, jezeli jar jest podpisany nastepuje odczyt w manifescie, suma kontrolna. Jezeli jest git i manifest nie zostal zmieniony to klasa w jar'rze jest oryginalna.
+
+Jezeli jest podpisany i cos zmienimy to wszystko kaput i nie beidze dzialac. Jar jest zkorumpowany i maszyna wirtualna javy odmawia operacji otworzenia.
+
+--------
+
+Jak klasy sa ladowane do maszyny wirtualnej? Java ładuje dana klase jezeli jest do niej odwolanie, nawet moze zostac usunieta jezeli nie ma zadnych powiazan.
+
+CLASSPATH - tam znajduja sie wszystkie klasy
+APPLETY - internetowe programy do ściągania programów
+
+CLASSLOADER - klasa odpowiedzielana za ladowanie innych klas. Pozwala załadować obiekt klasy z dowolnego miejsca na ziemi.
+
+polecenie java reprezentuje maszyne wirtualna javy
+java c - kompilator javy
+jar - polecenie, zapokowanie, rozpakowanie - rozszerzony zip
+java, jar - JDK - JRE jest zawarte w JDK
+
+
+
+
+
+
+
