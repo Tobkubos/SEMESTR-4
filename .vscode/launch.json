@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/SEMESTR_4/SEMESTR-4/AP",
-      "program": "c:/SEMESTR_4/SEMESTR-4/AP/build/Debug/outDebug",
+      "cwd": "c:/SEMESTR_4/SEMESTR-4/AP/Cipher",
+      "program": "c:/SEMESTR_4/SEMESTR-4/AP/Cipher/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
