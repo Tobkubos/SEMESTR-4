@@ -7,7 +7,7 @@
 // nieszyfrowane - prz. leksykograficzny
 // cebdbac
 // cac
-// ecd  
+// ecd
 // dca
 // aba
 // bac
@@ -15,10 +15,10 @@
 // zaszyfrowane - cedab
 //
 // pierwsze jest slowo na c wiec usawiany c w tablicy na pierwsza pozycje, itd az do utrworzenia alfabetu
-// c nie musi byc pierwsze, ale ogolnie musi byc, co jest wczesniej co jest pozniej 
+// c nie musi byc pierwsze, ale ogolnie musi byc, co jest wczesniej co jest pozniej
 // K co najmniej rowne A+1
-// 
-// 
+//
+//
 // robimy rownania liter jak z alfabetu
 // np. d < c
 // potem sprawdzamy ktorej litery nie ma po prawej stronie
@@ -34,5 +34,118 @@
 //
 //
 //
-//
-//
+#include <iostream>
+#include <vector>
+#include <set>
+#include <unordered_map>
+
+using namespace std;
+
+void Cipher(vector<string> tab)
+{
+    set<pair<char, char>> pairs;
+    // unordered_map<char, vector<char>> posortowana;
+    ///////////////
+
+    // SPRAWDZANIE
+
+    int longestSize = 0;
+    for (int i = 0; i < tab.size(); i++)
+    {
+        int temp = 0;
+        temp = tab[i].size();
+        if (temp > longestSize)
+        {
+            longestSize = temp;
+        }
+    }
+
+    for (int i = 1; i < tab.size(); i++)
+    {
+        //
+        int sizeOfWord1 = tab[i - 1].size();
+        int sizeOfWord2 = tab[i].size();
+        int SmallestOfPair = 0;
+        cout << sizeOfWord1 << " " << sizeOfWord2 << endl;
+        //
+        if (sizeOfWord1 >= sizeOfWord2)
+        {
+            SmallestOfPair = sizeOfWord2;
+        }
+        else
+        {
+            SmallestOfPair = sizeOfWord1;
+        }
+
+        for (int j = 0; j < SmallestOfPair; j++)
+        {
+            if (tab[i - 1][j] != tab[i][j])
+            {
+                pairs.insert(pair<char, char>(tab[i - 1][j], tab[i][j]));
+                break;
+            }
+        }
+    }
+
+    ///////////////
+    for (auto para : pairs)
+    {
+        cout << para.first << "-->" << para.second << endl;
+        // posortowana[para.first].push_back(para.second);
+    }
+    cout << longestSize << endl;
+
+    /*
+        cout << endl
+             << endl
+             << endl;
+
+        for (auto key : posortowana)
+        {
+            cout << key.first << " ";
+            for (auto neighbours : key.second)
+            {
+                cout << neighbours << " ";
+            }
+            cout << endl;
+        }
+        cout << endl
+             << endl
+             << endl;
+    */
+
+    // POKA TABLICE
+    for (int i = 0; i < tab.size(); i++)
+    {
+        cout << tab[i] << endl;
+    }
+}
+
+int main()
+{
+    int cases;
+
+    cin >> cases;
+
+    for (int i = 0; i < cases; i++)
+    {
+        int SizeOfAlphabet;
+        cin >> SizeOfAlphabet;
+
+        int EncryptedWords;
+        cin >> EncryptedWords;
+        vector<string> tab;
+
+        for (int j = 0; j < EncryptedWords; j++)
+        {
+            string word;
+            cin >> word;
+            tab.push_back(word);
+        }
+        string message;
+        cin >> message;
+        Cipher(tab);
+    }
+
+    return 0;
+}
