@@ -44,7 +44,7 @@ using namespace std;
 void Cipher(vector<string> tab)
 {
     set<pair<char, char>> pairs;
-    // unordered_map<char, vector<char>> posortowana;
+    unordered_map<char, vector<char>> posortowana;
     ///////////////
 
     // SPRAWDZANIE
@@ -91,28 +91,26 @@ void Cipher(vector<string> tab)
     for (auto para : pairs)
     {
         cout << para.first << "-->" << para.second << endl;
-        // posortowana[para.first].push_back(para.second);
+        posortowana[para.first].push_back(para.second);
     }
     cout << longestSize << endl;
 
-    /*
-        cout << endl
-             << endl
-             << endl;
+    cout << endl
+         << endl
+         << endl;
 
-        for (auto key : posortowana)
+    for (auto key : posortowana)
+    {
+        cout << key.first << " ";
+        for (auto neighbours : key.second)
         {
-            cout << key.first << " ";
-            for (auto neighbours : key.second)
-            {
-                cout << neighbours << " ";
-            }
-            cout << endl;
+            cout << neighbours << " ";
         }
-        cout << endl
-             << endl
-             << endl;
-    */
+        cout << endl;
+    }
+    cout << endl
+         << endl
+         << endl;
 
     // POKA TABLICE
     for (int i = 0; i < tab.size(); i++)
