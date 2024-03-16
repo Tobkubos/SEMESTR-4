@@ -44,6 +44,7 @@ using namespace std;
 
 void topologicalSortStep(char v, unordered_map<char, vector<char>> &graph, unordered_map<char, bool> &visited, stack<char> &s)
 {
+    // cout << v << " ";
     visited[v] = true;
     for (char neighbor : graph[v])
     {
@@ -59,6 +60,56 @@ void topologicalSort(unordered_map<char, vector<char>> &graph)
 {
     unordered_map<char, bool> visited;
     stack<char> s;
+    //////////
+    // TEST
+    set<char> start1;
+    set<char> start2;
+    for (auto i : graph)
+    {
+        start1.insert(i.first);
+        for (auto j : i.second)
+        {
+            start2.insert(j);
+        }
+    }
+
+    for (auto i : start1)
+    {
+        cout << i << " ";
+    }
+
+    cout << endl;
+
+    for (auto k : start2)
+    {
+        cout << k << " ";
+    }
+    cout << endl;
+
+    set<char> notIn;
+
+    for (auto i : start1)
+    {
+        bool found = false;
+        for (auto j : start2)
+        {
+            if (i == j)
+            {
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+        {
+            notIn.insert(i);
+        }
+    }
+
+    for (auto i : notIn)
+    {
+        cout << i << " ";
+    }
+    //
 
     for (auto i : graph)
     {
@@ -67,12 +118,18 @@ void topologicalSort(unordered_map<char, vector<char>> &graph)
 
     for (auto i : graph)
     {
-        if (!visited[i.first])
+
+        for (auto j : notIn)
         {
-            topologicalSortStep(i.first, graph, visited, s);
+            if (!visited[i.first])
+            {
+                topologicalSortStep(j, graph, visited, s);
+            }
         }
     }
 
+    cout << endl
+         << "KOLEJKA" << endl;
     while (!s.empty())
     {
         cout << s.top() << " ";
@@ -133,16 +190,14 @@ void Cipher(vector<string> tab)
         cout << para.first << "-->" << para.second << endl;
         graf[para.first].push_back(para.second);
     }
-    /*
-    cout << longestSize << endl;
 
     cout << endl
          << endl
          << endl;
 
-    for (auto key : posortowana)
+    for (auto key : graf)
     {
-        cout << key.first << " ";
+        cout << key.first << ": ";
         for (auto neighbours : key.second)
         {
             cout << neighbours << " ";
@@ -152,13 +207,6 @@ void Cipher(vector<string> tab)
     cout << endl
          << endl
          << endl;
-
-    // POKA TABLICE
-    for (int i = 0; i < tab.size(); i++)
-    {
-        cout << tab[i] << endl;
-    }
-    */
 
     topologicalSort(graf);
 }
