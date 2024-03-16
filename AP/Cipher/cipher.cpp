@@ -38,13 +38,52 @@
 #include <vector>
 #include <set>
 #include <unordered_map>
+#include <stack>
 
 using namespace std;
+
+void topologicalSortStep(char v, unordered_map<char, vector<char>> &graph, unordered_map<char, bool> &visited, stack<char> &s)
+{
+    visited[v] = true;
+    for (char neighbor : graph[v])
+    {
+        if (!visited[neighbor])
+        {
+            topologicalSortStep(neighbor, graph, visited, s);
+        }
+    }
+    s.push(v);
+}
+
+void topologicalSort(unordered_map<char, vector<char>> &graph)
+{
+    unordered_map<char, bool> visited;
+    stack<char> s;
+
+    for (auto i : graph)
+    {
+        visited[i.first] = false;
+    }
+
+    for (auto i : graph)
+    {
+        if (!visited[i.first])
+        {
+            topologicalSortStep(i.first, graph, visited, s);
+        }
+    }
+
+    while (!s.empty())
+    {
+        cout << s.top() << " ";
+        s.pop();
+    }
+}
 
 void Cipher(vector<string> tab)
 {
     set<pair<char, char>> pairs;
-    unordered_map<char, vector<char>> posortowana;
+    unordered_map<char, vector<char>> graf;
     ///////////////
 
     // SPRAWDZANIE
@@ -66,7 +105,7 @@ void Cipher(vector<string> tab)
         int sizeOfWord1 = tab[i - 1].size();
         int sizeOfWord2 = tab[i].size();
         int SmallestOfPair = 0;
-        cout << sizeOfWord1 << " " << sizeOfWord2 << endl;
+        // cout << sizeOfWord1 << " " << sizeOfWord2 << endl;
         //
         if (sizeOfWord1 >= sizeOfWord2)
         {
@@ -88,11 +127,13 @@ void Cipher(vector<string> tab)
     }
 
     ///////////////
+
     for (auto para : pairs)
     {
         cout << para.first << "-->" << para.second << endl;
-        posortowana[para.first].push_back(para.second);
+        graf[para.first].push_back(para.second);
     }
+    /*
     cout << longestSize << endl;
 
     cout << endl
@@ -117,6 +158,9 @@ void Cipher(vector<string> tab)
     {
         cout << tab[i] << endl;
     }
+    */
+
+    topologicalSort(graf);
 }
 
 int main()

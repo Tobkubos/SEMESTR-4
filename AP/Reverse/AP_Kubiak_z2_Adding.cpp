@@ -3,16 +3,17 @@
 
 using namespace std;
 
-
-int main(){
+int main()
+{
     unsigned long long cases = 0;
-    cin>>cases;
+    cin >> cases;
 
-    for(int i =0; i<cases; i++){
-        long long a=0;
-        long long b=0;
+    for (int i = 0; i < cases; i++)
+    {
+        long long a = 0;
+        long long b = 0;
 
-        cin>>a>>b;
+        cin >> a >> b;
 
         string tempA = to_string(a);
         string tempB = to_string(b);
@@ -22,7 +23,7 @@ int main(){
 
         string tempC = to_string(intC);
         long long intSUM = stoi(string(tempC.rbegin(), tempC.rend()));
-        cout<<intSUM<<endl;
-    } 
+        cout << intSUM << endl;
+    }
     return 0;
 }
