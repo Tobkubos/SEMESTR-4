@@ -56,7 +56,7 @@ void topologicalSortStep(char v, unordered_map<char, vector<char>> &graph, unord
     s.push(v);
 }
 
-void topologicalSort(unordered_map<char, vector<char>> &graph)
+void topologicalSort(unordered_map<char, vector<char>> &graph, int sizeOfTheAlphabet, vector<string> alphabet)
 {
     unordered_map<char, bool> visited;
     stack<char> s;
@@ -110,34 +110,60 @@ void topologicalSort(unordered_map<char, vector<char>> &graph)
         cout << i << " ";
     }
     //
-
-    for (auto i : graph)
+    //
+    //
+    //
+    //
+    //
+    if (notIn.size() == 1)
     {
-        visited[i.first] = false;
-    }
 
-    for (auto i : graph)
-    {
-
-        for (auto j : notIn)
+        for (auto i : graph)
         {
-            if (!visited[i.first])
+            visited[i.first] = false;
+        }
+
+        for (auto i : graph)
+        {
+
+            for (auto j : notIn)
             {
-                topologicalSortStep(j, graph, visited, s);
+                if (!visited[i.first])
+                {
+                    topologicalSortStep(j, graph, visited, s);
+                }
             }
         }
-    }
 
-    cout << endl
-         << "KOLEJKA" << endl;
-    while (!s.empty())
+        if (s.size() == sizeOfTheAlphabet)
+        {
+            cout << endl
+                 << "KOLEJKA" << endl;
+            /*
+            while (!s.empty())
+            {
+                cout << s.top() << " ";
+                s.pop();
+            }
+            */
+            for (int i = 0; i < s.size(); i++)
+            {
+                cout << alphabet[i];
+            }
+            cout << endl;
+        }
+        else
+        {
+            cout << "Message cannot be decrypted" << endl;
+        }
+    }
+    if (notIn.size() != 1)
     {
-        cout << s.top() << " ";
-        s.pop();
+        cout << "Message cannot be decrypted" << endl;
     }
 }
 
-void Cipher(vector<string> tab)
+void Cipher(vector<string> tab, int sizeOfTheAlphabet, vector<string> alphabet)
 {
     set<pair<char, char>> pairs;
     unordered_map<char, vector<char>> graf;
@@ -208,12 +234,32 @@ void Cipher(vector<string> tab)
          << endl
          << endl;
 
-    topologicalSort(graf);
+    topologicalSort(graf, sizeOfTheAlphabet, alphabet);
 }
 
 int main()
 {
     int cases;
+    vector<string> alphabet = {
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "R",
+        "S",
+    };
 
     cin >> cases;
 
@@ -234,7 +280,7 @@ int main()
         }
         string message;
         cin >> message;
-        Cipher(tab);
+        Cipher(tab, SizeOfAlphabet, alphabet);
     }
 
     return 0;
