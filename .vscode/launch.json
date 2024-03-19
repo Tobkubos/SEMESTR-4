@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/SEMESTR_4/SEMESTR-4/AP/Walk",
-      "program": "c:/SEMESTR_4/SEMESTR-4/AP/Walk/build/Debug/outDebug",
+      "cwd": "c:/SEMESTR_4/SEMESTR-4/ALG_2/HeapSort",
+      "program": "c:/SEMESTR_4/SEMESTR-4/ALG_2/HeapSort/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
