@@ -1,0 +1,190 @@
+ZAJ 4
+
+Skryba moment:
+
+javascript - asynchroniczny
+callbackfunction
+programowanie asnchroniczne / zdarzeniowe
+
+interaktywnosc
+
+na dzien dzisiejszy jest to wszedzie
+
+ASYNC, AWAIT
+udają programowanie asynchroniczne
+
+EZTRACE - pokazuje wywolania programu
+//////////////////////////////////////////////////////////////////////////////
+Książki pomocnicze: 
+- Herbert Shildt - JAVA for begginers.
+- Kompedium Programisty JAVA
+- Kay Hosrtman - JAVA. Podstawy.
+//////////////////////////////////////////////////////////////////////////////
+WYKŁAD: CLIENT i przejdziemy do SERWER
+
+Plik ktory ma 20 bajtow i chcemy odczytac 10 bajtow
+zczytamy i wrzucimy do bufora. 
+Moze sie zdarzyc ze plik ma 9 bajtow wtedy wyskoczy informacja ze plik sie skonczyl
+
+Odczyt gniazda:
+Chcemy 10 bajtów a odczytamy tyle ile sieć zdąrzyła przetworzyć. Trzeba to brać pod uwagę.
+Odczyty zwracają tyle danych ile maximum dostały a nie więcej niz zadeklarowana ilosc.
+
+
+Zapis;
+Pliki ulegają buforowaniu, Jezeli zapisuje plik, operacja write, program orzechodzi w tryb jądra kernel systemu operacyjnego, (LINUX). Kazdy program ma podizal pamieci.
+Bufor musi zostac przeniesiony do systemu operacyjnego nastepuje kopiowanie.
+Systemy dyskowe skladaly sie z blokow po 512 bajtow a teraz 4196 bajtow. Nawet jezeli zapisujemy 1 bajt to zapiszemy 4196.
+
+write a
+write b
+wrice c
+a - 4196 bajtow
+b - itd...
+
+Dlatego Buforowanie / Cache'ing
+
+W sieci minimalny segment 
+w sieci max segment 1492
+
+wysylajac jeden bajt wysylany 1492 bajty.
+
+STOSUJEMY BUFOROWANIE
+System flush - opróżnij bufor
+
+Jezeli uzyjemy SEND i RECIEVE - dedykowane API do operowania na Socketach
+SEND - wysyla to co dostalo a RECIEVE od razu oddaje to co dostalo.
+
+
+PROGRAMOWANIE ASYNCHRONICZNE IO - ma callback
+read klasycznie - zamrozi się 
+odkłada na bok i nw. liczy coś, jak w koncu dostanie dane jakies do read to z idzie do oczekujace na wykonanie
+
+read z callbackiem - ona nie zatrzymuje sie tylko sie zwraca. Dalej system operacyjny jak sie odczyta bufor i wywoluje funkcje.
+
+W PRogramowaniu Sieciowym nie ma czegos takiego ze chcemy czytac albo pisac, trzeba wszystko robic dynamicznie.
+
+Program cos czyta, potem cos pisze - jezeli czeka na wiadomosc to nigdy nie napiszemy
+Ogolnie slabo
+
+Wymyslono funkcje ktora dostaje jako argumenty tablice plikow ktore interesuja ze cos sie zadzialo. Gniazdo ma jakis numer i bity co nas interesuje, czyta, odpisuje. 
+Standardowe Wejscie, wyjscie i gniazdko
+
+Mechanizm jsst na tyle wazny ze obsluguje wszystkie systemy operacyjne i jezyki
+
+Pakiet w Pythonie SELECT TABLE/TABLES
+
+pakiety NIO  NonBlocking IO
+
+Stary pakiet operuje na strumieniach i opakowuje go warstwami
+strumien oczytuje bajty i tylko bajty. Z pliku, z sieci, z pamieci, ze wszystkiego co ma ROZSZRZONY SYSTEM IO.
+Get - po jednym bajcie
+Put - po jednym bajcie
+BufferedSteam - jednorazowo pobierze więcej i zapisze więcej znaków
+nowy na Buforach, Selection, Chanels - na labkach jest NIO.
+
+JAK JAVA REPREZENTUJE ZNAKI
+
+String - klasa przechowujaca znaki reprezentowane jako unicode.
+maślanka - m -  beidze 2 bajtowym znakiem itd. ip.
+		  - ś - gdzies tam w tablicy Unicode
+
+
+string s1 = maslanka
+s1.length - 8 znakow, ale nie BAJTOW
+termnal nie wyprowadza ciagu znakow tylko ciag bajtów.
+ś będą krzaczki. mozna zmapować i beda wystepowac polskie znaki UTF-PL cos takiego
+
+///////////////////////////////////////////////////////////////////
+JAVA
+Reader 			inputStream
+Writer 			outputStream
+--------			---------
+obiekty String	byteArray
+
+inputStreamReader CharSet  - UTF-8  ( bajty - - - > Znaki )
+
+Reader pozwala czytać pojedyńczo znaki
+Wiersz?
+Reader ReadLine
+///////////////////////////////////////////////////////////////////
+
+NOWE IO
+Robi bufory składające się z bajtów lub ze znaków ale to nie jest string tylko bufor. 
+ma pozycję, znacznik, długość, size
+długość, size - całość/ile danych
+
+kanały: READ - operacja read odczytuje bajty i wstawia bajty do bufora, jak odczyta 10 bajtow od 0 to przesunie sie na pozycje 10 i powie ze jest wypelnione 10 znakow potem jezeli nie cofne pozycji znacznika do pozycji 0 to nastepny odczyt zacznie sie od 10, tak dlugo jak bufor nie zglosi infromacji ze sie przepelnil.
+
+CODER / DECODER
+
+CODER - zamienia bajty na znaki
+DECODER - ze znakow na bajty
+
+Mamy cos co czyta bufor i wykonuje operacje
+
+
+
+WĄTEK A PROCES
+Wątek dizała wewnątrz procesu
+
+dzielimy pamięć procesu na mniejsze obszary i dzielimy na wątki
+
+SEMAFOR aby uniknąć kolizji
+Każda usługa to osobna funkcja 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
