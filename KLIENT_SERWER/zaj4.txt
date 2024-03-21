@@ -134,20 +134,6 @@ SEMAFOR aby uniknąć kolizji
 Każda usługa to osobna funkcja 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
