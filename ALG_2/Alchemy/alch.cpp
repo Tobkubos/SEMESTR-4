@@ -21,7 +21,7 @@ void AlchemicStep(int v, map<int, vector<int>> &connectionTable, map<int, bool> 
     s.push(v);
 }
 
-void Alchemic(map<int, vector<int>> connectionTable, vector<pair<int, int>> priceTable, int potion, int transmutations)
+int Alchemic(map<int, vector<int>> connectionTable, vector<pair<int, int>> priceTable, int potion, int transmutations)
 {
     map<int, bool> visited;
     stack<int> s;
@@ -54,16 +54,16 @@ void Alchemic(map<int, vector<int>> connectionTable, vector<pair<int, int>> pric
                 Income.push_back(priceTable[s.top() - 1].second - i.second);
             }
         }
-        cout << " - " << s.top();
+        // cout << " - " << s.top();
         s.pop();
     }
     auto Income_iterator = max_element(Income.begin(), Income.end());
     if (Income_iterator != Income.end())
     {
         int maxIncome = *Income_iterator;
-        cout << endl;
-        cout << "Przychod: " << maxIncome << endl;
+        return maxIncome;
     }
+    return 0;
 }
 
 int main()
@@ -92,12 +92,14 @@ int main()
             cin >> key >> value;
             connectionTable[key].push_back(value);
         }
+        /*
         cout << endl;
         for (auto q : priceTable)
         {
             cout << q.first << " / " << q.second << endl;
         }
         cout << endl;
+
         for (auto x : connectionTable)
         {
             cout << x.first << ": ";
@@ -107,12 +109,18 @@ int main()
             }
             cout << endl;
         }
-
+        */
+        vector<int> prices;
         for (auto i : priceTable)
         {
-            Alchemic(connectionTable, priceTable, i.first, transmutations);
+            prices.push_back(Alchemic(connectionTable, priceTable, i.first, transmutations));
+        }
+        auto Income_iterator = max_element(prices.begin(), prices.end());
+        if (Income_iterator != prices.end())
+        {
+            int maxIncome = *Income_iterator;
+            cout << maxIncome << endl;
         }
     }
-    cout << "GIT GUT" << endl;
     return 0;
 }
