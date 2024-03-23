@@ -6,38 +6,63 @@
 
 using namespace std;
 
-void AlchemicStep(int v, map<int, vector<int>> &graph, map<int, bool> &visited, stack<int> &s)
+void AlchemicStep(int v, map<int, vector<int>> &connectionTable, map<int, bool> &visited, stack<int> &s)
 {
     visited[v] = true;
-    for (char neighbor : graph[v])
+    //
+    //
+    for (char neighbor : connectionTable[v])
     {
         if (!visited[neighbor])
         {
-            AlchemicStep(neighbor, graph, visited, s);
+            AlchemicStep(neighbor, connectionTable, visited, s);
         }
     }
     s.push(v);
 }
 
-void Alchemic(map<int, vector<int>> connectionTable, vector<pair<int, int>> priceTable)
+void Alchemic(map<int, vector<int>> connectionTable, vector<pair<int, int>> priceTable, int potion, int transmutations)
 {
     map<int, bool> visited;
     stack<int> s;
-    // TO DO:
-    // ZNAJDZ NAJMNIEJSZY INDEX CENY Z VECTORA PRICETABLE;
-    int minPriceIndex = 3;
-    //
+
     for (auto i : connectionTable)
     {
         visited[i.first] = false;
     }
 
-    AlchemicStep(minPriceIndex, connectionTable, visited, s);
+    AlchemicStep(potion, connectionTable, visited, s);
 
+    //
+    /*
+    for (auto i : priceTable)
+    {
+        if (i.first == potion)
+        {
+            cout << potion << ":::::" << i.second << endl;
+        }
+    }
+    */
+    //
+    vector<int> Income;
     while (!s.empty())
     {
-        cout << s.top() << " ";
+        for (auto i : priceTable)
+        {
+            if (i.first == potion)
+            {
+                Income.push_back(priceTable[s.top() - 1].second - i.second);
+            }
+        }
+        cout << " - " << s.top();
         s.pop();
+    }
+    auto Income_iterator = max_element(Income.begin(), Income.end());
+    if (Income_iterator != Income.end())
+    {
+        int maxIncome = *Income_iterator;
+        cout << endl;
+        cout << "Przychod: " << maxIncome << endl;
     }
 }
 
@@ -83,7 +108,11 @@ int main()
             cout << endl;
         }
 
-        Alchemic(connectionTable, priceTable);
+        for (auto i : priceTable)
+        {
+            Alchemic(connectionTable, priceTable, i.first, transmutations);
+        }
     }
+    cout << "GIT GUT" << endl;
     return 0;
 }
