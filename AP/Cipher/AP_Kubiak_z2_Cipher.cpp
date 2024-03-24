@@ -9,7 +9,6 @@ using namespace std;
 
 void topologicalSortStep(char v, map<char, vector<char>> &graph, map<char, bool> &visited, stack<char> &s)
 {
-    // cout << v << " ";
     visited[v] = true;
     for (char neighbor : graph[v])
     {
@@ -25,8 +24,7 @@ void topologicalSort(map<char, vector<char>> &graph, int sizeOfTheAlphabet, vect
 {
     map<char, bool> visited;
     stack<char> s;
-    //////////
-    // TEST
+
     set<char> start1;
     set<char> start2;
     for (auto i : graph)
@@ -37,20 +35,7 @@ void topologicalSort(map<char, vector<char>> &graph, int sizeOfTheAlphabet, vect
             start2.insert(j);
         }
     }
-    /*
-        for (auto i : start1)
-        {
-            cout << i << " ";
-        }
 
-        cout << endl;
-
-        for (auto k : start2)
-        {
-            cout << k << " ";
-        }
-        cout << endl;
-    */
     // ZNAJDUJE WIERZCHOLEK BEZ RODZICOW
     set<char> notIn;
 
@@ -70,12 +55,6 @@ void topologicalSort(map<char, vector<char>> &graph, int sizeOfTheAlphabet, vect
             notIn.insert(i);
         }
     }
-    /*
-        for (auto i : notIn)
-        {
-            cout << i << " ";
-        }
-        */
 
     if (notIn.size() == 1)
     {
@@ -99,15 +78,6 @@ void topologicalSort(map<char, vector<char>> &graph, int sizeOfTheAlphabet, vect
 
         if (s.size() == sizeOfTheAlphabet)
         {
-            // WYPISUJE KOLEJNOSC ALFABETU
-
-            /*
-            while (!s.empty())
-            {
-                cout << s.top() << " ";
-                s.pop();
-            }
-            */
             map<char, char> DescryptedAlphabet;
             int i = 0;
             while (!s.empty())
@@ -116,12 +86,6 @@ void topologicalSort(map<char, vector<char>> &graph, int sizeOfTheAlphabet, vect
                 i++;
                 s.pop();
             }
-            /*
-            for (auto da : DescryptedAlphabet)
-            {
-                cout << da.first << " " << da.second << endl;
-            }
-            */
 
             for (int i = 0; i < message.size(); i++)
             {
@@ -148,12 +112,10 @@ void Cipher(vector<string> tab, int sizeOfTheAlphabet, vector<char> alphabet, st
     // ZALEZNOSCI
     for (int i = 1; i < tab.size(); i++)
     {
-        //
         int sizeOfWord1 = tab[i - 1].size();
         int sizeOfWord2 = tab[i].size();
         int SmallestOfPair = 0;
-        // cout << sizeOfWord1 << " " << sizeOfWord2 << endl;
-        //
+
         if (sizeOfWord1 >= sizeOfWord2)
         {
             SmallestOfPair = sizeOfWord2;
@@ -173,29 +135,12 @@ void Cipher(vector<string> tab, int sizeOfTheAlphabet, vector<char> alphabet, st
         }
     }
 
-    ///////////////
-
     // ZALEZNOSCI W GRAFIE
     for (auto para : pairs)
     {
-        // cout << para.first << "-->" << para.second << endl;
         graf[para.first].push_back(para.second);
     }
-    /*
-    // WYPIS SASIADOW
-    for (auto key : graf)
-    {
-        cout << key.first << ": ";
-        for (auto neighbours : key.second)
-        {
-            cout << neighbours << " ";
-        }
-        cout << endl;
-    }
-    cout << endl
-         << endl
-         << endl;
-    */
+
     // SORTOWANIE
     topologicalSort(graf, sizeOfTheAlphabet, alphabet, message);
 }
@@ -204,32 +149,32 @@ int main()
 {
     int cases;
     vector<char> alphabet = {
-        'A',
-        'B',
-        'C',
-        'D',
-        'E',
-        'F',
-        'G',
-        'H',
-        'I',
-        'J',
-        'K',
-        'L',
-        'M',
-        'N',
-        'O',
-        'P',
-        'Q',
-        'R',
-        'S',
-        'T',
-        'U',
-        'V',
-        'W',
-        'X',
-        'Y',
-        'Z'};
+        'a',
+        'b',
+        'c',
+        'd',
+        'e',
+        'f',
+        'g',
+        'h',
+        'i',
+        'j',
+        'k',
+        'l',
+        'm',
+        'n',
+        'o',
+        'p',
+        'q',
+        'r',
+        's',
+        't',
+        'u',
+        'v',
+        'w',
+        'x',
+        'y',
+        'z'};
 
     cin >> cases;
 
