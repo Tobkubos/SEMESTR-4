@@ -32,20 +32,18 @@ void Heapify(vector<long long> &tab, int i)
     bool rightInRange = false;
 
     int parent = tab[i];
-    int leftChild = 0;
-    int rightChild = 0;
+    int leftChild = tab[left(i)];
+    int rightChild = tab[right(i)];
     int largest_id = i;
 
     if (left(i) < tab.size())
     {
         leftInRange = true;
-        leftChild = tab[left(i)];
     }
 
     if (right(i) < tab.size())
     {
         rightInRange = true;
-        rightChild = tab[right(i)];
     }
 
     if (rightInRange == true)
@@ -81,41 +79,38 @@ void Heapify(vector<long long> &tab, int i)
     }
 }
 
-int parent(int id)
-    {
-        return (id - 1) / 2;
-    }
-
-void heapAdd(vector<long long> &heap, int id){
-    while (id > 0 && ( ( heap[parent(id)] < heap[id] )))
-        {
-            swap(heap[parent(id)], heap[(id)]);
-            id = parent(id);
-        }
-}
 //sort
 void heapSort(vector<long long> &tab)
 {
     vector<long long> heap; //kopiec
 
-    for(int it=0; it<tab.size(); it++)
+    for (int i = 0; i < tab.size(); i++)
     {
-        heap.push_back(tab[it]);
-        heapAdd(heap, heap.size()-1);
+        //budujemy kopiec
+        heap.push_back(tab[i]);
+    }
+
+    //sortujemy od dołu
+    for (int i = heap.size() - 1; i >= 0; i--)
+    {
+        Heapify(heap, i);
     }
     
     ViewTable(heap, heap.size());
 
-    //zmniejszaj kopiec zapisując wynik sortowania usuwając korzeń kopca
-    int newArrayIt = tab.size()-1;
-    while(heap.size()>0)
+    for (int i = heap.size() - 1; i >= 0; i--)
     {
-        tab[newArrayIt] = heap[0];
-        swap(heap[newArrayIt], heap[0]);
-        heap.erase(heap.begin() + newArrayIt);
-        Heapify(heap, 0);
-        if(heap.size()>1) ViewTable(heap, heap.size());
-        newArrayIt--;
+        swap(heap[0], tab[i]);
+        swap(heap[i], heap[0]);
+        heap.erase(heap.begin() + i);
+        for (int j = heap.size() - 1; j >= 0; j--)
+        {
+            Heapify(heap, i);
+        }
+        if (heap.size() > 1)
+        {
+            ViewTable(heap, heap.size());
+        }
     }
     ViewTable(tab, tab.size());
 }
