@@ -16,7 +16,7 @@ int right(int i)
 }
 
 //pokaz tablice
-void ViewTable(vector<long long> &tab, int max)
+void ViewTable(vector<long long>& tab, int max)
 {
     for (int i = 0; i < max; i++)
     {
@@ -26,95 +26,60 @@ void ViewTable(vector<long long> &tab, int max)
 }
 
 // Zamien miejscami w kopcu rekurencyjnie
-void Heapify(vector<long long> &tab, int i)
+void Heapify(vector<long long>& tab, int id)
 {
-    bool leftInRange = false;
-    bool rightInRange = false;
+    int largest = id;
 
-    int parent = tab[i];
-    int leftChild = 0;
-    int rightChild = 0;
-    int largest_id = i;
+    int leftChild = left(id);
+    int rightChild = right(id);
 
-    if (left(i) < tab.size())
+    if (leftChild < tab.size() && tab[leftChild] >= tab[largest]) 
+        largest = leftChild;
+
+    if (rightChild < tab.size() && (tab[rightChild] >= tab[largest])) 
+        largest = rightChild;
+
+    if (largest != id)
     {
-        leftInRange = true;
-        leftChild = tab[left(i)];
-    }
-
-    if (right(i) < tab.size())
-    {
-        rightInRange = true;
-        rightChild = tab[right(i)];
-    }
-
-    if (rightInRange == true)
-    {
-        if (leftChild >= rightChild)
-        {
-            largest_id = left(i);
-        }
-
-        else
-        {
-            largest_id = right(i);
-        }
-    }
-
-    if (leftInRange == true && rightInRange == false)
-    {
-        if (parent < leftChild)
-        {
-            largest_id = left(i);
-        }
-    }
-
-    if (leftInRange == false && rightInRange == false)
-    {
-        largest_id = i;
-    }
-
-    if (parent < tab[largest_id])
-    {
-        swap(tab[i], tab[largest_id]);
-        Heapify(tab, largest_id);
+        swap(tab[id], tab[largest]);
+        Heapify(tab, largest);
     }
 }
 
 int parent(int id)
-    {
-        return (id - 1) / 2;
-    }
+{
+    return (id - 1) / 2;
+}
 
-void heapAdd(vector<long long> &heap, int id){
-    while (id > 0 && ( ( heap[parent(id)] < heap[id] )))
-        {
-            swap(heap[parent(id)], heap[(id)]);
-            id = parent(id);
-        }
+void heapAdd(vector<long long>& heap, int id) {
+    while (id > 0 && ((heap[parent(id)] < heap[id])))
+    {
+        swap(heap[parent(id)], heap[(id)]);
+        id = parent(id);
+    }
 }
 //sort
-void heapSort(vector<long long> &tab)
+void heapSort(vector<long long>& tab)
 {
     vector<long long> heap; //kopiec
 
-    for(int it=0; it<tab.size(); it++)
+    for (int it = 0; it < tab.size(); it++)
     {
         heap.push_back(tab[it]);
-        heapAdd(heap, heap.size()-1);
+        heapAdd(heap, heap.size() - 1);
     }
-    
+
     ViewTable(heap, heap.size());
 
     //zmniejszaj kopiec zapisując wynik sortowania usuwając korzeń kopca
-    int newArrayIt = tab.size()-1;
-    while(heap.size()>0)
+    int newArrayIt = tab.size() - 1;
+    while (heap.size() > 0)
     {
         tab[newArrayIt] = heap[0];
         swap(heap[newArrayIt], heap[0]);
         heap.erase(heap.begin() + newArrayIt);
         Heapify(heap, 0);
-        if(heap.size()>1) ViewTable(heap, heap.size());
+        if (heap.size() > 1) ViewTable(heap, heap.size());
         newArrayIt--;
     }
     ViewTable(tab, tab.size());
