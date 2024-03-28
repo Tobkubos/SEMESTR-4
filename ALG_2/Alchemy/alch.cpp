@@ -54,9 +54,10 @@ int Alchemic(map<int, vector<int>> connectionTable, vector<pair<int, int>> price
                 Income.push_back(priceTable[s.top() - 1].second - i.second);
             }
         }
-        // cout << " - " << s.top();
+        cout << " - " << s.top();
         s.pop();
     }
+    cout << endl;
     auto Income_iterator = max_element(Income.begin(), Income.end());
     if (Income_iterator != Income.end())
     {
