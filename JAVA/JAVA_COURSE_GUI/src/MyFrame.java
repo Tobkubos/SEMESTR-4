@@ -67,7 +67,7 @@ public class MyFrame extends JFrame implements ActionListener{
         //this.add(label);
         //--
         //this.add(redPanel);
-        //this.add(greenPanel);
+        //this.add(greenPanel)-;
         //this.add(bluePanel);
         //--
         this.add(button);
