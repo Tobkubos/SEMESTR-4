@@ -15,11 +15,7 @@ void addToSet(int i, int j, set<pair<int, int>> &pairs)
     auto it1 = pairs.find(temp);
     auto it2 = pairs.find(temp2);
 
-    if (it1 != pairs.end() || it2 != pairs.end())
-    {
-        cout << temp.first << " " << temp.second << "juz jest" << endl;
-    }
-    else
+    if (it1 == pairs.end() && it2 == pairs.end())
     {
         pairs.insert(temp);
     }
@@ -56,10 +52,7 @@ int Calculate(vector<int> vec)
         }
     }
 
-    for (const auto &pair : pairs)
-    {
-        std::cout << "(" << pair.first << ", " << pair.second << ") ";
-    }
+    cout << pairs.size() << endl;
 }
 
 int main()
