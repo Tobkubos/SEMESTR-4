@@ -1,10 +1,12 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
+
 class BigInt
 {
 private:
-    std::vector<int> digits;
+    vector<int> digits;
 
 public:
     BigInt(int initialValue = 0)
@@ -39,13 +41,23 @@ public:
         }
     }
 
-    friend std::ostream &operator<<(std::ostream &os, const BigInt &bigint)
+    friend ostream &operator<<(ostream &os, const BigInt &bigint)
     {
         for (auto it = bigint.digits.rbegin(); it != bigint.digits.rend(); ++it)
         {
             os << *it;
         }
         return os;
+    }
+
+    string getStringRepresentation() const
+    {
+        string resultString;
+        for (auto it = digits.rbegin(); it != digits.rend(); ++it)
+        {
+            resultString += to_string(*it);
+        }
+        return resultString;
     }
 };
 
@@ -66,8 +78,28 @@ public:
 int main()
 {
     FactorialCalculator calculator;
-    int n = 10000;
-    BigInt result = calculator.calculate(n);
-    std::cout << n << "! = " << result << std::endl;
+
+    int cases = 0;
+    cin >> cases;
+    for (int i = 0; i < cases; i++)
+    {
+        int n = 0;
+        cin >> n;
+        string missing = "";
+        cin >> missing;
+        BigInt result = calculator.calculate(n);
+        string resultString = result.getStringRepresentation();
+        for (int i = 0; i < missing.size(); i++)
+        {
+            if (missing[i] == 'a')
+            {
+                cout << resultString[i] << " ";
+            }
+            if (missing[i] == 'b')
+            {
+                cout << resultString[i] << " ";
+            }
+        }
+    }
     return 0;
 }
