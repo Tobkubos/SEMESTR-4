@@ -30,8 +30,9 @@ void Kruskal(vector<pair<pair<int,int>,int>> &vec){
             Groups.push_back(Group);
         }
         // Przechodzimy przez istniejące grupy
+        // TU JEST ZJEBANA LOGIKA
         for(auto& element : idx){
-            if(idx.find(vec[i].first.first) != idx.end() || idx.find(vec[i].first.second) != idx.end()) {
+            if(vec[i].first.first == element || vec[i].first.second == element) {
                 // Jeden lub oba wierzchołki krawędzi należą do istniejącej grupy
 
                 for(auto& group : Groups){
@@ -41,13 +42,13 @@ void Kruskal(vector<pair<pair<int,int>,int>> &vec){
                     }
                 }    
                 //sprawdz czy first.first i first.second nie sa juz gdzies w różnych grupach
-                cout << "KRAWEDZ: " << vec[i].first.first << " " << vec[i].first.second << " dopisujemy do istniejacej grupy" << endl;
+                //cout << "KRAWEDZ: " << vec[i].first.first << " " << vec[i].first.second << " dopisujemy do istniejacej grupy" << endl;
                 idx.insert(vec[i].first.first);
                 idx.insert(vec[i].first.second);
                 added = true;
-                break;
+                }
             }
-        }
+        
 
         if (!added) {
             // Żaden wierzchołek krawędzi nie należy do istniejącej grupy, więc tworzymy nową grupę
@@ -58,6 +59,7 @@ void Kruskal(vector<pair<pair<int,int>,int>> &vec){
             idx.insert(vec[i].first.second);
             Groups.push_back(Group);
         }
+    }
 
 
     
@@ -69,7 +71,7 @@ void Kruskal(vector<pair<pair<int,int>,int>> &vec){
         cout << endl;
     }
 }
-}
+
 
 int main(){
 
