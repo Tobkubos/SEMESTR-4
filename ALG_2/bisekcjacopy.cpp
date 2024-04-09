@@ -19,7 +19,7 @@ void calc(double& a, double& b, double x1, double e) {
                 x1 = (a + b) / 2; // Aktualizacja x1
                 calc(a, b, x1, e);
             } else {
-                cout << "Blad rozwiazania" << endl;
+                cout << "Brak rozwiązania" << endl;
             }
         }
     } else {
