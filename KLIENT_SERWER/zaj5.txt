@@ -1,0 +1,159 @@
+
+-----------------
+
+określone API na podstawie systemu, api na podstawie gniazd. Przy kompilacji programów takich jak C, Fortran itd. uzywają gniazd bezpośrednich.
+Metody takie jak read, write, close - metody zwiazane z systemem plikow Unix, do gniazda funkcja systemowa socket.
+Są to operacje jądra.
+
+Wszystkie połączenia są związane z przesyłaniem BAJTÓW!. TO oznacza ze programy kompilowalne w C wymagaja utworzenia gniazda. odczyt zapis, alokacja na podstawie buforów. Struktur które pokazuja adres port itd.
+
+Python daje wrappery, takie opakowania
+
+Java daje dodatkowy element pośredniczący, obsługa gniazd przez biblioeke zewnetrzna.
+
+-------------------
+read,write - blokujące metody, czekają na mozliwosc odczytania czegokolwiek. Nie mozna rownoczesnie zapisac czegos i odczytac
+
+moetoda select - oczekuje na zdarzenie z kilku gniazd jednoczesnie ( odczyt / zapis ) 
+
+JAVA - select zamiast klasycznego opartego o strumienie java.io trzeba uzyc pakietu java.nio
+uzycie funkcji select mozliwosc odpowiedzenia na jedno pytania
+source ip
+destination ip
+source
+
+proces pracujacy moze wywolac operacje fork.
+Z tego procesu zostaje zrobiony klon. Są one identyczne. W tym pierwszym fork daje identyfikator nowego procesu
+A w drugim form daje 0;
+
+Pierwszy - poleczenie ktore wyszlo z accept jest zamykane. - closei wracamy d o petli accetp
+
+Close na gniazdku Listen natomiast na polaczeniu com wywlujemy polecenie read. 
+Koniec wywołania - EXIT - zakmniecie.
+następny - tworzy kolejny podproces.
+
+FORK tworzy kopie procesu pierwotnego. Jezeli ma zaalokowana 2gb to kazdy proces pochodny bedize mial 2gb.
+
+
+WĄTEK - jest reprezentowany jako kilka kontekstów ale wątki współdzeilą przestrzeń procesu.
+Kazdy watek ma swoj wlasny stos. Kazda zmienna dla osobno wykonywanego watku znajduje sie w jego stosie.
+
+zmienne globalne nadpisuja wartosci w watkach (?)
+
+
+JAVA INTERFACE - metody
+JAVA CLASS - pola i metody
+dziedziczenie w javie jest po jednym rodzicu
+Jezeli klasa implementuje interface to musi miec wszystkie metody z inferface
+
+
+WĄTKI MA INTERFACE RUNNABLE / Klasa THREAD
+
+Maszyna wirtualna jest ciezkim procesem, ma garbage collector ma sterte itd.
+Model obslugi gniazd implmentujemy jako interface
+
+
+------------------------------------
+IMPLEMENTACJA UDP
+
+datagram package - trzeba dostarczyc byte array i rozmiar. Mniejszy lub rowny
+datagram socket  - tworzy połączenie oczekujące albo wysyłające
+
+dlaczego bajty a nie znaki - jednostka podstawowa jest bajt, w sieciowosci nie mowi sie bajt tylko oktet (8 bitów)
+co to znak  - reprezentacje fonemów w określonych alfabetów.
+
+
+Strony kodowe - charset -strone pierwsze 128 było to samo a pozostałę 128 znakami kilku obszarów.
+
+Operacja zapisu do Bazy z polskim imeimiem i nazwiskiem rzeba bylo zaznaczyc ze strona pracuje na polskich znakach.
+
+C - strlen - liczy bajty dopóki nie napotka w bajtach 00;.
+koniec łańcucha w cpp - NULL = 0; bajt 0
+
+Reprezentcja znakowa - UTF8
+kod o zmiennej długości
+
+jezeli mamy tablice bajtó i chcemy przekonwertowac na łanuch znaków trzeba przekonwertować konwerter musi wiedziec wefdlug ktorej strony kodowej ma zamienic.
+
+------------
+jezeli siegamy po strone a strone odpowiada, jednym z naglowkow jest charset encoding ktory zmienia tablice znaków na odpowiednia
+
+
+
+
+netstat -an  | grep 8888
+-------------------
+python3
+import socket
+help(socket)
+
+sock = socket.socket()
+sock.bind(("127.0.0.1",8888))
+sock.listen()
+sock.getsockname()
+sock.accept()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
