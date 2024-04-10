@@ -7,69 +7,46 @@ using namespace std;
 
 void viewVec(vector<pair<pair<int,int>,int>> vec){
         for(const auto& element : vec) {
-        cout <<element.first.first<<" "<<element.first.second << " : " << element.second << endl;
+        std::cout <<element.first.first<<" "<<element.first.second << " : " << element.second << endl;
     }
 }
 
 
-void Kruskal(vector<pair<pair<int,int>,int>> &vec){
-    vector<set<int>> Groups;
-    set<int> idx;
+bool checkNext(const vector<int>& disjoint, const vector<pair<pair<int,int>,int>>& vec, int i, int j);
 
-    for(int i = 0; i < vec.size(); i++) {
-        bool added = false;
+void Kruskal(vector<pair<pair<int,int>,int>> &vec) {
+    vector<int> Roads;
+    vector<pair<int, int>> resultEdges; // Pary wierzchołków dróg w minimalnym drzewie rozpinającym
+    vector<int> disjoint(vec.size(), -1); // Inicjalizacja tablicy do zbiorów rozłącznych
 
-        cout<<"SPRAWDZANA KRAWEDZ: "<<vec[i].first.first<<" "<<vec[i].first.second<<endl;
-
-        if(i==0){
-            set<int>Group;
-            Group.insert(vec[0].first.first);
-            Group.insert(vec[0].first.second);
-            idx.insert(vec[0].first.first);
-            idx.insert(vec[0].first.second);
-            Groups.push_back(Group);
-        }
-        // Przechodzimy przez istniejące grupy
-        // TU JEST ZJEBANA LOGIKA
-        for(auto& element : idx){
-            if(vec[i].first.first == element || vec[i].first.second == element) {
-                // Jeden lub oba wierzchołki krawędzi należą do istniejącej grupy
-
-                for(auto& group : Groups){
-                    if(group.find(vec[i].first.first) != group.end()){
-                        group.insert(vec[i].first.first);
-                        group.insert(vec[i].first.second);
-                    }
-                }    
-                //sprawdz czy first.first i first.second nie sa juz gdzies w różnych grupach
-                //cout << "KRAWEDZ: " << vec[i].first.first << " " << vec[i].first.second << " dopisujemy do istniejacej grupy" << endl;
-                idx.insert(vec[i].first.first);
-                idx.insert(vec[i].first.second);
-                added = true;
-                }
+    for (int i = 0; i < vec.size(); i++) {
+        if (disjoint[vec[i].first.first] == disjoint[vec[i].first.second]) {
+            disjoint[vec[i].first.second] += -1;
+            disjoint[vec[i].first.first] = vec[i].first.second;
+            Roads.push_back(vec[i].second);
+            resultEdges.push_back(vec[i].first);
+        } else if (disjoint[vec[i].first.first] > 0) {
+            int j = -1;
+            j = disjoint[vec[i].first.first];
+            if (checkNext(disjoint, vec, i, j)) {
+                Roads.push_back(vec[i].second);
+                resultEdges.push_back(vec[i].first);
             }
-        
-
-        if (!added) {
-            // Żaden wierzchołek krawędzi nie należy do istniejącej grupy, więc tworzymy nową grupę
-            set<int> Group;
-            Group.insert(vec[i].first.first);
-            Group.insert(vec[i].first.second);
-            idx.insert(vec[i].first.first);
-            idx.insert(vec[i].first.second);
-            Groups.push_back(Group);
         }
     }
 
-
-    
-    for(int i = 0; i < Groups.size(); i++) {
-        cout << "GRUPA " << i << ": ";
-        for(auto element : Groups[i]) {
-            cout << element << " ";
-        }
-        cout << endl;
+    // Wypisywanie minimalnego drzewa rozpinającego
+    cout << "Minimalne drzewo rozpinające:" << endl;
+    for (int i = 0; i < Roads.size(); i++) {
+        cout << "Krawędź: " << resultEdges[i].first << " - " << resultEdges[i].second << ", waga: " << Roads[i] << endl;
     }
+}
+
+bool checkNext(const vector<int>& disjoint, const vector<pair<pair<int,int>,int>>& vec, int i, int j) {
+    if (disjoint[j] < 0 && disjoint[j] != disjoint[vec[i].first.second]) {
+        return true; 
+    }
+    return false;
 }
 
 

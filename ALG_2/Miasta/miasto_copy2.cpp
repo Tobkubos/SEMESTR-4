@@ -12,41 +12,45 @@ void viewVec(vector<pair<pair<int,int>,int>> vec){
 }
 
 
-bool checkNext(const vector<int>& disjoint, const vector<pair<pair<int,int>,int>>& vec, int i, int j);
+bool checkNext(vector<int>& disjoint, int source, int destination);
 
-void Kruskal(vector<pair<pair<int,int>,int>> &vec) {
+void Kruskal(vector<pair<pair<int,int>,int>>& vec) {
     vector<int> Roads;
     vector<pair<int, int>> resultEdges; // Pary wierzchołków dróg w minimalnym drzewie rozpinającym
-    vector<int> disjoint(vec.size(), -1); // Inicjalizacja tablicy do zbiorów 
+    vector<int> disjoint(vec.size(), -1); // Inicjalizacja tablicy łączeń
 
     for (int i = 0; i < vec.size(); i++) {
-        if (disjoint[vec[i].first.first] == disjoint[vec[i].first.second]) {
-            disjoint[vec[i].first.second] += -1;
+        if (checkNext(disjoint, vec[i].first.first, vec[i].first.second)) {
             disjoint[vec[i].first.first] = vec[i].first.second;
             Roads.push_back(vec[i].second);
             resultEdges.push_back(vec[i].first);
-        } else if (disjoint[vec[i].first.first] > 0) {
-            int j = -1;
-            j = disjoint[vec[i].first.first];
-            if (checkNext(disjoint, vec, i, j)) {
-                Roads.push_back(vec[i].second);
-                resultEdges.push_back(vec[i].first);
-            }
         }
     }
 
     // Wypisywanie minimalnego drzewa rozpinającego
     cout << "Minimalne drzewo rozpinające:" << endl;
     for (int i = 0; i < Roads.size(); i++) {
-        cout << "Krawedz: " << resultEdges[i].first << " - " << resultEdges[i].second << ", waga: " << Roads[i] << endl;
+        cout << "Krawędź: " << resultEdges[i].first << " - " << resultEdges[i].second << ", waga: " << Roads[i] << endl;
     }
 }
 
-bool checkNext(const vector<int>& disjoint, const vector<pair<pair<int,int>,int>>& vec, int i, int j) {
-    if (disjoint[j] < 0 && disjoint[j] != disjoint[vec[i].first.second]) {
-        return true; 
+bool checkNext(vector<int>& disjoint, int source, int destination) {
+    int sourceRoot = source;
+    while (disjoint[sourceRoot] != -1) {
+        sourceRoot = disjoint[sourceRoot];
     }
-    return false;
+
+    int destinationRoot = destination;
+    while (disjoint[destinationRoot] != -1) {
+        destinationRoot = disjoint[destinationRoot];
+    }
+
+    if (sourceRoot == destinationRoot) {
+        return false; // Tworzy cykl
+    }
+
+    disjoint[sourceRoot] = destinationRoot; // Unia zbiorów
+    return true;
 }
 
 

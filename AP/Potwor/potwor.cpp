@@ -85,21 +85,11 @@ int main()
     {
         int n = 0;
         cin >> n;
-        string missing = "";
-        cin >> missing;
+        //string missing = "";
+        //cin >> missing;
         BigInt result = calculator.calculate(n);
         string resultString = result.getStringRepresentation();
-        for (int i = 0; i < missing.size(); i++)
-        {
-            if (missing[i] == 'a')
-            {
-                cout << resultString[i] << " ";
-            }
-            if (missing[i] == 'b')
-            {
-                cout << resultString[i] << " ";
-            }
-        }
+        cout<<resultString;
     }
     return 0;
 }
