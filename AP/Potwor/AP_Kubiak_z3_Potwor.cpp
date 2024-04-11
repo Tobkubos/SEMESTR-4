@@ -1,105 +1,116 @@
 #include <iostream>
-#include <vector>
+#include <cctype>
+#include <string>
 
 using namespace std;
-
-class BigInt
-{
-private:
-    vector<int> digits;
-
-public:
-    BigInt(int initialValue = 0)
-    {
-        if (initialValue == 0)
-        {
-            digits.push_back(0);
-        }
-        else
-        {
-            while (initialValue != 0)
-            {
-                digits.push_back(initialValue % 10);
-                initialValue /= 10;
-            }
-        }
-    }
-
-    void multiply(int factor)
-    {
-        int carry = 0;
-        for (size_t i = 0; i < digits.size(); ++i)
-        {
-            int product = digits[i] * factor + carry;
-            digits[i] = product % 10;
-            carry = product / 10;
-        }
-        while (carry != 0)
-        {
-            digits.push_back(carry % 10);
-            carry /= 10;
-        }
-    }
-
-    friend ostream &operator<<(ostream &os, const BigInt &bigint)
-    {
-        for (auto it = bigint.digits.rbegin(); it != bigint.digits.rend(); ++it)
-        {
-            os << *it;
-        }
-        return os;
-    }
-
-    string getStringRepresentation() const
-    {
-        string resultString;
-        for (auto it = digits.rbegin(); it != digits.rend(); ++it)
-        {
-            resultString += to_string(*it);
-        }
-        return resultString;
-    }
-};
-
-class FactorialCalculator
-{
-public:
-    BigInt calculate(int n)
-    {
-        BigInt result(1);
-        for (int i = 2; i <= n; ++i)
-        {
-            result.multiply(i);
-        }
-        return result;
-    }
-};
+void FindFactorial();
+bool CheckNumbers1(int,int,string);
+bool CheckNumbers2(int,int,string);
 
 int main()
 {
-    FactorialCalculator calculator;
+    int tests = 0;
+    cin >> tests;
 
-    int cases = 0;
-    cin >> cases;
-    for (int i = 0; i < cases; i++)
+    for(int i=0; i<tests; i++)
     {
-        int n = 0;
-        cin >> n;
-        string missing = "";
-        cin >> missing;
-        BigInt result = calculator.calculate(n);
-        string resultString = result.getStringRepresentation();
-        for (int i = 0; i < missing.size(); i++)
+        FindFactorial();
+    }
+    
+    return 0;
+}
+
+void FindFactorial()
+{
+    long int factor;
+    cin >> factor;
+    string digits;
+    cin >> digits;
+
+    int a = -1, b = -1;
+
+    for(int i=0; i<10; i++)
+    {
+        a++;
+        for(int j=0; j<10; j++)
         {
-            if (missing[i] == 'a')
+            b++;
+            if(CheckNumbers1(a,b,digits) && CheckNumbers2(a,b,digits))
             {
-                cout << resultString[i] << " ";
-            }
-            if (missing[i] == 'b')
-            {
-                cout << resultString[i] << " ";
+                cout << a << " " << b << endl;
+                return;
             }
         }
+        b=-1;
     }
-    return 0;
+}
+
+bool CheckNumbers1(int a,int b,string digits)
+{
+    long int sum = 0;
+    for (int i=0; i<digits.length(); i++) 
+    {
+        if (isdigit(digits[i])) 
+        { 
+            sum += digits[i] - '0'; 
+        }
+        else if(digits[i] == 'a')
+        {
+            sum += a;
+        }
+        else if(digits[i] == 'b')
+        {
+            sum += b;
+        }
+    }
+
+    if(sum%3 == 0)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool CheckNumbers2(int a,int b,string digits)
+{
+    long int sum1 = 0, sum2 = 0;
+    for(int i=0; i<digits.length(); i+=2)
+    {
+        if (isdigit(digits[i])) 
+        { 
+            sum1 += digits[i] - '0'; 
+        }
+        else if(digits[i] == 'a')
+        {
+            sum1 += a;
+        }
+        else if(digits[i] == 'b')
+        {
+            sum1 += b;
+        }
+    }
+
+    for(int i=1; i<digits.length(); i+=2)
+    {
+        if (isdigit(digits[i])) 
+        { 
+            sum2 += digits[i] - '0'; 
+        }
+        else if(digits[i] == 'a')
+        {
+            sum2 += a;
+        }
+        else if(digits[i] == 'b')
+        {
+            sum2 += b;
+        }
+    }
+
+    if((sum1-sum2) % 11 == 0)
+    {
+        return true;
+    }
+
+    return false;
 }
