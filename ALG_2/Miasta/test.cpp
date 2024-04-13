@@ -15,28 +15,48 @@ void viewVec(vector<pair<pair<int, int>, int>> vec)
 
 bool checkNext(vector<int> &disjoint, int source, int destination);
 
-void Kruskal(vector<pair<pair<int, int>, int>> &vec)
+void Kruskal(vector<pair<pair<int, int>, int>> &vec, int numCities)
 {
-    vector<int> Roads;
-    vector<pair<int, int>> resultEdges;   // Pary wierzchołków dróg w minimalnym drzewie rozpinającym
-    vector<int> disjoint(vec.size(), -1); // Inicjalizacja tablicy łączeń
-
-    for (int i = 0; i < vec.size(); i++)
+    if (numCities == 1)
     {
-        if (checkNext(disjoint, vec[i].first.first, vec[i].first.second))
+        cout << vec[numCities - 1].second << endl; // Brak dróg
+        return;
+    }
+    else if (numCities == 2)
+    {
+        if (vec.empty())
         {
-            disjoint[vec[i].first.first] = vec[i].first.second;
-            Roads.push_back(vec[i].second);
-            resultEdges.push_back(vec[i].first);
+            cout << "Brak dróg" << endl;
+            return;
+        }
+        else
+        {
+            cout << vec[0].second << endl; // Dla dwóch miast tylko jedna droga
+            return;
         }
     }
 
-    // Wypisywanie minimalnego drzewa rozpinającego
-    cout << "Minimalne drzewo rozpinające:" << endl;
-    for (int i = 0; i < Roads.size(); i++)
+    sort(vec.begin(), vec.end(), [](const auto &a, const auto &b)
+         { return a.second < b.second; });
+
+    vector<int> disjoint(numCities, -1);
+
+    vector<pair<int, int>> resultEdges; // Pary wierzcholkow drog w MST
+    vector<int> Roads;
+
+    for (const auto &edge : vec)
     {
-        cout << "Krawędź: " << resultEdges[i].first << " - " << resultEdges[i].second << ", waga: " << Roads[i] << endl;
+        if (checkNext(disjoint, edge.first.first, edge.first.second))
+        {
+            disjoint[edge.first.first] = edge.first.second;
+            Roads.push_back(edge.second);
+            resultEdges.push_back(edge.first);
+        }
     }
+
+    // Wypisywanie minimalnego drzewa rozpinajacego
+    int maxRoad = *max_element(Roads.begin(), Roads.end());
+    cout << maxRoad << endl;
 }
 
 bool checkNext(vector<int> &disjoint, int source, int destination)
@@ -58,7 +78,7 @@ bool checkNext(vector<int> &disjoint, int source, int destination)
         return false; // Tworzy cykl
     }
 
-    disjoint[sourceRoot] = destinationRoot; // Unia zbiorów
+    disjoint[sourceRoot] = destinationRoot; // Unia zbiorow
     return true;
 }
 
@@ -97,7 +117,7 @@ int main()
             connection.first.first = city1;
             connection.first.second = city2;
             connection.second = roadVal;
-
+            /*
             if (firstAdd)
             {
                 vec.push_back(connection);
@@ -105,16 +125,17 @@ int main()
                 connectionExists = true;
                 // cout<<"DODALEM PIERWSZY ELEMENT"<<endl;
             }
+            */
 
             for (auto &element : vec)
             {
                 if (element.first.first == connection.first.first && element.first.second == connection.first.second)
                 {
-                    if (element.second <= connection.second)
+                    connectionExists = true;
+                    if (element.second > connection.second)
                     {
                         // cout<<"JEST LEPSZA SCIEZKA!"<<endl;
-                        connectionExists = true;
-                        connection.second = element.second;
+                        element.second = connection.second;
                     }
                 }
             }
@@ -133,7 +154,7 @@ int main()
         viewVec(vec);
         cout << endl
              << endl;
-        Kruskal(vec);
+        Kruskal(vec, cities);
     }
 
     return 0;

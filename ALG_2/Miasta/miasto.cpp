@@ -5,116 +5,119 @@
 
 using namespace std;
 
-void viewVec(vector<pair<pair<int,int>,int>> vec){
-        for(const auto& element : vec) {
-        std::cout <<element.first.first<<" "<<element.first.second << " : " << element.second << endl;
-    }
-}
+bool checkNext(vector<int> &disjoint, int source, int destination);
 
-
-bool checkNext(const vector<int>& disjoint, const vector<pair<pair<int,int>,int>>& vec, int i, int j);
-
-void Kruskal(vector<pair<pair<int,int>,int>> &vec) {
+void Kruskal(vector<pair<pair<int, int>, int>> &vec)
+{
     vector<int> Roads;
-    vector<pair<int, int>> resultEdges; // Pary wierzchołków dróg w minimalnym drzewie rozpinającym
-    vector<int> disjoint(vec.size(), -1); // Inicjalizacja tablicy do zbiorów 
+    vector<pair<int, int>> resultEdges;   // Pary wierzcholkow drog w MST
+    vector<int> disjoint(vec.size(), -1); // Inicjalizacja tablicy laczen
 
-    for (int i = 0; i < vec.size(); i++) {
-        if (disjoint[vec[i].first.first] == disjoint[vec[i].first.second]) {
-            disjoint[vec[i].first.second] += -1;
+    for (int i = 0; i < vec.size(); i++)
+    {
+        if (checkNext(disjoint, vec[i].first.first, vec[i].first.second))
+        {
             disjoint[vec[i].first.first] = vec[i].first.second;
             Roads.push_back(vec[i].second);
             resultEdges.push_back(vec[i].first);
-        } else if (disjoint[vec[i].first.first] > 0) {
-            int j = -1;
-            j = disjoint[vec[i].first.first];
-            if (checkNext(disjoint, vec, i, j)) {
-                Roads.push_back(vec[i].second);
-                resultEdges.push_back(vec[i].first);
-            }
         }
     }
 
-    // Wypisywanie minimalnego drzewa rozpinającego
-    cout << "Minimalne drzewo rozpinające:" << endl;
-    for (int i = 0; i < Roads.size(); i++) {
-        cout << "Krawedz: " << resultEdges[i].first << " - " << resultEdges[i].second << ", waga: " << Roads[i] << endl;
-    }
+    // Wypisywanie minimalnego drzewa rozpinajacego
+    int maxRoad = *max_element(Roads.begin(), Roads.end());
+    std::cout << maxRoad << std::endl;
 }
 
-bool checkNext(const vector<int>& disjoint, const vector<pair<pair<int,int>,int>>& vec, int i, int j) {
-    if (disjoint[j] < 0 && disjoint[j] != disjoint[vec[i].first.second]) {
-        return true; 
+bool checkNext(vector<int> &disjoint, int source, int destination)
+{
+    int sourceRoot = source;
+    while (disjoint[sourceRoot] != -1)
+    {
+        sourceRoot = disjoint[sourceRoot];
     }
-    return false;
+
+    int destinationRoot = destination;
+    while (disjoint[destinationRoot] != -1)
+    {
+        destinationRoot = disjoint[destinationRoot];
+    }
+
+    if (sourceRoot == destinationRoot)
+    {
+        return false; // Tworzy cykl
+    }
+
+    disjoint[sourceRoot] = destinationRoot; // Unia zbiorow
+    return true;
 }
 
+int main()
+{
 
-int main(){
+    int cases = 0;
 
-    int cases =0;
+    cin >> cases;
 
-    cin>>cases;
-
-    for(int i =0; i<cases; i++){
-        vector<pair<pair<int,int>,int>> vec;
+    for (int i = 0; i < cases; i++)
+    {
+        vector<pair<pair<int, int>, int>> vec;
 
         int cities = 0;
         int roads = 0;
         bool firstAdd = true;
-        cin>>cities>>roads;
+        cin >> cities >> roads;
 
-        for(int j = 0; j<roads; j++){
-            int city1   = 0;
-            int city2   = 0;
+        for (int j = 0; j < roads; j++)
+        {
+            int city1 = 0;
+            int city2 = 0;
             int roadVal = 0;
             bool connectionExists = false;
 
-            cin>>city1>>city2>>roadVal;
-            
-            pair<pair<int,int>,int> connection; 
+            cin >> city1 >> city2 >> roadVal;
 
-            //uloz miasta tak aby index byl rosnacy
-            if (city1 > city2){
+            pair<pair<int, int>, int> connection;
+
+            // uloz miasta tak aby index byl rosnacy
+            if (city1 > city2)
+            {
                 swap(city1, city2);
             }
             connection.first.first = city1;
             connection.first.second = city2;
             connection.second = roadVal;
 
-            if(firstAdd){
-            vec.push_back(connection);
-            firstAdd = false;
-            connectionExists = true;
-            //cout<<"DODALEM PIERWSZY ELEMENT"<<endl;
+            if (firstAdd)
+            {
+                vec.push_back(connection);
+                firstAdd = false;
+                connectionExists = true;
+                // cout<<"DODALEM PIERWSZY ELEMENT"<<endl;
             }
 
-
-            for(auto& element : vec){
-                if(element.first.first == connection.first.first && element.first.second == connection.first.second){
-                    if(element.second <= connection.second){
-                        //cout<<"JEST LEPSZA SCIEZKA!"<<endl;
+            for (auto &element : vec)
+            {
+                if (element.first.first == connection.first.first && element.first.second == connection.first.second)
+                {
+                    if (element.second <= connection.second)
+                    {
+                        // cout<<"JEST LEPSZA SCIEZKA!"<<endl;
                         connectionExists = true;
                         connection.second = element.second;
                     }
                 }
             }
 
-            if(!connectionExists){
+            if (!connectionExists)
+            {
                 vec.push_back(connection);
             }
         }
 
-        sort(vec.begin(), vec.end(), [](const auto& a, const auto& b) {
-            return a.second < b.second;
-        });
-
-        cout<<endl<<endl;
-        viewVec(vec);
-        cout<<endl<<endl;
+        sort(vec.begin(), vec.end(), [](const auto &a, const auto &b)
+             { return a.second < b.second; });
         Kruskal(vec);
     }
-
 
     return 0;
 }
