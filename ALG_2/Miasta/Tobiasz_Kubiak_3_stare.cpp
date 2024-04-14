@@ -9,7 +9,6 @@ bool checkNext(vector<int> &disjoint, int source, int destination);
 
 void Kruskal(vector<pair<pair<int, int>, int>> &vec, int numCities)
 {
-
     if (numCities == 1)
     {
         cout << "0" << endl;
@@ -49,16 +48,16 @@ void Kruskal(vector<pair<pair<int, int>, int>> &vec, int numCities)
     cout << maxRoad << endl;
 }
 
-bool checkNext(vector<int>& disjoint, int source, int destination)
+bool checkNext(vector<int> &disjoint, int source, int destination)
 {
     int sourceRoot = source;
-    while (sourceRoot < disjoint.size() && disjoint[sourceRoot] != -1)
+    while (disjoint[sourceRoot] != -1)
     {
         sourceRoot = disjoint[sourceRoot];
     }
 
     int destinationRoot = destination;
-    while (destinationRoot < disjoint.size() && disjoint[destinationRoot] != -1)
+    while (disjoint[destinationRoot] != -1)
     {
         destinationRoot = disjoint[destinationRoot];
     }

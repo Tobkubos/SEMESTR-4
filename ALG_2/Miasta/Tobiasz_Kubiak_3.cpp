@@ -51,13 +51,13 @@ void Kruskal(vector<pair<pair<int, int>, int>> &vec, int numCities)
 bool checkNext(vector<int> &disjoint, int source, int destination)
 {
     int sourceRoot = source;
-    while (disjoint[sourceRoot] != -1)
+    while (sourceRoot < disjoint.size() && disjoint[sourceRoot] != -1)
     {
         sourceRoot = disjoint[sourceRoot];
     }
 
     int destinationRoot = destination;
-    while (disjoint[destinationRoot] != -1)
+    while (destinationRoot < disjoint.size() && disjoint[destinationRoot] != -1)
     {
         destinationRoot = disjoint[destinationRoot];
     }
