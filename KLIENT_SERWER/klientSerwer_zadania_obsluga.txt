@@ -1,0 +1,47 @@
+Poniższe programy wysyłają zapytanie do serwera i czekają na odpowiedź, po przyjęciu odpowiedzi zamyka socket.
+
+nc -l -p 8080
+
+client.py
+uruchomienie:  
+
+python3 /home/debian/Downloads/client.py 127.0.0.1:8080 Hello
+
+
+
+client.c
+uruchomienie:  
+make  /home/debian/Downloads/client
+dalej występuje błąd kompilacji.
+
+SimpleClient.java
+Dodano do CLASPATH, konieczne w moim przypadku:
+export CLASSPATH=$CLASSPATH:home/debian/Downloads
+
+javac /home/debian/Downloads/SimpleClient.java
+uruchomienie:  
+java SimpleClient 127.0.0.1:8080 Hello, server!
+
+
+ręczne ustawienie serwera i klienta:
+SERWER:
+python3
+import socket
+sock = socket.socket()
+sock.bind(('localhost',<HOST>))
+sock.listen()
+sock.getsockname()
+conn, addr = sock.accept()
+
+netstat -a
+
+TERAZ PRZECHODZIMY DO KLIENT:
+python3
+import socket
+clsock = socket.socket()
+clsock.connect(('localhost',<HOST>))
+clsock.sendall(b"SIEMA ENIU")
+
+WRACAMY DO SERWER:
+rec_data = conn.recv(1024)
+print(rec_data.decode())
