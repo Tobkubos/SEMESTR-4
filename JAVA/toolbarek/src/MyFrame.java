@@ -34,13 +34,12 @@ public class MyFrame extends JFrame {
         toolbar.setBackground(new Color(0x62466B));
         toolbar.setBorder(new EmptyBorder(10, 25, 10, 25));
         //toolbar.setBorder(new LineBorder(Color.YELLOW));
-        CustomButton button1 = new CustomButton("Button 1   ", "sevenStudio.png");
-        CustomButton button2 = new CustomButton("Button 1   ", "sevenStudio.png");
-        CustomButton button3 = new CustomButton("Button 1   ", "sevenStudio.png");
+        CustomButton button1 = new CustomButton("Zmien Kolor  ", "sevenStudio.png");
+        CustomButton button2 = new CustomButton("Nie Klikaj   ", "sevenStudio.png");
+        CustomButton button3 = new CustomButton("Zmieniacz Nazwy   ", "sevenStudio.png");
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Zmieniamy kolor tła przycisku na czerwony po kliknięciu
                 Random rand = new Random();
                 int r = rand.nextInt(256);
                 int g = rand.nextInt(256);
@@ -63,7 +62,7 @@ public class MyFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String newButtonText = JOptionPane.showInputDialog(MyFrame.this, "Wprowadź nazwę:");
                 if (newButtonText != null && !newButtonText.isEmpty()) {
-                    button3.setText(newButtonText);
+                    button3.setText(newButtonText+"   ");
                 }
             }
         });
