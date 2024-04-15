@@ -37,6 +37,7 @@ public class MyFrame extends JFrame {
         CustomButton button1 = new CustomButton("Zmien Kolor  ", "sevenStudio.png");
         CustomButton button2 = new CustomButton("Nie Klikaj   ", "sevenStudio.png");
         CustomButton button3 = new CustomButton("Zmieniacz Nazwy   ", "sevenStudio.png");
+        CustomButton button4 = new CustomButton("Kwadrat Painter   ", "sevenStudio.png");
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,11 +68,31 @@ public class MyFrame extends JFrame {
             }
         });
 
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        if (e.getButton() == MouseEvent.BUTTON1) { //czy kliknięte
+                            Graphics g = mainPanel.getGraphics();
+                            int x = e.getX()-50;
+                            int y = e.getY()-50;
+                            g.setColor(Color.RED);
+                            g.fillRect(x, y, 100, 100); // Rysujemy kwadrat o wymiarach 100x100 w miejscu kliknięcia myszką
+                        }
+                    }
+                });
+            }
+        });
+
         toolbar.add(button1);
         toolbar.addSeparator(new Dimension(30,30));
         toolbar.add(button2);
         toolbar.addSeparator(new Dimension(30,30));
         toolbar.add(button3);
+        toolbar.addSeparator(new Dimension(30,30));
+        toolbar.add(button4);
         toolbarPanel.add(toolbar);
         mainPanel.add(toolbarPanel);
         this.setVisible(true);
