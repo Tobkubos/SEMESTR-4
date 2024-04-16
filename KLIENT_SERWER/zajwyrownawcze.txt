@@ -1,0 +1,14 @@
+roznica miedzy jednowoatkowym, wielowatkowym
+czemu select
+jakie API
+jak dziala api
+jak sie kompliuje program w javie
+co to socket
+120 sekund i zamyka sie socket
+
+SERVER PY - wiele watkow
+SERVER JAVA - kolejka czeka na pierwszego i dopiero sie przelacza
+
+
+selector 
+client + wiadomosc
