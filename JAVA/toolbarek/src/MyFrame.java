@@ -26,6 +26,7 @@ public class MyFrame extends JFrame {
         mainPanel.setBackground(new Color(0x45364B));
         this.add(mainPanel);
 
+
         JPanel toolbarPanel = new JPanel();
         toolbarPanel.setBounds(0, 0, this.getWidth(), 55);
         toolbarPanel.setBackground(new Color(0x8C93A8));
@@ -53,7 +54,7 @@ public class MyFrame extends JFrame {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Tworzenie nowego okna dialogowego
+                // okno dialogowe
                 JOptionPane.showMessageDialog(MyFrame.this, "LJ", "LLEEEEBROOOOOOOOOOOON JAMEEEEEEEEEEEEEEES", JOptionPane.INFORMATION_MESSAGE, Lebron);
             }
         });
