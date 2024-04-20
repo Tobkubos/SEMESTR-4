@@ -24,11 +24,11 @@ source
 
 proces pracujacy moze wywolac operacje fork.
 Z tego procesu zostaje zrobiony klon. Są one identyczne. W tym pierwszym fork daje identyfikator nowego procesu
-A w drugim form daje 0;
+A w drugim fork daje 0;
 
-Pierwszy - poleczenie ktore wyszlo z accept jest zamykane. - closei wracamy d o petli accetp
+Pierwszy - poleczenie ktore wyszlo z accept jest zamykane. - close i wracamy do petli accept
 
-Close na gniazdku Listen natomiast na polaczeniu com wywlujemy polecenie read. 
+Close na gniazdku Listen natomiast na polaczeniu conn wywlujemy polecenie read. 
 Koniec wywołania - EXIT - zakmniecie.
 następny - tworzy kolejny podproces.
 
@@ -44,7 +44,7 @@ zmienne globalne nadpisuja wartosci w watkach (?)
 JAVA INTERFACE - metody
 JAVA CLASS - pola i metody
 dziedziczenie w javie jest po jednym rodzicu
-Jezeli klasa implementuje interface to musi miec wszystkie metody z inferface
+Jezeli klasa implementuje interface to musi miec wszystkie metody z interface
 
 
 WĄTKI MA INTERFACE RUNNABLE / Klasa THREAD

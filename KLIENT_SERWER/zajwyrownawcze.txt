@@ -1,14 +1,41 @@
 roznica miedzy jednowoatkowym, wielowatkowym
+
 czemu select
+
 jakie API
+
 jak dziala api
+
 jak sie kompliuje program w javie
+
+
+
 co to socket
+Gniazda są kanałami komunikacyjnymi, które umożliwiają niepowiązane procesy wymiany danych lokalnie i w sieciach. Pojedyncze gniazdo jest jednym punktem końcowym dwukierunkowego kanału komunikacyjnego.
+
 120 sekund i zamyka sie socket
 
-SERVER PY - wiele watkow
-SERVER JAVA - kolejka czeka na pierwszego i dopiero sie przelacza
+TCP - wymaga potwierdzenia odbioru. METODA ACCEPT: Ta metoda jest wykorzystywana tylko przez sockety TCP do akceptowania połączeń przychodzących. Blokuje ona wykonywanie programu, aż nie nadejdzie połączenie, a następnie zwraca nowy socket, który reprezentuje połączenie z klientem.
+UDP - nie ma potwierdzenia odbioru
+
+Server.py
+przyjmuje tyle bitów ile zadamy jako argument, bazowo jest w stanie przyjąć 2 wiadomości
+Client.py - wysyła na zadany serwer wiadomość, jeżeli wyśle krótszą serwer czeka na dopełnienie wiadomości, jeżeli wyśle za długą, ucina wiadomość.
+2 klienty, i z obu wyslesz krótszą wiadomość to freeze, trzeba wysłać obie równe bądź większe
+
+SERVER JAVA - kolejka czeka na pierwszego i dopiero sie przelacza, max 25 klientów w kolejce.
+Przyjmuje 2 wiadomości. Klient odbiera powitalną i zamyka clienta.
+
+Selector Server PYTHON
+Serwer ze stałym adresem zadeklarowanym w kodzie
+
+Selector Server JAVA - błąd kompilacji
+
+THREADED SERVER - działanie współbierzne, rozpatruje klientów i wysyła wiadomość z serwera do losowego klienta.
+THREADED CLIENT - odsyła wiadomości na server po losowym czasie uśpienia.
 
 
 selector 
 client + wiadomosc
+
+
