@@ -7,16 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MyFrame extends JFrame {
-    private ScriptEngine engine;
 
     MyFrame() {
         this.setTitle("Kalkulator");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(300, 300);
-
-        // Inicjalizacja ScriptEngine
-        ScriptEngineManager manager = new ScriptEngineManager();
-        this.engine = manager.getEngineByName("JavaScript");
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
@@ -94,6 +89,72 @@ public class MyFrame extends JFrame {
             }
         });
 
+        score.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String text = resultTextArea.getText();
+                char operator = 0;
+                double number = 0;
+                double result = 0;
+                boolean firstNumber = true;
+                boolean decimal = false;
+                double decimalPlace = 0.1;
+
+                for (int i = 0; i < text.length(); i++) {
+                    char ch = text.charAt(i);
+                    if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+                        if (firstNumber) {
+                            result = number;
+                            firstNumber = false;
+                        } else {
+                            switch (operator) {
+                                case '+':
+                                    result += number;
+                                    break;
+                                case '-':
+                                    result -= number;
+                                    break;
+                                case '*':
+                                    result *= number;
+                                    break;
+                                case '/':
+                                    result /= number;
+                                    break;
+                            }
+                        }
+                        operator = ch;
+                        number = 0;
+                        decimal = false;
+                        decimalPlace = 0.1;
+                    } else if (Character.isDigit(ch)) {
+                        if (decimal) {
+                            number += Character.getNumericValue(ch) * decimalPlace;
+                            decimalPlace *= 0.1;
+                        } else {
+                            number = number * 10 + Character.getNumericValue(ch);
+                        }
+                    } else if (ch == '.') {
+                        decimal = true;
+                    }
+                }
+                switch (operator) {
+                    case '+':
+                        result += number;
+                        break;
+                    case '-':
+                        result -= number;
+                        break;
+                    case '*':
+                        result *= number;
+                        break;
+                    case '/':
+                        result /= number;
+                        break;
+                }
+
+                resultTextArea.setText(Double.toString(result));
+            }
+        });
 
         mainPanel.add(resultTextArea, BorderLayout.NORTH);
         mainPanel.add(buttonsPanel, BorderLayout.CENTER);
