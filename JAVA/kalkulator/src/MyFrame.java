@@ -1,32 +1,31 @@
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.nio.charset.MalformedInputException;
-import java.util.Random;
 
 public class MyFrame extends JFrame {
+    private ScriptEngine engine;
+
     MyFrame() {
-        //FRAME
-        this.setTitle("Okienko okienko okienko");
+        this.setTitle("Kalkulator");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(true);
-        this.setSize(700, 700);
+        this.setSize(300, 300);
 
-        //PANEL GLOWNY
-        JPanel MainPanel = new JPanel();
-        MainPanel.setLayout(new BorderLayout());
+        // Inicjalizacja ScriptEngine
+        ScriptEngineManager manager = new ScriptEngineManager();
+        this.engine = manager.getEngineByName("JavaScript");
 
-        // GUZIKI
-        JPanel Buttons = new JPanel();
-        GridLayout GL = new GridLayout(4,4,5,5);
-        Buttons.setLayout(GL);
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
 
+        //Guziki
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.setLayout(new GridLayout(4, 4, 5, 5));
+
+        //guziki konstruktor
         JButton one = new JButton("1");
         JButton two = new JButton("2");
         JButton three = new JButton("3");
@@ -36,23 +35,70 @@ public class MyFrame extends JFrame {
         JButton seven = new JButton("7");
         JButton eight = new JButton("8");
         JButton nine = new JButton("9");
+        JButton comma = new JButton(".");
 
         JButton plus = new JButton("+");
         JButton minus = new JButton("-");
         JButton division = new JButton("/");
-        JButton multiplicate = new JButton("*");
+        JButton multiplication = new JButton("*");
         JButton clear = new JButton("C");
         JButton score = new JButton("=");
 
-        Buttons.add(one);
-        Buttons.add(two);
-        Buttons.add(three);
-        Buttons.add(one);
+        buttonsPanel.add(one);
+        buttonsPanel.add(two);
+        buttonsPanel.add(three);
+        buttonsPanel.add(four);
+        buttonsPanel.add(five);
+        buttonsPanel.add(six);
+        buttonsPanel.add(seven);
+        buttonsPanel.add(eight);
+        buttonsPanel.add(nine);
+        buttonsPanel.add(comma);
+        buttonsPanel.add(plus);
+        buttonsPanel.add(minus);
+        buttonsPanel.add(division);
+        buttonsPanel.add(multiplication);
+        buttonsPanel.add(clear);
+        buttonsPanel.add(score);
+
+        JTextArea resultTextArea = new JTextArea();
+
+        ActionListener numberListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton button = (JButton) e.getSource();
+                resultTextArea.append(button.getText());
+            }
+        };
+
+        one.addActionListener(numberListener);
+        two.addActionListener(numberListener);
+        three.addActionListener(numberListener);
+        four.addActionListener(numberListener);
+        five.addActionListener(numberListener);
+        six.addActionListener(numberListener);
+        seven.addActionListener(numberListener);
+        eight.addActionListener(numberListener);
+        nine.addActionListener(numberListener);
+        comma.addActionListener(numberListener);
+
+        plus.addActionListener(numberListener);
+        minus.addActionListener(numberListener);
+        division.addActionListener(numberListener);
+        multiplication.addActionListener(numberListener);
+
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resultTextArea.setText("");
+            }
+        });
 
 
-        MainPanel.add(Buttons);
-        //
-        this.add(MainPanel);
+        mainPanel.add(resultTextArea, BorderLayout.NORTH);
+        mainPanel.add(buttonsPanel, BorderLayout.CENTER);
+        this.add(mainPanel);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 }
