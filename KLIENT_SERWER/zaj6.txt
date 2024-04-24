@@ -1,0 +1,105 @@
+ACTION.Name + "is selected"
+stringi w javie sa nie zmienialne
+jakiekolwiek dodawanie znakow to robi nowy
+
+string builder jest rozszerzalny 
+s = string builder
+s = ""
+s.add("a")
+s.add("b")
+
+string builder s = ab
+s.toString()
+
+
+HTTPS
+szyfrowane połączenie, tunel szyfrowany - secured
+protokół TLS
+
+1. RestAPI - od poczatku do konca Bazuje na HTTP
+2. RPC
+
+
+HTTP - protokół oparty o protokół TCP strumieniowy, czyli połączeniowy, nawiązuje połączenie dwukierunkowy kanał informacji przesyłający bajty. 
+
+HTTP/2
+HTTP/3
+różnica w przesyłaniu danych
+
+Protokół HTTP służy do różnych działań, Zawsze jest klient, serwer. 
+HTTP powstał wraz z HTML, powiązanie jest takie ze standardowy serwer webowy w wyniku zadania odpowiadal trescia jezyka HTML i tresciani o ktore strona prosila.
+
+JAVASCRIPT to maszyna wirtualna w przeglądarce. MA własną implementacje maszyny wirtualnej. Najpopularniejszy silnik: Chrome
+NodeJS - maszyna wirtualna JS bez przegladarki.
+
+HTTP - w wyniku żądania dostalismy tresc przegladarki
+
+HTTP - protokół typu żądanie-odpowiedź
+					request-resource
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages
+
+typ/metoda/protokół
+słowo: wartość
+w wyniku wywołania żądania analizuje i zwraca odpowiedź
+kod odpowiedzi wersja/kod/informacja textowa
+100-199 informacyjna
+200-299 potwierdzajaca wykonanie pozytywne
+300-399 przekierowanie
+400-499 błąd złego zapytania / żądania klienta
+500-599 błędy pamięci itd
+
+
+METODY HTTP
+semantyka
+operacji; GET PUT POST
+rzeczownika: HEAD OPTIONS
+
+post - modyfikuje zasób
+head - weryfikacja cashowania
+options - jakie inne metody sa obslugiwane
+debug 
+delete - REST API 
+
+TARGET:
+URL - Universal Resource Locator
+URN - Universal Resource Name - jest już określony ( Identyfikator
+URI -  Universal Resource Identifier
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web
+
+RFC - Request for Comments, opisuje standardy internetu
+Port domyślny HTTP - 80
+port domyśłny HTTPS - 443
+
+Pułapki:
+mapowanie uri ma specjalną forme, zamienia znaki na takie jakich nie powinno byc na znaki ascii.
+URL ENCODE -- URL DECODE
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages
+Nagłówki przekazują informacje, metadane, nie sa zwiazane z trescia ale np. gdize idize zadanie, jaki jest rodzaj body, jak serwer powinien go interpretowac, w jaki sposob spodziewamy sie odpowiedzi, czy body jest skompresowane. Zawierają informacje o tresci i o dlugosci tresci.-
+Autoryzacja, uzytkownik , haslo sa zamieniane na Base64Encoding
+
+
+Format reprezentacji danych
+MIME ENDCODING
+Mime ma format standardowy uproszczony w postaci 2 słów dzielonych /. 
+Typ/Podtyp. Tekst/Plain. Tekst/HTML. Tekst/JSON. Test/asdsda
+Image/JPG. Image.GIF ...
+APPLICATION/JSON
+
+multipart - tresc wiadmosci jest podzielona na fragmenty oddzielone sepoaratorem. Ktore na poczatku maja swoje MIME
+
+nagłówki bardzo ważna rzecz nadawca, temat, tresc,
+
+//
+//
+//
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Session
+//
+//
+//
+PROXY - jego zadaniem jest bariera bezpieczeństwa.
+Firewall ale na poziomie HTTP
+Cashe'owanie strony
+

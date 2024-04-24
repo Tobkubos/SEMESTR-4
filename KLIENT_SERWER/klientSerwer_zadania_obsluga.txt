@@ -12,7 +12,8 @@ python3 /home/debian/Downloads/client.py 127.0.0.1:8080 Hello
 client.c
 uruchomienie:  
 make  /home/debian/Downloads/client
-dalej występuje błąd kompilacji.
+
+path
 
 SimpleClient.java
 Dodano do CLASPATH, konieczne w moim przypadku:
