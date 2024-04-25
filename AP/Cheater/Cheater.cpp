@@ -40,7 +40,33 @@ void SetCardsInProperOrder(vector<pair<int,int>> &adam_cards ,vector<pair<int,in
             iter++;
         }
         //TODO: SPRAWDZ GEN KARTY, DAJ +1 JEZELI JEST, JEZELI NIE TO +2 JEZELI NIE TO +3
-    }
+        if(eve_cards[i].first == adam_cards[i].first && eve_cards[i].second <= adam_cards[i].second){
+            for(int j= 0; j<eve_cards.size(); j++){
+                if(eve_cards[i].second < eve_cards[j].second && 
+                eve_cards[j].second > adam_cards[i].second && 
+                eve_cards[j].first == adam_cards[i].first){
+
+                    bool one;
+                    bool two;
+                    bool three;
+
+                    if(abs(eve_cards[j].second - adam_cards[i].second) == 1){
+                        swap(eve_cards[i], eve_cards[j]);
+                        break;
+                    }
+                    if(abs(eve_cards[j].second - adam_cards[i].second) == 2){
+                        swap(eve_cards[i], eve_cards[j]);
+                        break;
+                    }
+                    if(abs(eve_cards[j].second - adam_cards[i].second) == 3){
+                        swap(eve_cards[i], eve_cards[j]);
+                        break;
+                    }
+                }
+            }   
+        }
+    
+    }   
 
     for(int i =0; i<adam_cards.size(); i++){
         cout<<adam_cards[i].first<<" "<<adam_cards[i].second<<"  ///  "<<eve_cards[i].first<< " "<<eve_cards[i].second<<endl;
