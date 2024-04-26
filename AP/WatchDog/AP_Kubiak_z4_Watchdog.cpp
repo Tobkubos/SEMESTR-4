@@ -47,8 +47,7 @@ void Watchdog(vector<pair<int, int>> hatch, int size)
     }
     if (GoodCordsVector.size() != 0)
     {
-        std::cout << "X" << GoodCordsVector[0].first << " "
-                  << "Y" << GoodCordsVector[0].second << endl;
+        std::cout << GoodCordsVector[0].first << " " << GoodCordsVector[0].second << endl;
     }
     if (GoodCordsVector.size() == 0)
     {
