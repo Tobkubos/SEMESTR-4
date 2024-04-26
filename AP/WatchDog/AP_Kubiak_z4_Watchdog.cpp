@@ -8,13 +8,13 @@ using namespace std;
 void Watchdog(vector<pair<int, int>> hatch, int size)
 {
     vector<pair<int, int>> GoodCordsVector;
-    for (int x = 0; x < size; x++)
+    for (int x = 0; x < size + 1; x++)
     {
-        for (int y = 0; y < size; y++)
+        for (int y = 0; y < size + 1; y++)
         {
-            int dist_x = min(x, size - 1 - x);
+            int dist_x = min(x, size - x);
 
-            int dist_y = min(y, size - 1 - y);
+            int dist_y = min(y, size - y);
 
             int min_dist = min(dist_x, dist_y);
             bool IsEveryGood = true;
@@ -41,13 +41,14 @@ void Watchdog(vector<pair<int, int>> hatch, int size)
                 IsEveryGood = false;
             }
 
-            // std::cout << min_dist << " ";
+            std::cout << min_dist << " ";
         }
-        // std::cout << endl;
+        std::cout << endl;
     }
     if (GoodCordsVector.size() != 0)
     {
-        std::cout << GoodCordsVector[0].first << " " << GoodCordsVector[0].second << endl;
+        std::cout << "X" << GoodCordsVector[0].first << " "
+                  << "Y" << GoodCordsVector[0].second << endl;
     }
     if (GoodCordsVector.size() == 0)
     {
