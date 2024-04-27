@@ -99,11 +99,12 @@ void SetCardsInProperOrder(vector<pair<int, int>> &adam_cards, vector<pair<int, 
     }
 
     // WYSWIETL JAKIE KARTY EVA WYSTAWIA NA ADAMA
-
+    /*
     for (int i = 0; i < adam_cards.size(); i++)
     {
         cout << adam_cards[i].first << " " << adam_cards[i].second << "  ///  " << eve_cards[i].first << " " << eve_cards[i].second << endl;
     }
+    */
 
     cout << points << endl;
 }

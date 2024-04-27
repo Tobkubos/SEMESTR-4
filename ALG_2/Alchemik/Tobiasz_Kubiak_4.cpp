@@ -37,19 +37,18 @@ void CalculateBestConversion(vector<vector<double>> &matrix, int numOfPrices, ve
         int ConversionCost = 0;
         if (matrix[0][i] != 0 && matrix[i][0] != 0 && matrix[0][i] != INF && matrix[i][0] != INF)
         {
-            // SPRAWDZ TO
             ConversionCost = matrix[0][i] + (0.5 * PriceTable[i]) + matrix[i][0];
             GoldToSmthElse.push_back(ConversionCost);
         }
     }
     // Znajdz najlepsza cene na przywóz
-
+    /*
     for (int i = 0; i < GoldToSmthElse.size(); i++)
     {
         cout << GoldToSmthElse[i] << " ";
     }
     cout << endl;
-
+    */
     int BestPriceToEnter = 0;
     if (GoldToSmthElse.size() != 0)
     {
@@ -61,11 +60,11 @@ void CalculateBestConversion(vector<vector<double>> &matrix, int numOfPrices, ve
                 BestPriceToEnter = GoldToSmthElse[i];
             }
         }
-        cout << "best" << BestPriceToEnter << endl;
+        cout << BestPriceToEnter << endl;
     }
     else
     {
-        cout << "best " << PriceTable[0] * 0.5 << endl;
+        cout << PriceTable[0] * 0.5 << endl;
     }
 }
 void FloydWarshall(vector<vector<double>> &matrix, int numOfPrices, vector<double> VEC_price)
