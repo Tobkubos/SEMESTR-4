@@ -55,6 +55,10 @@ void CalculateBestConversion(vector<vector<double>> &matrix, int numOfPrices, ve
         }
         cout << BestPriceToEnter << endl;
     }
+    else
+    {
+        cout << PriceTable[0] * 0.5;
+    }
 }
 
 void FloydWarshall(vector<vector<double>> &matrix, int numOfPrices, vector<double> &PriceTable)
@@ -66,16 +70,12 @@ void FloydWarshall(vector<vector<double>> &matrix, int numOfPrices, vector<doubl
         {
             for (int j = 0; j < numOfPrices; j++)
             {
-                if (matrix[i][j] > matrix[i][k] + matrix[k][j])
+                if ((matrix[i][k] * matrix[k][j] != 0) && (i != j))
                 {
-
-                    // TUTAJ JEST PROBLEM I CHUJ WIE JAK GO ROZIWAZAC
-
-                    // cout << matrix[i][j] << endl;
-                    // cout << matrix[i][k] + matrix[k][j] << endl;
-                    matrix[i][j] = matrix[i][k] + matrix[k][j];
-                    // cout << matrix[i][j] << endl;
-                    printMatrix(matrix, numOfPrices);
+                    if ((matrix[i][k] + matrix[k][j] < matrix[i][j]) || (matrix[i][j] == 0))
+                    {
+                        matrix[i][j] = matrix[i][k] + matrix[k][j];
+                    }
                 }
             }
         }
