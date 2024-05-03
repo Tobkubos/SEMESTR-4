@@ -1,0 +1,106 @@
+Skryba cz.7
+
+SERWER APLIKACYJNY
+program, środowisko, pracujące na maszynie wirtualnej javy które przyjmuje głowną komunikację przez HTTP, obsługa i zwrot odpowiedzi.
+
+Serwer Aplikacyjny odbiera żądania i wysyła odpowiedzi. JEE zaklada ze po drugiej stronie jest czlowiek, po drugiej stronei całe prezdsiębiorstwo, backend - zaplecze aplikacyjne ( baza danych, system poczty elektronicznej, system "wydruku" np pdf, kontakt z firmami zewnetrznymi, komunikacja asynchroniczna, kolejkowanie komunikatow 
+
+ROLA ADMAINA
+
+
+ROLA PROGRAMISTY
+
+ROLA INSTALATORA
+
+środwisko programistyczne, testowe, produkcyjne
+produkyjne pracują w formie klastrów.
+QA - quality Assurance
+
+
+Serwery Aplikacyjne Najważniejsze komercyjne
+ORACLE - WebLogic
+IBM - WAS, LIBERTY PROFILE
+JBOSS - RedHat
+TomCat - najpopularniejszy najstarszy
+TomEE
+JeTTy
+
+(((szyfrowany HTTP port - 443)))
+
+
+
+1. Czysty TomCat - niezależny
+2. stworzenie TomCat do środowiska Developerskiego
+
+Serwer HTTP jest pewnym rodzajem PROXY
+Serwery napisane w JAVIe nie sa zoptymalizowane do czytania duzych ilosci danych z dyskow, zdjecia, wideo
+
+Serwer Asynchroniczny
+APACHE
+Ngix
+aplikacja pluginu reverse proxy
+
+DYNAMICZNA TREŚĆ
+servlet
+	server
+	applet
+
+
+PHP - kod strony html ale z wstawkami ze np w dana czesc wstaw kawałek strony
+JSP
+Java Server Page
+Java Server Faces
+
+Piszesz sobie HTML a wszedzie gdzie chcesz wykonac peracje w javie <%......%>
+
+wszystkie zamieniasz na Printy
+a reszte zamieniasz na kod javy
+Kompilator Javy jest wbudowany w Serwer Aplikacyjny
+
+
+
+SERWER TOMCAT - ma specjalny plik, deskryptor aplikacji web.XML
+zdefiniowane są servlety i mappingi
+mapping - jezeli ktos w URI wywolal hello-world zamiast tego wykonaj klase hello-world ktora wczesniej dostarczyl programista w wyniku kompilacji w pliku WAR, Web Archive.
+
+Jezeli w zadaniu nie wystepuje hello-world a index.jsp to poszuka strony, sprawdzi czy jest juz przekonwertowana i skompilowana, jezeli nie to zrob to, inaczej sprawdz czy kod zrodlowy sie nie zmienil. Wynik na wyjscie
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
