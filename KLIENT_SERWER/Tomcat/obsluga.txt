@@ -1,0 +1,7 @@
+cd /usr/local/java/
+
+bin/startup.sh
+
+netstat -ant | grep 8080
+
+bin/shutdown.sh
