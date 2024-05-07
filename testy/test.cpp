@@ -5,107 +5,58 @@ using namespace std;
 
 double f(double x)
 {
-    return 1 / x;
+    return 1/x;
 }
 
-void Milne()
+void Milne(double aIn, double bIn)
 {
-    double a = 1;
-    double b = 2;
-    double h = (b - a) / 4;
+    double h =(bIn-aIn)/4.;
 
-    double x0 = a;
-    double x1 = a + h;
-    double x2 = a + 2 * h;
-    double x3 = a + 3 * h;
-    double x4 = a + 4 * h;
+    double x0 = aIn + 1 * h;
+    double x1 = aIn + 2 * h;
+    double x2 = aIn + 3 * h;
 
-    double Milne_result = (2 * h / 45) * (7 * f(x0) + 32 * f(x1) + 12 * f(x2) + 32 * f(x3) + 7 * f(x4));
+    
+    cout<<x0<<" "<<f(x0)<<endl;
+    cout<<x1<<" "<<f(x1)<<endl;
+    cout<<x2<<" "<<f(x2)<<endl;
+    
 
-    cout << "a " << a << endl;
-    cout << "b " << b << endl;
-    cout << "x0 " << x0 << endl;
-    cout << "x1 " << x1 << endl;
-    cout << "x2 " << x2 << endl;
-    cout << "x3 " << x3 << endl;
-    cout << "x4 " << x4 << endl;
-    cout << "fx0 " << f(x0) << endl;
-    cout << "fx1 " << f(x1) << endl;
-    cout << "fx2 " << f(x2) << endl;
-    cout << "fx3 " << f(x3) << endl;
-    cout << "fx4 " << f(x4) << endl;
+    double Milne_result = (bIn - aIn)*(f(x0)*(2./3.)+f(x1)*(-1./3.) + f(x2)*(2./3.));
 
     cout << "wynik Milne: " << Milne_result << endl;
 }
-void Weddle()
+void Weddle(double aIn, double bIn)
 {
-    double a = 1;
-    double b = 2;
-    double h = (b - a) / 6;
+    double a = aIn;
+    double b = bIn;
+    double inter = (b-a)/6;
 
     double x0 = a;
-    double x1 = a + h;
-    double x2 = a + 2 * h;
-    double x3 = a + 3 * h;
-    double x4 = a + 4 * h;
-    double x5 = a + 5 * h;
-    double x6 = a + 6 * h;
+    double x1 = a + inter;
+    double x2 = a + (2 * inter);
+    double x3 = a + (3 * inter);
+    double x4 = a + (4 * inter);
+    double x5 = a + (5 * inter);
+    double x6 = a + (6 * inter);
 
-    double Weddle_result = (3 * h / 10) * (f(x0) + 5 * f(x1) + f(x2) + 6 * f(x3) + f(x4) + 5 * f(x5) + f(x6));
+    cout<<f(x0)<<endl;
+    cout<<f(x1)<<endl;
+    cout<<f(x2)<<endl;
+    cout<<f(x3)<<endl;
+    cout<<f(x4)<<endl;
+    cout<<f(x5)<<endl;
+    cout<<f(x6)<<endl;
 
-    cout << "a " << a << endl;
-    cout << "b " << b << endl;
-    cout << "x0 " << x0 << endl;
-    cout << "x1 " << x1 << endl;
-    cout << "x2 " << x2 << endl;
-    cout << "x3 " << x3 << endl;
-    cout << "x4 " << x4 << endl;
-    cout << "x5 " << x5 << endl;
-    cout << "x6 " << x6 << endl;
-    cout << "fx0 " << f(x0) << endl;
-    cout << "fx1 " << f(x1) << endl;
-    cout << "fx2 " << f(x2) << endl;
-    cout << "fx3 " << f(x3) << endl;
-    cout << "fx4 " << f(x4) << endl;
-    cout << "fx5 " << f(x5) << endl;
-    cout << "fx6 " << f(x6) << endl;
+    double Weddle_result = (bIn - aIn)*((41./840.)*f(x0) + (216./840.)*f(x1) + (27./840.)*f(x2) + (272./840.)*f(x3) + (27./840.)*f(x4) + (216./840.)*f(x5) + (41./840.)*f(x6));
 
     cout << "wynik Weddle: " << Weddle_result << endl;
 }
-void Milne2()
-{
-    double a = 1;
-    double b = 1.5;
-    double h = (b - a) / 4;
 
-    double x0 = a;
-    double x1 = a + h;
-    double x2 = a + 2 * h;
-    double x3 = a + 3 * h;
-    double x4 = a + 4 * h;
-
-    double Milne_result = (4 / 3) * h * (2 * f(x0) - f(x1) + 2 * f(x2));
-
-    cout << "a " << a << endl;
-    cout << "b " << b << endl;
-    cout << "x0 " << x0 << endl;
-    cout << "x1 " << x1 << endl;
-    cout << "x2 " << x2 << endl;
-    cout << "x3 " << x3 << endl;
-    cout << "x4 " << x4 << endl;
-    cout << "fx0 " << f(x0) << endl;
-    cout << "fx1 " << f(x1) << endl;
-    cout << "fx2 " << f(x2) << endl;
-    cout << "fx3 " << f(x3) << endl;
-    cout << "fx4 " << f(x4) << endl;
-
-    cout << "wynik Milne2: " << Milne_result << endl;
-}
 int main()
 {
-    Milne();
-    Milne2();
-    Weddle();
+    Milne(1,2);
+    Weddle(1,2);
 
     return 0;
 }

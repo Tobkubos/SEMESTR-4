@@ -5,3 +5,25 @@ bin/startup.sh
 netstat -ant | grep 8080
 
 bin/shutdown.sh
+
+
+
+sudo groupadd tomcat
+sudo useradd -g tomcat -s /bin/echo tomcat
+sudo chown -R :tomcat /usr/local/java/apache-tomcat-9
+sudo mkdir -p /home/tomcat/server
+export CATALINA_BASE=/home/tomcat/server
+
+sudo cp -r /usr/local/java/apache-tomcat-9/conf /home/tomcat/server
+sudo cp -r /usr/local/java/apache-tomcat-9/logs /home/tomcat/server
+sudo cp -r /usr/local/java/apache-tomcat-9/temp /home/tomcat/server
+sudo cp -r /usr/local/java/apache-tomcat-9/webapps /home/tomcat/server
+sudo cp -r /usr/local/java/apache-tomcat-9/work /home/tomcat/server
+
+sudo chown -R tomcat:tomcat /home/tomcat/server/*
+su -s /bin/bash - tomcat
+
+próbowałem dodawać jeszcze raz uprawnienia dla tomcat
+bezskutecznie
+
+permission denied
