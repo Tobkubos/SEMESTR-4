@@ -18,7 +18,7 @@ public class MyFrame extends JFrame {
         //frame
         this.setSize(400,600);
         this.setTitle("ComboBoxTest");
-        l = new JLabel("PENIS");
+        l = new JLabel("Tekst");
 
         font = new Font(FontName,FontStyle,FontSize);
         l.setFont(font);
@@ -37,9 +37,9 @@ public class MyFrame extends JFrame {
         jp2 = new JPanel();
         jp2.setLayout(new GridLayout(1,5));
 
-        RadioButtonCreator("small dick", 10);
-        RadioButtonCreator("twojego starego", 25);
-        RadioButtonCreator("giga paruwa", 50);
+        RadioButtonCreator("small", 10);
+        RadioButtonCreator("medium", 25);
+        RadioButtonCreator("large", 50);
 
 
         //checkboxes

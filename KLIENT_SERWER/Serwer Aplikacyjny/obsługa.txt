@@ -1,0 +1,7 @@
+usr/local/java/apache-tomcat/
+/bin/startup.sh
+
+intelijIDEA
+tworzymy nowy jakarta
+tomcat wersja
+webapp
