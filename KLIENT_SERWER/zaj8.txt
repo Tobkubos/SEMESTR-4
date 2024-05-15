@@ -1,0 +1,15 @@
+apache derby - SQL napisany w javie
+
+pamięć współdzielona (shared menory) - więcej procesów może zaalokować sobie te same obszary pamięci
+
+amd64 - 64 bit
+i386 - architektura 32 bit
+ARM - 32 bit 64 bit i posrednia
+iskV - otwarta architektura
+
+MacOS, Windows, Linux
+
+do każdego systemu musi być osobny sterownik JDBC
+
+embeded - maszyna wirtualna javy bez polaczenia sieciowego
+nasłuchująca - nasłuchuje na porcie, można się podłączyć
