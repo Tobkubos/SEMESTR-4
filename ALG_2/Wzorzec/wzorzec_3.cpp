@@ -1,8 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cmath>
 
 using namespace std;
+
+int base = 11;
 
 void ShowAll(vector<vector<string>> a, string code, string decoded)
 {
@@ -55,23 +58,25 @@ string Decode(vector<vector<string>> codes, string code)
 }
 
 // KARP RABIN
-int GeneratePatternHash(string pattern)
+long long int GetHash(string pattern)
 {
-    int patternHash = 0;
+    long long int Hash = 0;
     for (int j = 0; j < pattern.size(); j++)
     {
-        patternHash += pattern[j] * (j + 1);
+        Hash += static_cast<int>(pattern[j]) + pow(base, pattern.size() - j - 1);
     }
-    return patternHash;
+    return Hash;
 }
 
-int RollHash()
+int RollHash(long long int hash, string match, int idx)
 {
+    return hash - (static_cast<int>(match[idx - match.size()]) * pow(base, match.size() - 1)) * 255 + static_cast<int>(match[idx]);
 }
 
 string KarpRabin(string text, string pattern)
 {
-    int patternHash = GeneratePatternHash(pattern);
+    int patternHash = GetHash(pattern);
+    int matchHash = GetHash(text);
 
     cout << "Pattern Hash value " << patternHash << endl;
     int count = 0;
@@ -111,7 +116,15 @@ string KarpRabin(string text, string pattern)
 
 int main()
 {
+    string match = "GHHG";
+    long long int hash = GetHash("GHH");
+    long long int hash2 = GetHash("HHG");
+    cout << hash << endl;
+    cout << hash2 << endl;
+    long long int Rollhash = RollHash(hash, match, 3);
+    cout << RollHash << endl;
 
+    /*
     int cases = 0;
     cin >> cases;
 
@@ -145,5 +158,6 @@ int main()
             index--;
         }
     }
+    */
     return 0;
 }
