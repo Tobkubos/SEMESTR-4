@@ -55,7 +55,7 @@ vector<int> MakeLPS(const string &pattern)
 
     while (i < length)
     {
-        if (pattern[i] == pattern[j])
+        if (pattern[i] == pattern[j]) // jest match, przesuwam oba i ustawiam LPS
         {
             j++;
             lps[i] = j;
@@ -65,11 +65,11 @@ vector<int> MakeLPS(const string &pattern)
         {
             if (j != 0)
             {
-                j = lps[j - 1];
+                j = lps[j - 1]; // cofam sie
             }
             else
             {
-                lps[i] = 0;
+                lps[i] = 0; // brak sufix/prefix
                 i++;
             }
         }
@@ -81,10 +81,10 @@ vector<int> MakeLPS(const string &pattern)
 // KNUTH MORRIS PRATT
 bool KMP(const vector<int> &LPS, const string &code, const string &pattern)
 {
-    int i = 0; // pozycja w tekście (code)
-    int j = 0; // pozycja w wzorcu
+    int i = 0; // pozycja w code
+    int j = 0; // pozycja we wzorcu
 
-    bool found = false; // Zmienna found będzie przechowywać informację o znalezieniu wzorca
+    bool found = false; // czy znaleziony 2 razy
 
     while (i < code.size())
     {
@@ -94,15 +94,17 @@ bool KMP(const vector<int> &LPS, const string &code, const string &pattern)
             j++;
         }
 
-        if (j == pattern.size()) // Znaleziono pełne dopasowanie wzorca
+        if (j == pattern.size()) // znalazlem
         {
-            if (found) // Jeśli już wcześniej znaleziono wzorzec, zwróć true
+            if (found)
             {
-                cout << pattern << " found" << endl;
+                cout << endl
+                     << pattern << " found" << endl
+                     << endl;
                 return true;
             }
-            found = true;   // Ustaw found na true, aby oznaczyć, że znaleziono wzorzec po raz pierwszy
-            j = LPS[j - 1]; // Przesuń indeks j na koniec poprzedniego dopasowania wzorca
+            found = true;
+            j = LPS[j - 1]; // Przesuń indeks j na koniec poprzedniego wzorca
         }
 
         if (i < code.size() && code[i] != pattern[j])
@@ -117,8 +119,7 @@ bool KMP(const vector<int> &LPS, const string &code, const string &pattern)
             }
         }
     }
-    cout << "BRAK" << endl;
-    return false; // Jeśli nie znaleziono co najmniej dwóch wzorców, zwróć false
+    return false; // Jeśli nie znaleziono 2 wzorcow = false
 }
 
 int main()
@@ -142,13 +143,30 @@ int main()
         string code;
         cin >> code;
         string decoded = Decode(AllCodes, code);
-        cout << "DECODED " << endl
+        cout << "decoded " << endl
              << decoded << endl;
 
-        // OBSZAR ROBOCZY
-        string pattern = "GGHGHG";
-        vector<int> LPS = MakeLPS(pattern);
-        KMP(LPS, decoded, pattern);
+        // OPERACJA WYWOŁYWANIA KMP
+        bool found = false;
+        int patternSize = decoded.size() - 1;
+        while (patternSize > 1 && !found)
+        {
+            for (int j = 0; j <= decoded.size() - patternSize; j++)
+            {
+                string pattern = decoded.substr(j, patternSize);
+                vector<int> LPS = MakeLPS(pattern);
+                if (KMP(LPS, decoded, pattern))
+                {
+                    found = true;
+                    break; // break for
+                }
+            }
+            if (found)
+            {
+                break; // break while
+            }
+            patternSize--;
+        }
     }
 
     return 0;
