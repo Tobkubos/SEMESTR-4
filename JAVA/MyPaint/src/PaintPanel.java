@@ -4,10 +4,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.tools.Tool;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,15 +16,18 @@ public class PaintPanel extends JFrame {
     ArrayList<PaintPoint> paintPoints = new ArrayList<>();
     private int currentSize = 10;
     private boolean isDrawing = false;
-
     private boolean isSpraying = false;
     private BufferedImage image = null;
 
-    private JLabel LabelSize;
+    private JLabel BrushTypeLabel, BrushSizeLabel, BrushColorLabel;
+    private SpinnerNumberModel spinnerModel;
+    private JSpinner spinner;
+    ImageIcon brushIcon = new ImageIcon("paint-brush.png");
+    Font ProgramFont = new Font("Sans Serif", Font.PLAIN, 20);
     class PaintPoint{
-        private int x;
-        private int y;
-        private int size;
+        private final int x;
+        private final int y;
+        private final int size;
 
         public PaintPoint(int x, int y, int size) {
             this.x = x;
@@ -48,10 +48,10 @@ public class PaintPanel extends JFrame {
         add(new DrawingPanel(), BorderLayout.CENTER);
         add(new Toolbar(), BorderLayout.NORTH);
         new ActualBrushInfo();
-
         setVisible(true);
     }
 
+    //INFORMACJA O BRUSH
     class ActualBrushInfo extends JFrame {
         ActualBrushInfo() {
             setSize(200, 200);
@@ -61,28 +61,62 @@ public class PaintPanel extends JFrame {
             setLocation(900, 100); // Ustawienie pozycji okna ActualBrushInfo
             setVisible(true);
 
-            JPanel info = new JPanel();
-            add(info,BorderLayout.CENTER);
+            JPanel info = new JPanel(new GridLayout(4,1));
+            add(info);
+
+            BrushTypeLabel = new JLabel("type: brush", brushIcon, JLabel.LEFT);
+            BrushTypeLabel.setFont(ProgramFont);
+            info.add(BrushTypeLabel);
+
+            BrushSizeLabel = new JLabel("size: 1");
+            BrushSizeLabel.setFont(ProgramFont);
+            info.add(BrushSizeLabel);
+
+            BrushColorLabel = new JLabel("color: ");
+            BrushColorLabel.setFont(ProgramFont);
+            info.add(BrushColorLabel);
         }
     }
     class Toolbar extends JToolBar{
         Toolbar(){
-            SpinnerNumberModel spinnerModel = new SpinnerNumberModel(1, 1, 100, 1);
-            JSpinner spinner = new JSpinner(spinnerModel);
-            spinner.addChangeListener(e -> currentSize = (Integer) spinner.getValue());
+            spinnerModel = new SpinnerNumberModel(1, 1, 100, 1);
+            spinner = new JSpinner(spinnerModel);
+
+            spinner.setFont(ProgramFont);
+            spinner.addChangeListener(e -> {
+                currentSize = (Integer) spinner.getValue();
+                BrushSizeLabel.setText("size: " + currentSize);
+            }
+            );
             add(spinner);
 
             JButton loadButton = new JButton("Load Image");
+            loadButton.setFont(ProgramFont);
             loadButton.addActionListener(e -> loadImage());
             add(loadButton);
 
             ButtonGroup bg = new ButtonGroup();
+
             JRadioButton JRbrush = new JRadioButton("brush");
             JRadioButton JRspray = new JRadioButton("spray");
-            JRspray.addActionListener(e -> isSpraying = JRspray.isSelected());
-            JRspray.setSelected(false);
-            JRbrush.addActionListener(e -> isSpraying = JRspray.isSelected());
+
+            JRbrush.setFont(ProgramFont);
+            JRspray.setFont(ProgramFont);
+
+            JRspray.addActionListener(e -> {
+                        isSpraying = JRspray.isSelected();
+                        BrushTypeLabel.setText("type: spray");
+                }
+            );
+            JRbrush.addActionListener(e -> {
+                        isSpraying = JRspray.isSelected();
+                        BrushTypeLabel.setText("type: brush");
+                }
+            );
+
             JRbrush.setSelected(true);
+            JRspray.setSelected(false);
+
             bg.add(JRspray);
             bg.add(JRbrush);
             add(JRspray);
@@ -97,13 +131,16 @@ public class PaintPanel extends JFrame {
                 try {
                     image = ImageIO.read(selectedFile);
                     repaint();
+                    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                    frame.setSize(frame.getWidth()+1, frame.getHeight());
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
     }
-    class DrawingPanel extends JPanel implements MouseListener, MouseMotionListener {
+    class DrawingPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener, MouseWheelListener  {
 
         DrawingPanel(){
             setBackground(Color.GREEN);
@@ -177,6 +214,26 @@ public class PaintPanel extends JFrame {
 
         @Override
         public void mouseExited(MouseEvent e) {
+
+        }
+
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
+        }
+
+        @Override
+        public void mouseWheelMoved(MouseWheelEvent e) {
 
         }
     }
