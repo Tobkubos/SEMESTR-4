@@ -15,30 +15,52 @@ import java.util.Random;
 public class PaintPanel extends JFrame {
     ArrayList<PaintPoint> paintPoints = new ArrayList<>();
     private int currentSize = 10;
+    private int currentShape = 0;
     private boolean isDrawing = false;
     private boolean isSpraying = false;
     private BufferedImage image = null;
 
-    private JLabel BrushTypeLabel, BrushSizeLabel, BrushColorLabel;
-    private SpinnerNumberModel spinnerModel;
-    private JSpinner spinner;
-    ImageIcon brushIcon = new ImageIcon("paint-brush.png");
+    //private JLabel BrushTypeLabel, BrushSizeLabel, BrushColorLabel;
+    ImageIcon brushIcon = new ImageIcon("brush.png");
+    ImageIcon SprayIcon = new ImageIcon("spray.png");
+    ImageIcon LoadImageIcon = new ImageIcon("image.png");
+    ImageIcon CircleShapeIcon = new ImageIcon("circle.png");
+    ImageIcon CircleFillShapeIcon = new ImageIcon("circle_fill.png");
+    ImageIcon SquareShapeIcon = new ImageIcon("square.png");
+    ImageIcon SquareFillShapeIcon = new ImageIcon("square_fill.png");
     Font ProgramFont = new Font("Sans Serif", Font.PLAIN, 20);
     class PaintPoint{
         private final int x;
         private final int y;
         private final int size;
+        private final int shape;
 
-        public PaintPoint(int x, int y, int size) {
+        public PaintPoint(int x, int y, int size, int shape) {
             this.x = x;
             this.y = y;
             this.size = size;
+            this.shape = shape;
         }
 
         public void draw(Graphics2D g2d) {
+            if(shape == 0){
             g2d.setColor(Color.BLUE);
-            g2d.fillOval(x - size / 2, y - size / 2, size, size);
+            g2d.drawOval(x - size / 2, y - size / 2, size, size);
+            }
+            if(shape == 1){
+                g2d.setColor(Color.RED);
+                g2d.fillOval(x - size / 2, y - size / 2, size, size);
+            }
+            if(shape == 2){
+                g2d.setColor(Color.YELLOW);
+                g2d.drawRect(x - size / 2, y - size / 2, size, size);
+            }
+            if(shape == 3){
+                g2d.setColor(Color.BLACK);
+                g2d.fillRect(x - size / 2, y - size / 2, size, size);
+            }
         }
+
     }
     PaintPanel(int Dimx, int Dimy) {
         setResizable(true);
@@ -46,19 +68,21 @@ public class PaintPanel extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         add(new DrawingPanel(), BorderLayout.CENTER);
-        add(new Toolbar(), BorderLayout.NORTH);
-        new ActualBrushInfo();
+        add(new Toolbar(), BorderLayout.SOUTH);
+        //new ActualBrushInfo();
+        add(new NorthPanel(), BorderLayout.NORTH);
         setVisible(true);
     }
 
     //INFORMACJA O BRUSH
+    /*
     class ActualBrushInfo extends JFrame {
         ActualBrushInfo() {
             setSize(200, 200);
             setResizable(false);
             setAlwaysOnTop(true);
             setLocationRelativeTo(this);
-            setLocation(900, 100); // Ustawienie pozycji okna ActualBrushInfo
+            setLocation(900, 100);
             setVisible(true);
 
             JPanel info = new JPanel(new GridLayout(4,1));
@@ -77,52 +101,104 @@ public class PaintPanel extends JFrame {
             info.add(BrushColorLabel);
         }
     }
+     */
     class Toolbar extends JToolBar{
         Toolbar(){
-            spinnerModel = new SpinnerNumberModel(1, 1, 100, 1);
-            spinner = new JSpinner(spinnerModel);
+            setLayout(new GridLayout(1,5));
+
+            JPanel jp1 = new JPanel(new GridLayout(2,1));
+            JLabel jl1 = new JLabel("size");
+            jl1.setHorizontalAlignment(SwingConstants.CENTER);
+            SpinnerNumberModel spinnerModel = new SpinnerNumberModel(1, 1, 100, 1);
+            JSpinner spinner = new JSpinner(spinnerModel);
 
             spinner.setFont(ProgramFont);
             spinner.addChangeListener(e -> {
                 currentSize = (Integer) spinner.getValue();
-                BrushSizeLabel.setText("size: " + currentSize);
-            }
+                }
             );
-            add(spinner);
+            jp1.add(jl1);
+            jp1.add(spinner);
+            add(jp1);
 
-            JButton loadButton = new JButton("Load Image");
+            JButton loadButton = new JButton(LoadImageIcon);
             loadButton.setFont(ProgramFont);
             loadButton.addActionListener(e -> loadImage());
             add(loadButton);
 
             ButtonGroup bg = new ButtonGroup();
 
-            JRadioButton JRbrush = new JRadioButton("brush");
-            JRadioButton JRspray = new JRadioButton("spray");
+            JPanel jp3 = new JPanel(new GridLayout(2,1));
+            JButton JRbrush = new JButton(brushIcon);
+            JRbrush.addActionListener(new ButtonActionListener(false));
 
-            JRbrush.setFont(ProgramFont);
-            JRspray.setFont(ProgramFont);
-
-            JRspray.addActionListener(e -> {
-                        isSpraying = JRspray.isSelected();
-                        BrushTypeLabel.setText("type: spray");
-                }
-            );
-            JRbrush.addActionListener(e -> {
-                        isSpraying = JRspray.isSelected();
-                        BrushTypeLabel.setText("type: brush");
-                }
-            );
+            JButton JRspray = new JButton(SprayIcon);
+            JRspray.addActionListener(new ButtonActionListener(true));
 
             JRbrush.setSelected(true);
             JRspray.setSelected(false);
 
             bg.add(JRspray);
             bg.add(JRbrush);
-            add(JRspray);
-            add(JRbrush);
+            jp3.add(JRspray);
+            jp3.add(JRbrush);
+            add(jp3);
+
+
+            JPanel jp4 = new JPanel(new GridLayout(3,3));
+            ButtonGroup ShapeGroup = new ButtonGroup();
+            CreateShapeButton(CircleShapeIcon,      0, ShapeGroup, jp4);
+            CreateShapeButton(CircleFillShapeIcon,  1, ShapeGroup, jp4);
+            CreateShapeButton(SquareShapeIcon,      2, ShapeGroup, jp4);
+            CreateShapeButton(SquareFillShapeIcon,  3, ShapeGroup, jp4);
+            add(jp4);
+
+            JButton ClearLastPoint = new JButton("undo");
+            ClearLastPoint.addActionListener(new ActionListener() {
+                @Override
+
+                public void actionPerformed(ActionEvent e) {
+                    if(!paintPoints.isEmpty()) {
+                        paintPoints.removeLast();
+                        repaint();
+                    }               }
+            });
+            add(ClearLastPoint);
+
+            JButton ClearAll = new JButton("Clear");
+            ClearAll.addActionListener(new ActionListener() {
+                @Override
+
+                public void actionPerformed(ActionEvent e) {
+                    paintPoints.clear();
+                    repaint();
+                }
+            });
+            add(ClearAll);
         }
 
+        void CreateShapeButton(ImageIcon ShapeIcon ,int sp, ButtonGroup bg, JPanel jp){
+            JButton Shape = new JButton(ShapeIcon);
+            Shape.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    currentShape = sp;
+                }
+            });
+            bg.add(Shape);
+            jp.add(Shape);
+        }
+
+        class ButtonActionListener implements ActionListener {
+            private final boolean state;
+            public ButtonActionListener(boolean s) {
+                this.state = s;
+            }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    isSpraying = this.state;
+            }
+        }
         private void loadImage() {
             JFileChooser fileChooser = new JFileChooser();
             int returnValue = fileChooser.showOpenDialog(null);
@@ -160,7 +236,7 @@ public class PaintPanel extends JFrame {
                 x = e.getX();
                 y = e.getY();
             }
-            PaintPoint paintPoint = new PaintPoint(x, y, currentSize);
+            PaintPoint paintPoint = new PaintPoint(x, y, currentSize, currentShape);
             paintPoints.add(paintPoint);
             repaint();
         }
@@ -173,14 +249,10 @@ public class PaintPanel extends JFrame {
             if (image != null) {
                 g2d.drawImage(image, 0, 0, getWidth(), getHeight(), this);
             }
-            draw(g2d);
-        }
-
-        private void draw(Graphics2D g2d) {
-
-                for (PaintPoint paintPoint : paintPoints) {
-                    paintPoint.draw(g2d);
-                }
+            for (PaintPoint paintPoint : paintPoints) {
+                paintPoint.draw(g2d);
+            }
+            repaint();
         }
 
         @Override
