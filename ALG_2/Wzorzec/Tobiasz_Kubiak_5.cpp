@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// PODZIEL INPUT NA TRÓJKI
+// PODZIEL INPUT NA TROJKI
 vector<string> Convert(string a)
 {
 
@@ -98,9 +98,7 @@ bool KMP(const vector<int> &LPS, const string &code, const string &pattern)
         {
             if (found)
             {
-                cout << endl
-                     << pattern << " found" << endl
-                     << endl;
+                cout << pattern << endl;
                 return true;
             }
             found = true;
@@ -143,8 +141,7 @@ int main()
         string code;
         cin >> code;
         string decoded = Decode(AllCodes, code);
-        cout << "decoded " << endl
-             << decoded << endl;
+        // cout << "decoded " << endl << decoded << endl;
 
         // OPERACJA WYWOŁYWANIA KMP
         bool found = false;
@@ -166,6 +163,10 @@ int main()
                 break; // break while
             }
             patternSize--;
+        }
+        if (!found)
+        {
+            cout << "brak" << endl;
         }
     }
 
