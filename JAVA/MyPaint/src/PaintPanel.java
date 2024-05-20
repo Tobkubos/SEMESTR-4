@@ -127,9 +127,16 @@ public class PaintPanel extends JFrame {
         Toolbar(){
             setLayout(new GridLayout(1,5));
 
-            JPanel jp1 = new JPanel(new GridLayout(2,1));
+            setPreferredSize(new Dimension(800, 100)); // Szerokość: 400, Wysokość: 50
+            setMinimumSize(new Dimension(800, 100));   // Opcjonalnie: minimalny rozmiar
+            setMaximumSize(new Dimension(800, 100));
+
+            //SET SIZE
+            JPanel jp1 = new JPanel(new BorderLayout());
+            JPanel jp1_2 = new JPanel(new BorderLayout());
             JLabel jl1 = new JLabel("size");
             jl1.setHorizontalAlignment(SwingConstants.CENTER);
+            jp1.add(jl1, BorderLayout.NORTH);
             SpinnerNumberModel spinnerModel = new SpinnerNumberModel(1, 1, 100, 1);
             JSpinner spinner = new JSpinner(spinnerModel);
 
@@ -138,18 +145,33 @@ public class PaintPanel extends JFrame {
                 currentSize = (Integer) spinner.getValue();
                 }
             );
-            jp1.add(jl1);
-            jp1.add(spinner);
+            jp1_2.add(spinner);
+            jp1.add(jp1_2);
             add(jp1);
 
+
+
+            //LOAD IMAGE
+            JPanel jp2 = new JPanel(new BorderLayout());
+            JLabel jl2 = new JLabel("load image");
+            jl2.setHorizontalAlignment(SwingConstants.CENTER);
+            jp2.add(jl2, BorderLayout.NORTH);
+
+            JPanel jp2_2 = new JPanel(new BorderLayout());
             JButton loadButton = new JButton(LoadImageIcon);
             loadButton.setFont(ProgramFont);
             loadButton.addActionListener(e -> loadImage());
-            add(loadButton);
+            jp2_2.add(loadButton);
+            jp2.add(jp2_2);
+            add(jp2);
 
-            ButtonGroup bg = new ButtonGroup();
 
-            JPanel jp3 = new JPanel(new GridLayout(2,1));
+
+            //TOOLS
+            JPanel jp3 = new JPanel(new BorderLayout());
+            JPanel jp3_2 = new JPanel(new GridLayout(2,1));
+            JLabel jl3 = new JLabel("tools");
+            jl3.setHorizontalAlignment(SwingConstants.CENTER);
             JButton JRbrush = new JButton(brushIcon);
             JRbrush.addActionListener(new ButtonActionListener(false));
 
@@ -159,22 +181,41 @@ public class PaintPanel extends JFrame {
             JRbrush.setSelected(true);
             JRspray.setSelected(false);
 
+            ButtonGroup bg = new ButtonGroup();
             bg.add(JRspray);
             bg.add(JRbrush);
-            jp3.add(JRspray);
-            jp3.add(JRbrush);
+            jp3_2.add(JRspray);
+            jp3_2.add(JRbrush);
+            jp3.add(jl3, BorderLayout.NORTH);
+            jp3.add(jp3_2);
             add(jp3);
 
 
-            JPanel jp4 = new JPanel(new GridLayout(3,3));
+
+            //SHAPES
+            JPanel jp4 = new JPanel(new BorderLayout());
+            JLabel jl4 = new JLabel("Shapes");
+            jl4.setHorizontalAlignment(SwingConstants.CENTER);
+            jp4.add(jl4, BorderLayout.NORTH);
+            JPanel jp4_2 = new JPanel(new GridLayout(3,3));
             ButtonGroup ShapeGroup = new ButtonGroup();
-            CreateShapeButton(CircleShapeIcon,      0, ShapeGroup, jp4);
-            CreateShapeButton(CircleFillShapeIcon,  1, ShapeGroup, jp4);
-            CreateShapeButton(SquareShapeIcon,      2, ShapeGroup, jp4);
-            CreateShapeButton(SquareFillShapeIcon,  3, ShapeGroup, jp4);
-            CreateShapeButton(null,  4, ShapeGroup, jp4);
+            CreateShapeButton(CircleShapeIcon,      0, ShapeGroup, jp4_2);
+            CreateShapeButton(CircleFillShapeIcon,  1, ShapeGroup, jp4_2);
+            CreateShapeButton(SquareShapeIcon,      2, ShapeGroup, jp4_2);
+            CreateShapeButton(SquareFillShapeIcon,  3, ShapeGroup, jp4_2);
+            CreateShapeButton(null,  4, ShapeGroup, jp4_2);
+
+            jp4.add(jp4_2);
             add(jp4);
 
+
+
+            //undo redo clear
+            JPanel jp5 = new JPanel(new BorderLayout());
+            JLabel jl5 = new JLabel("functions");
+            jl5.setHorizontalAlignment(SwingConstants.CENTER);
+            jp5.add(jl5, BorderLayout.NORTH);
+            JPanel jp5_2 = new JPanel(new GridLayout(2,2));
             JButton ClearLastPoint = new JButton("undo");
             ClearLastPoint.addActionListener(new ActionListener() {
                 @Override
@@ -185,7 +226,7 @@ public class PaintPanel extends JFrame {
                         repaint();
                     }               }
             });
-            add(ClearLastPoint);
+            jp5_2.add(ClearLastPoint);
 
             JButton ClearAll = new JButton("Clear");
             ClearAll.addActionListener(new ActionListener() {
@@ -196,9 +237,22 @@ public class PaintPanel extends JFrame {
                     repaint();
                 }
             });
-            add(ClearAll);
+            jp5_2.add(ClearAll);
+            jp5.add(jp5_2);
+            add(jp5);
 
-            JPanel colorPanel = new JPanel(new GridLayout(3,1));
+
+
+            //COLORS
+            JPanel jp6 = new JPanel(new BorderLayout());
+            jp6.setMinimumSize(new Dimension(400,100));
+            JLabel jl6 = new JLabel("color");
+            jl6.setHorizontalAlignment(SwingConstants.CENTER);
+            jp6.add(jl6, BorderLayout.NORTH);
+
+            JPanel jp6_2 = new JPanel(new GridLayout(3,1));
+
+            JPanel jp6_2_1 = new JPanel(new BorderLayout());
             JSlider red = new JSlider();
             red.setMaximum(255);
             red.addChangeListener(new ChangeListener() {
@@ -208,7 +262,12 @@ public class PaintPanel extends JFrame {
                     UpdateColor();
                 }
             });
+            JLabel rval = new JLabel("255");
+            jp6_2_1.add(red, BorderLayout.CENTER);
+            jp6_2_1.add(rval, BorderLayout.EAST);
+            jp6_2.add(jp6_2_1);
 
+            JPanel jp6_2_2 = new JPanel(new BorderLayout());
             JSlider green = new JSlider();
             green.setMaximum(255);
             green.addChangeListener(new ChangeListener() {
@@ -218,7 +277,12 @@ public class PaintPanel extends JFrame {
                     UpdateColor();
                 }
             });
+            JLabel gval = new JLabel("255");
+            jp6_2_2.add(green, BorderLayout.CENTER);
+            jp6_2_2.add(gval, BorderLayout.EAST);
+            jp6_2.add(jp6_2_2);
 
+            JPanel jp6_2_3 = new JPanel(new BorderLayout());
             JSlider blue = new JSlider();
             blue.setMaximum(255);
             blue.addChangeListener(new ChangeListener() {
@@ -228,14 +292,22 @@ public class PaintPanel extends JFrame {
                     UpdateColor();
                 }
             });
+            JLabel bval = new JLabel("255");
+            jp6_2_3.add(blue, BorderLayout.CENTER);
+            jp6_2_3.add(bval, BorderLayout.EAST);
+            jp6_2.add(jp6_2_3);
 
-            colorPanel.add(red);
-            colorPanel.add(green);
-            colorPanel.add(blue);
-            add(colorPanel);
+            jp6.add(jp6_2);
+            add(jp6);
+
+
+            JPanel jp7 = new JPanel(new BorderLayout());
+            JLabel jl7 = new JLabel(" ");
             colorPlate = new JButton();
             colorPlate.setEnabled(false);
-            add(colorPlate);
+            jp7.add(colorPlate, BorderLayout.CENTER);
+            jp7.add(jl7, BorderLayout.NORTH);
+            add(jp7);
 
             JButton setBackGround = new JButton("BG");
             setBackGround.addActionListener(new ActionListener() {
