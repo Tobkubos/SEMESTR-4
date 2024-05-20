@@ -5,6 +5,7 @@ import javax.swing.event.ChangeListener;
 import javax.tools.Tool;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,10 @@ import java.util.Random;
 
 public class PaintPanel extends JFrame {
     ArrayList<PaintPoint> paintPoints = new ArrayList<>();
+
+    private int StartX, StartY, EndX, EndY;
+    private int ShapeW, ShapeH;
+
     private int currentSize = 10;
     private int currentShape = 0;
 
@@ -25,6 +30,9 @@ public class PaintPanel extends JFrame {
 
     private boolean isDrawing = false;
     private boolean isSpraying = false;
+    private boolean isRandomRotating = false;
+    private boolean isBigShape = false;
+
     private BufferedImage image = null;
     private DrawingPanel drawingPanel;
     //private JLabel BrushTypeLabel, BrushSizeLabel, BrushColorLabel;
@@ -36,29 +44,42 @@ public class PaintPanel extends JFrame {
     ImageIcon SquareShapeIcon = new ImageIcon("square.png");
     ImageIcon SquareFillShapeIcon = new ImageIcon("square_fill.png");
     Font ProgramFont = new Font("Sans Serif", Font.PLAIN, 20);
-    class PaintPoint{
+    class PaintPoint {
         private final int x;
         private final int y;
-        private final int size;
+        private final int size1;
+        private final int size2;
         private final int shape;
         private final Color color;
+        private final int rotation;
 
-        public PaintPoint(int x, int y, int size, int shape, Color color) {
+        public PaintPoint(int x, int y, int size1, int size2, int shape, Color color, int rotation) {
             this.x = x;
             this.y = y;
-            this.size = size;
+            this.size1 = size1;
+            this.size2 = size2;
             this.shape = shape;
             this.color = color;
+            this.rotation = rotation;
         }
 
         public void draw(Graphics2D g2d) {
+            AffineTransform old = g2d.getTransform();
             g2d.setColor(color);
-            if(shape == 0) g2d.drawOval(x - size / 2, y - size / 2, size, size);
-            if(shape == 1) g2d.fillOval(x - size / 2, y - size / 2, size, size);
-            if(shape == 2) g2d.drawRect(x - size / 2, y - size / 2, size, size);
-            if(shape == 3) g2d.fillRect(x - size / 2, y - size / 2, size, size);
+            g2d.rotate(Math.toRadians(rotation), x, y);
+            switch (shape) {
+                case 0 -> g2d.drawOval(x - size1 / 2, y - size2 / 2, size1, size2);
+                case 1 -> g2d.fillOval(x - size1 / 2, y - size2 / 2, size1, size2);
+                case 2 -> g2d.drawRect(x - size1 / 2, y - size2 / 2, size1, size2);
+                case 3 -> g2d.fillRect(x - size1 / 2, y - size2 / 2, size1, size2);
+                case 4 -> {
+                    int[] xPoints = {x, x - size1 / 2, x + size1 / 2};
+                    int[] yPoints = {y - size2 / 2, y + size2 / 2, y + size2 / 2};
+                    g2d.drawPolygon(xPoints, yPoints, 3);
+                }
+            }
+            g2d.setTransform(old);
         }
-
     }
     PaintPanel(int Dimx, int Dimy) {
         setResizable(true);
@@ -151,6 +172,7 @@ public class PaintPanel extends JFrame {
             CreateShapeButton(CircleFillShapeIcon,  1, ShapeGroup, jp4);
             CreateShapeButton(SquareShapeIcon,      2, ShapeGroup, jp4);
             CreateShapeButton(SquareFillShapeIcon,  3, ShapeGroup, jp4);
+            CreateShapeButton(null,  4, ShapeGroup, jp4);
             add(jp4);
 
             JButton ClearLastPoint = new JButton("undo");
@@ -215,7 +237,7 @@ public class PaintPanel extends JFrame {
             colorPlate.setEnabled(false);
             add(colorPlate);
 
-            JButton setBackGround = new JButton();
+            JButton setBackGround = new JButton("BG");
             setBackGround.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -224,6 +246,24 @@ public class PaintPanel extends JFrame {
             });
             add(setBackGround);
 
+
+            JButton bigShape = new JButton("big shape");
+            bigShape.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    isBigShape = !isBigShape;
+                }
+            });
+            add(bigShape);
+
+            JButton randomRot = new JButton("random Rot");
+            randomRot.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    isRandomRotating = !isRandomRotating;
+                }
+            });
+            add(randomRot);
         }
         void UpdateColor(){
             currentColor = new Color(currentRed, currentGreen, currentBlue);
@@ -249,6 +289,7 @@ public class PaintPanel extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                     isSpraying = this.state;
+                    isBigShape = false;
             }
         }
         private void loadImage() {
@@ -288,7 +329,18 @@ public class PaintPanel extends JFrame {
                 x = e.getX();
                 y = e.getY();
             }
-            PaintPoint paintPoint = new PaintPoint(x, y, currentSize, currentShape ,currentColor);
+
+            int rot = 0;
+            if(isRandomRotating){
+                rot = random.nextInt(360);
+            }
+            PaintPoint paintPoint = new PaintPoint(x, y, currentSize, currentSize, currentShape ,currentColor, rot);
+            paintPoints.add(paintPoint);
+            repaint();
+        }
+
+        private void addBigPoint(MouseEvent e) {
+            PaintPoint paintPoint = new PaintPoint((StartX + EndX) / 2, (StartY + EndY)/2, ShapeW,ShapeH, currentShape ,currentColor, 0);
             paintPoints.add(paintPoint);
             repaint();
         }
@@ -314,13 +366,20 @@ public class PaintPanel extends JFrame {
 
         @Override
         public void mousePressed(MouseEvent e) {
-            isDrawing = true;
-            addPoint(e);
+            if(!isBigShape) {
+                isDrawing = true;
+                addPoint(e);
+            }
+            StartX = e.getX();
+            StartY = e.getY();
+
         }
         @Override
         public void mouseDragged(MouseEvent e) {
-            if (isDrawing) {
-                addPoint(e);
+            if(!isBigShape) {
+                if (isDrawing) {
+                    addPoint(e);
+                }
             }
         }
         public void mouseMoved(MouseEvent e) {
@@ -329,6 +388,30 @@ public class PaintPanel extends JFrame {
         @Override
         public void mouseReleased(MouseEvent e) {
             isDrawing = false;
+
+            if(isBigShape) {
+                if (e.getX() > StartX) {
+                    ShapeW = e.getX() - StartX;
+                } else {
+                    ShapeW = StartX - e.getX();
+                }
+
+                if (e.getY() > StartY) {
+                    ShapeH = e.getY() - StartY;
+                } else {
+                    ShapeH = StartY - e.getY();
+                }
+
+                EndX = e.getX();
+                EndY = e.getY();
+                addBigPoint(e);
+                repaint();
+                System.out.println("START X  " + StartX);
+                System.out.println("END   X  " + EndX);
+                System.out.println("START Y  " + StartY);
+                System.out.println("END   Y  " + EndY);
+                System.out.println("------------------");
+            }
         }
 
         @Override
