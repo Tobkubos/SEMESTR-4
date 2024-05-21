@@ -250,11 +250,13 @@ public class PaintPanel extends JFrame {
 
             //COLORS
             JLabel jl7_2 = new JLabel("hex");
+            jl7_2.setHorizontalAlignment(SwingConstants.CENTER);
             JPanel jp6 = new JPanel(new BorderLayout());
             jp6.setMinimumSize(new Dimension(400,100));
             JLabel jl6 = new JLabel("color");
             jl6.setHorizontalAlignment(SwingConstants.CENTER);
             jp6.add(jl6, BorderLayout.NORTH);
+            jl6.setHorizontalAlignment(SwingConstants.CENTER);
 
             JPanel jp6_2 = new JPanel(new GridLayout(3,1));
 
@@ -351,6 +353,7 @@ public class PaintPanel extends JFrame {
             //ADD COLORS
             JPanel jp8 = new JPanel(new BorderLayout());
             JLabel jl8 = new JLabel("table");
+            jl8.setHorizontalAlignment(SwingConstants.CENTER);
             jp8.add(jl8, BorderLayout.NORTH);
 
             JPanel jp8_2 = new JPanel(new BorderLayout());
@@ -395,8 +398,9 @@ public class PaintPanel extends JFrame {
 
             //OTHER
             JPanel jp9 = new JPanel(new BorderLayout());
-            JLabel lj9 = new JLabel("other");
-            jp9.add(lj9, BorderLayout.NORTH);
+            JLabel jl9 = new JLabel("other");
+            jp9.add(jl9, BorderLayout.NORTH);
+            jl9.setHorizontalAlignment(SwingConstants.CENTER);
 
             JPanel jp9_2 = new JPanel(new GridLayout(2,2));
             JButton setBackGround = new JButton("BG");
