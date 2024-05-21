@@ -172,10 +172,11 @@ public class PaintPanel extends JFrame {
             JPanel jp3_2 = new JPanel(new GridLayout(2,1));
             JLabel jl3 = new JLabel("tools");
             jl3.setHorizontalAlignment(SwingConstants.CENTER);
-            JButton JRbrush = new JButton(brushIcon);
+
+            JToggleButton JRbrush = new JToggleButton(brushIcon);
             JRbrush.addActionListener(new ButtonActionListener(false));
 
-            JButton JRspray = new JButton(SprayIcon);
+            JToggleButton JRspray = new JToggleButton(SprayIcon);
             JRspray.addActionListener(new ButtonActionListener(true));
 
             JRbrush.setSelected(true);
@@ -244,6 +245,7 @@ public class PaintPanel extends JFrame {
 
 
             //COLORS
+            JLabel jl7_2 = new JLabel("hex");
             JPanel jp6 = new JPanel(new BorderLayout());
             jp6.setMinimumSize(new Dimension(400,100));
             JLabel jl6 = new JLabel("color");
@@ -252,63 +254,95 @@ public class PaintPanel extends JFrame {
 
             JPanel jp6_2 = new JPanel(new GridLayout(3,1));
 
+
+
+            //RED
+            //region red
             JPanel jp6_2_1 = new JPanel(new BorderLayout());
             JSlider red = new JSlider();
+            JLabel rval = new JLabel("255");
             red.setMaximum(255);
+            red.setValue(0);
             red.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent e) {
                     currentRed = red.getValue();
                     UpdateColor();
+                    jl7_2.setText(String.format("#%02x%02x%02x", currentRed, currentGreen, currentBlue));
+                    rval.setText(String.valueOf(currentRed));
                 }
             });
-            JLabel rval = new JLabel("255");
             jp6_2_1.add(red, BorderLayout.CENTER);
             jp6_2_1.add(rval, BorderLayout.EAST);
             jp6_2.add(jp6_2_1);
+            //endregion
 
+            //GREEN
+            //region green
             JPanel jp6_2_2 = new JPanel(new BorderLayout());
             JSlider green = new JSlider();
+            JLabel gval = new JLabel("255");
             green.setMaximum(255);
+            green.setValue(0);
             green.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent e) {
                     currentGreen = green.getValue();
                     UpdateColor();
+                    jl7_2.setText(String.format("#%02x%02x%02x", currentRed, currentGreen, currentBlue));
+                    gval.setText(String.valueOf(currentGreen));
                 }
             });
-            JLabel gval = new JLabel("255");
             jp6_2_2.add(green, BorderLayout.CENTER);
             jp6_2_2.add(gval, BorderLayout.EAST);
             jp6_2.add(jp6_2_2);
+            //endregion
 
+            //BLUE
+            //region blue
             JPanel jp6_2_3 = new JPanel(new BorderLayout());
             JSlider blue = new JSlider();
+            JLabel bval = new JLabel("255");
             blue.setMaximum(255);
+            blue.setValue(0);
             blue.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent e) {
                     currentBlue = blue.getValue();
                     UpdateColor();
+                    jl7_2.setText(String.format("#%02x%02x%02x", currentRed, currentGreen, currentBlue));
+                    bval.setText(String.valueOf(currentBlue));
                 }
             });
-            JLabel bval = new JLabel("255");
             jp6_2_3.add(blue, BorderLayout.CENTER);
             jp6_2_3.add(bval, BorderLayout.EAST);
             jp6_2.add(jp6_2_3);
-
             jp6.add(jp6_2);
             add(jp6);
+            //endregion
+
+            jl7_2.setText(String.format("#%02x%02x%02x", currentRed, currentGreen, currentBlue));
+            rval.setText(String.valueOf(currentRed));
+            gval.setText(String.valueOf(currentGreen));
+            bval.setText(String.valueOf(currentBlue));
 
 
+
+            //COLOR PLATE
             JPanel jp7 = new JPanel(new BorderLayout());
-            JLabel jl7 = new JLabel(" ");
+            JLabel jl7_1 = new JLabel(" ");
+
             colorPlate = new JButton();
             colorPlate.setEnabled(false);
             jp7.add(colorPlate, BorderLayout.CENTER);
-            jp7.add(jl7, BorderLayout.NORTH);
+            jp7.add(jl7_1, BorderLayout.NORTH);
+            jp7.add(jl7_2, BorderLayout.NORTH);
             add(jp7);
 
+            UpdateColor(); //startup color load
+
+
+            //OTHER
             JButton setBackGround = new JButton("BG");
             setBackGround.addActionListener(new ActionListener() {
                 @Override
@@ -319,20 +353,27 @@ public class PaintPanel extends JFrame {
             add(setBackGround);
 
 
-            JButton bigShape = new JButton("big shape");
+            JToggleButton bigShape = new JToggleButton("big shape");
+            JToggleButton randomRot = new JToggleButton("random Rot");
             bigShape.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     isBigShape = !isBigShape;
+                    JRbrush.setEnabled(!JRbrush.isEnabled());
+                    JRspray.setEnabled(!JRspray.isEnabled());
+                    randomRot.setSelected(false);
                 }
             });
             add(bigShape);
 
-            JButton randomRot = new JButton("random Rot");
             randomRot.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    isRandomRotating = !isRandomRotating;
+                    isRandomRotating = randomRot.isSelected();
+                    isBigShape = false;
+                    JRbrush.setEnabled(true);
+                    JRspray.setEnabled(true);
+                    bigShape.setSelected(false);
                 }
             });
             add(randomRot);
@@ -342,7 +383,7 @@ public class PaintPanel extends JFrame {
             colorPlate.setBackground(currentColor);
         }
         void CreateShapeButton(ImageIcon ShapeIcon ,int sp, ButtonGroup bg, JPanel jp){
-            JButton Shape = new JButton(ShapeIcon);
+            JToggleButton Shape = new JToggleButton(ShapeIcon);
             Shape.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -433,13 +474,11 @@ public class PaintPanel extends JFrame {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            addPoint(e);
         }
 
         @Override
         public void mousePressed(MouseEvent e) {
             if(!isBigShape) {
-                isDrawing = true;
                 addPoint(e);
             }
             StartX = e.getX();
@@ -448,6 +487,7 @@ public class PaintPanel extends JFrame {
         }
         @Override
         public void mouseDragged(MouseEvent e) {
+            isDrawing = true;
             if(!isBigShape) {
                 if (isDrawing) {
                     addPoint(e);
@@ -514,6 +554,48 @@ public class PaintPanel extends JFrame {
         @Override
         public void mouseWheelMoved(MouseWheelEvent e) {
 
+        }
+    }
+
+    public class NorthPanel extends JPanel {
+
+        NorthPanel() {
+            this.setLayout(new FlowLayout(FlowLayout.LEFT, 0,0));
+            JMenuBar MenuBar = new JMenuBar();
+
+            JMenuItem File_New = new JMenuItem(new MyAction("New"));
+            JMenuItem About = new JMenuItem(new MyAction("About"));
+            JMenuItem Exit = new JMenuItem(new ExitAction("Exit"));
+
+            MenuBar.add(File_New);
+            MenuBar.add(About);
+            MenuBar.add(Exit);
+
+            this.setVisible(true);
+            this.add(MenuBar);
+        }
+        private class MyAction extends AbstractAction {
+
+            public MyAction(String name) {
+
+                super(name);
+            }
+
+            public void actionPerformed(ActionEvent e) {
+
+                System.out.println(e.getActionCommand());
+            }
+        }
+
+        private class ExitAction extends AbstractAction {
+            public ExitAction(String name) {
+
+                super(name);
+            }
+            public void actionPerformed(ActionEvent e) {
+
+                System.exit(0);
+            }
         }
     }
 }
