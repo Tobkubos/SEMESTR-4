@@ -35,7 +35,7 @@ public class PaintPanel extends JFrame {
     private boolean isRandomRotating = false;
     private boolean isBigShape = false;
 
-    private BufferedImage image = null;
+    public BufferedImage image = null;
     private DrawingPanel drawingPanel;
     //private JLabel BrushTypeLabel, BrushSizeLabel, BrushColorLabel;
     ImageIcon brushIcon = new ImageIcon("brush.png");
@@ -93,7 +93,8 @@ public class PaintPanel extends JFrame {
         add(drawingPanel, BorderLayout.CENTER);
         add(new Toolbar(), BorderLayout.SOUTH);
         //new ActualBrushInfo();
-        add(new NorthPanel(), BorderLayout.NORTH);
+        NorthPanel northPanel = new NorthPanel(this);
+        this.add(northPanel, BorderLayout.NORTH);
         setVisible(true);
     }
 
@@ -220,25 +221,13 @@ public class PaintPanel extends JFrame {
             jp5.add(jl5, BorderLayout.NORTH);
             JPanel jp5_2 = new JPanel(new GridLayout(2,2));
 
-            JButton ClearLastPoint = new JButton("undo");
-            ClearLastPoint.addActionListener(new ActionListener() {
-                @Override
-
-                public void actionPerformed(ActionEvent e) {
-                    if(!paintPoints.isEmpty()) {
-                        paintPoints.removeLast();
-                        repaint();
-                    }
-                }
-            });
-            jp5_2.add(ClearLastPoint);
-
             JButton ClearAll = new JButton("Clear");
             ClearAll.addActionListener(new ActionListener() {
                 @Override
 
                 public void actionPerformed(ActionEvent e) {
                     paintPoints.clear();
+                    image = null;
                     repaint();
                 }
             });

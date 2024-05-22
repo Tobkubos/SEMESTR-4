@@ -1,0 +1,32 @@
+
+derby -> ./ij
+driver 'org.apache.derby.jdbc.ClientDriver';
+connect 'jdbc:derby://127.0.0.1/home/tomcat/baza'; 
+
+other/usr/local/squrell/squirell.sh   <-- run as program
+
+biblioteka jest ladowana tylko w przypadku gdy jest potrzebna do wykonania jakiegoś obiektu danej klasy itd. inaczej nie istnieje i nie zostaje zalaczana.
+
+Class.forName klasas klas, która uruchamia klase na bazie arguemntu: nazwa klasy z pakietem
+
+
+Ładujemy sterownik
+Stworzyc connection - element pakietu java SQL
+Driver Manager to fabryka która tworzy polaczenie do bazy danych
+Wygeneruj statement
+Gdy statement dostanie argumenty np. select * from test - wykona operacje na bazie danych
+można odczytac poprzez statement.getresult()
+
+getMetaData.getColumnCount
+print result.getObject(i)
+
+
+wbijanie drivera jdbc w kod nie jest dobrym rozwiazaniem
+opracowany nowy standard - jndi  - java naming directory
+
+servlet to kawalek aplikacji który uruchamia się kiedy robimy zadanie do serwera
+
+string pisze bajty
+writer pisze znaki
+
+
