@@ -3,53 +3,89 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class NorthPanel extends JPanel {
 
-    private PaintPanel paintPanel;
+    private final PaintPanel paintPanel;
 
     NorthPanel(PaintPanel paintPanel) {
         this.paintPanel = paintPanel;
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0,0));
         JMenuBar MenuBar = new JMenuBar();
 
-        JMenuItem File_New = new JMenuItem(new MyAction("New"));
-        JMenuItem About = new JMenuItem(new MyAction("About"));
+        JMenu fileMenu = new JMenu("file");
+        JMenu editMenu = new JMenu("edit");
+
+
+        //1
         JMenuItem Load = new JMenuItem(new LoadAction("Load"));
         JMenuItem Save = new JMenuItem(new SaveAction("Save"));
-        JMenuItem Undo = new JMenuItem(new UndoAction("Undo"));
-        Undo.setAccelerator(KeyStroke.getKeyStroke("ctrl Z"));
-        JMenuItem Redo = new JMenuItem(new RedoAction("Redo"));
-        Redo.setAccelerator(KeyStroke.getKeyStroke("ctrl Y"));
-        JMenuItem Clear = new JMenuItem(new ClearAllAction("Clear"));
+        Save.setAccelerator(KeyStroke.getKeyStroke("ctrl S"));
         JMenuItem Exit = new JMenuItem(new ExitAction("Exit"));
 
-        MenuBar.add(File_New);
+
+        //2
+        JMenuItem Undo = new JMenuItem(new UndoAction("Undo"));
+        Undo.setAccelerator(KeyStroke.getKeyStroke("ctrl Z"));
+
+        JMenuItem Redo = new JMenuItem(new RedoAction("Redo"));
+        Redo.setAccelerator(KeyStroke.getKeyStroke("ctrl Y"));
+
+        JMenuItem Clear = new JMenuItem(new ClearAllAction("Clear"));
+
+
+        //3
+        JMenuItem About = new JMenuItem(new AboutAction("About"));
+
+
+
+        //----------------
+        fileMenu.add(Load);
+        fileMenu.add(Save);
+        fileMenu.addSeparator();
+        fileMenu.add(Exit);
+
+        editMenu.add(Undo);
+        editMenu.add(Redo);
+        editMenu.addSeparator();
+        editMenu.add(Clear);
+
+        MenuBar.add(fileMenu);
+        MenuBar.add(editMenu);
         MenuBar.add(About);
-        MenuBar.add(Undo);
-        MenuBar.add(Redo);
-        MenuBar.add(Clear);
-        MenuBar.add(Load);
-        MenuBar.add(Save);
-        MenuBar.add(Exit);
 
         this.setVisible(true);
         this.add(MenuBar);
     }
-    private class MyAction extends AbstractAction {
 
-        public MyAction(String name) {
+    private static class AboutAction extends AbstractAction {
+
+        public AboutAction(String name) {
 
             super(name);
         }
 
         public void actionPerformed(ActionEvent e) {
+            JDialog aboutDialog = new JDialog((Frame) null, "About", true);
+            aboutDialog.setLayout(new BorderLayout());
+            aboutDialog.setSize(300, 150);
+            aboutDialog.setLocationRelativeTo(null); //centrum
 
-            System.out.println(e.getActionCommand());
+            //label
+            JLabel aboutLabel = new JLabel("GigaPaint'cior stworzony przez: Tobiasz Kubiak", SwingConstants.CENTER);
+            aboutDialog.add(aboutLabel, BorderLayout.CENTER);
+
+            //close btn
+            JButton closeButton = new JButton("Gicior");
+            closeButton.addActionListener(ev -> aboutDialog.dispose());
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.add(closeButton);
+            aboutDialog.add(buttonPanel, BorderLayout.SOUTH);
+
+            aboutDialog.setVisible(true);
         }
     }
 
@@ -68,8 +104,8 @@ public class NorthPanel extends JPanel {
                     paintPanel.repaint();
                     paintPanel.setSize(paintPanel.getWidth()+1, paintPanel.getHeight());
 
-                } catch (IOException exception) {
-                    exception.printStackTrace();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
         }
@@ -106,7 +142,7 @@ public class NorthPanel extends JPanel {
     }
 
 
-    private class ExitAction extends AbstractAction {
+    private static class ExitAction extends AbstractAction {
         public ExitAction(String name) {
 
             super(name);
@@ -156,6 +192,7 @@ public class NorthPanel extends JPanel {
             paintPanel.paintPoints.clear();
             paintPanel.image = null;
             repaint();
+            paintPanel.drawingPanel.setBackground(Color.WHITE);
         }
     }
 }

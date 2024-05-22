@@ -1,17 +1,10 @@
-import javax.imageio.ImageIO;
+
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.tools.Tool;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class PaintPanel extends JFrame {
@@ -26,28 +19,21 @@ public class PaintPanel extends JFrame {
     private int currentShape = 0;
 
     JButton colorPlate;
+    JTextField tx;
     private int currentRed = 0;
     private int currentGreen = 0;
     private int currentBlue = 0;
     private Color currentColor;
-
-    private boolean isDrawing = false;
     private boolean isSpraying = false;
+
+    private boolean isGradienting = false;
     private boolean isRandomRotating = false;
     private boolean isBigShape = false;
 
     public BufferedImage image = null;
-    public DrawingPanel drawingPanel;
-    //private JLabel BrushTypeLabel, BrushSizeLabel, BrushColorLabel;
-    ImageIcon brushIcon = new ImageIcon("brush.png");
-    ImageIcon SprayIcon = new ImageIcon("spray.png");
-    ImageIcon LoadImageIcon = new ImageIcon("image.png");
-    ImageIcon CircleShapeIcon = new ImageIcon("circle.png");
-    ImageIcon CircleFillShapeIcon = new ImageIcon("circle_fill.png");
-    ImageIcon SquareShapeIcon = new ImageIcon("square.png");
-    ImageIcon SquareFillShapeIcon = new ImageIcon("square_fill.png");
+    DrawingPanel drawingPanel;
     Font ProgramFont = new Font("Sans Serif", Font.PLAIN, 20);
-    class PaintPoint {
+    static class PaintPoint {
         private final int x;
         private final int y;
         private final int size1;
@@ -55,8 +41,9 @@ public class PaintPanel extends JFrame {
         private final int shape;
         private final Color color;
         private final int rotation;
+        private final String text;
 
-        public PaintPoint(int x, int y, int size1, int size2, int shape, Color color, int rotation) {
+        public PaintPoint(int x, int y, int size1, int size2, int shape, Color color, int rotation, String text) {
             this.x = x;
             this.y = y;
             this.size1 = size1;
@@ -64,6 +51,7 @@ public class PaintPanel extends JFrame {
             this.shape = shape;
             this.color = color;
             this.rotation = rotation;
+            this.text = text;
         }
 
         public void draw(Graphics2D g2d) {
@@ -80,13 +68,22 @@ public class PaintPanel extends JFrame {
                     int[] yPoints = {y - size2 / 2, y + size2 / 2, y + size2 / 2};
                     g2d.drawPolygon(xPoints, yPoints, 3);
                 }
+                case 5 -> {
+                    int[] xPoints = {x, x - size1 / 2, x + size1 / 2};
+                    int[] yPoints = {y - size2 / 2, y + size2 / 2, y + size2 / 2};
+                    g2d.fillPolygon(xPoints, yPoints, 3);
+                }
+                case 6 -> {
+                    g2d.setFont(new Font("Serif", Font.PLAIN, size1));
+                    g2d.drawString(text, x, y);
+                }
             }
             g2d.setTransform(old);
         }
     }
-    PaintPanel(int Dimx, int Dimy) {
+    PaintPanel() {
         setResizable(true);
-        setSize(Dimx, Dimy);
+        setSize(1000,1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -101,9 +98,11 @@ public class PaintPanel extends JFrame {
         Toolbar(){
             setLayout(new GridLayout(1,5));
 
+
+
             //SET SIZE
             JPanel jp1 = new JPanel(new BorderLayout());
-            JPanel jp1_2 = new JPanel(new BorderLayout());
+            JPanel jp1_2 = new JPanel(new GridLayout(2,1));
             JLabel jl1 = new JLabel("size");
             jl1.setHorizontalAlignment(SwingConstants.CENTER);
             jp1.add(jl1, BorderLayout.NORTH);
@@ -111,31 +110,17 @@ public class PaintPanel extends JFrame {
             JSpinner spinner = new JSpinner(spinnerModel);
 
             spinner.setFont(ProgramFont);
-            spinner.addChangeListener(e -> {
-                currentSize = (Integer) spinner.getValue();
-                }
-            );
+            spinner.addChangeListener(e -> currentSize = (Integer) spinner.getValue());
             jp1_2.add(spinner);
+
+
+            //TEXT
+            tx = new JTextField();
+            jp1_2.add(tx);
+
             jp1.add(jp1_2);
             add(jp1);
 
-
-
-            //LOAD IMAGE
-            /*
-            JPanel jp2 = new JPanel(new BorderLayout());
-            JLabel jl2 = new JLabel("load image");
-            jl2.setHorizontalAlignment(SwingConstants.CENTER);
-            jp2.add(jl2, BorderLayout.NORTH);
-
-            JPanel jp2_2 = new JPanel(new BorderLayout());
-            JButton loadButton = new JButton(LoadImageIcon);
-            loadButton.setFont(ProgramFont);
-            loadButton.addActionListener(e -> loadImage());
-            jp2_2.add(loadButton);
-            jp2.add(jp2_2);
-            add(jp2);
-            */
 
 
             //TOOLS
@@ -144,10 +129,10 @@ public class PaintPanel extends JFrame {
             JLabel jl3 = new JLabel("tools");
             jl3.setHorizontalAlignment(SwingConstants.CENTER);
 
-            JToggleButton JRbrush = new JToggleButton(brushIcon);
+            JToggleButton JRbrush = new JToggleButton(new ImageIcon("brush.png"));
             JRbrush.addActionListener(new ButtonActionListener(false));
 
-            JToggleButton JRspray = new JToggleButton(SprayIcon);
+            JToggleButton JRspray = new JToggleButton(new ImageIcon("spray.png"));
             JRspray.addActionListener(new ButtonActionListener(true));
 
             JRbrush.setSelected(true);
@@ -162,48 +147,60 @@ public class PaintPanel extends JFrame {
             jp3.add(jp3_2);
             add(jp3);
 
+            JPanel jp9 = new JPanel(new BorderLayout());
+            JLabel jl9 = new JLabel("functions");
+            jp9.add(jl9, BorderLayout.NORTH);
+            jl9.setHorizontalAlignment(SwingConstants.CENTER);
 
+            JPanel jp9_2 = new JPanel(new GridLayout(2,2));
+            JButton setBackGround = new JButton(new ImageIcon("background.png"));
+            setBackGround.addActionListener(e -> drawingPanel.setBackground(currentColor));
+            jp9_2.add(setBackGround);
+
+
+            JToggleButton bigShape = new JToggleButton(new ImageIcon("bigshape.png"));
+            JToggleButton randomRot = new JToggleButton(new ImageIcon("rotate.png"));
+            JToggleButton gradient = new JToggleButton(new ImageIcon("gradient.png"));
+            gradient.addActionListener(e -> isGradienting = !isGradienting);
+            jp9_2.add(gradient);
+
+            bigShape.addActionListener(e -> {
+                isBigShape = !isBigShape;
+                JRbrush.setEnabled(!JRbrush.isEnabled());
+                JRspray.setEnabled(!JRspray.isEnabled());
+                randomRot.setSelected(false);
+            });
+            jp9_2.add(bigShape);
+
+            randomRot.addActionListener(e -> {
+                isRandomRotating = randomRot.isSelected();
+                isBigShape = false;
+                JRbrush.setEnabled(true);
+                JRspray.setEnabled(true);
+                bigShape.setSelected(false);
+            });
+            jp9_2.add(randomRot);
+            jp9.add(jp9_2);
+            add(jp9);
 
             //SHAPES
             JPanel jp4 = new JPanel(new BorderLayout());
             JLabel jl4 = new JLabel("Shapes");
             jl4.setHorizontalAlignment(SwingConstants.CENTER);
             jp4.add(jl4, BorderLayout.NORTH);
-            JPanel jp4_2 = new JPanel(new GridLayout(3,3));
+            JPanel jp4_2 = new JPanel(new GridLayout(3,2));
             ButtonGroup ShapeGroup = new ButtonGroup();
-            CreateShapeButton(CircleShapeIcon,      0, ShapeGroup, jp4_2);
-            CreateShapeButton(CircleFillShapeIcon,  1, ShapeGroup, jp4_2);
-            CreateShapeButton(SquareShapeIcon,      2, ShapeGroup, jp4_2);
-            CreateShapeButton(SquareFillShapeIcon,  3, ShapeGroup, jp4_2);
-            CreateShapeButton(null,  4, ShapeGroup, jp4_2);
+            CreateShapeButton(new ImageIcon("circle.png"),      0, ShapeGroup, jp4_2);
+            CreateShapeButton(new ImageIcon("circle_fill.png"),  1, ShapeGroup, jp4_2);
+            CreateShapeButton(new ImageIcon("square.png"),      2, ShapeGroup, jp4_2);
+            CreateShapeButton(new ImageIcon("square_fill.png"),  3, ShapeGroup, jp4_2);
+            CreateShapeButton(new ImageIcon("triangle.png"),  4, ShapeGroup, jp4_2);
+            CreateShapeButton(new ImageIcon("triangle_fill.png"),  5, ShapeGroup, jp4_2);
+            CreateShapeButton(new ImageIcon("abc.png"),  6, ShapeGroup, jp4_2);
 
             jp4.add(jp4_2);
             add(jp4);
 
-
-
-            //undo redo clear
-            /*
-            JPanel jp5 = new JPanel(new BorderLayout());
-            JLabel jl5 = new JLabel("functions");
-            jl5.setHorizontalAlignment(SwingConstants.CENTER);
-            jp5.add(jl5, BorderLayout.NORTH);
-            JPanel jp5_2 = new JPanel(new GridLayout(2,2));
-
-            JButton ClearAll = new JButton("Clear");
-            ClearAll.addActionListener(new ActionListener() {
-                @Override
-
-                public void actionPerformed(ActionEvent e) {
-                    paintPoints.clear();
-                    image = null;
-                    repaint();
-                }
-            });
-            jp5_2.add(ClearAll);
-            jp5.add(jp5_2);
-            add(jp5);
-        */
 
 
             //COLORS
@@ -228,14 +225,11 @@ public class PaintPanel extends JFrame {
             JLabel rval = new JLabel("255");
             red.setMaximum(255);
             red.setValue(0);
-            red.addChangeListener(new ChangeListener() {
-                @Override
-                public void stateChanged(ChangeEvent e) {
-                    currentRed = red.getValue();
-                    UpdateColor();
-                    jl7_2.setText(String.format("#%02x%02x%02x", currentRed, currentGreen, currentBlue));
-                    rval.setText(String.valueOf(currentRed));
-                }
+            red.addChangeListener(e -> {
+                currentRed = red.getValue();
+                UpdateColor();
+                jl7_2.setText(String.format("#%02x%02x%02x", currentRed, currentGreen, currentBlue));
+                rval.setText(String.valueOf(currentRed));
             });
             jp6_2_1.add(red, BorderLayout.CENTER);
             jp6_2_1.add(rval, BorderLayout.EAST);
@@ -249,14 +243,11 @@ public class PaintPanel extends JFrame {
             JLabel gval = new JLabel("255");
             green.setMaximum(255);
             green.setValue(0);
-            green.addChangeListener(new ChangeListener() {
-                @Override
-                public void stateChanged(ChangeEvent e) {
-                    currentGreen = green.getValue();
-                    UpdateColor();
-                    jl7_2.setText(String.format("#%02x%02x%02x", currentRed, currentGreen, currentBlue));
-                    gval.setText(String.valueOf(currentGreen));
-                }
+            green.addChangeListener(e -> {
+                currentGreen = green.getValue();
+                UpdateColor();
+                jl7_2.setText(String.format("#%02x%02x%02x", currentRed, currentGreen, currentBlue));
+                gval.setText(String.valueOf(currentGreen));
             });
             jp6_2_2.add(green, BorderLayout.CENTER);
             jp6_2_2.add(gval, BorderLayout.EAST);
@@ -270,14 +261,11 @@ public class PaintPanel extends JFrame {
             JLabel bval = new JLabel("255");
             blue.setMaximum(255);
             blue.setValue(0);
-            blue.addChangeListener(new ChangeListener() {
-                @Override
-                public void stateChanged(ChangeEvent e) {
-                    currentBlue = blue.getValue();
-                    UpdateColor();
-                    jl7_2.setText(String.format("#%02x%02x%02x", currentRed, currentGreen, currentBlue));
-                    bval.setText(String.valueOf(currentBlue));
-                }
+            blue.addChangeListener(e -> {
+                currentBlue = blue.getValue();
+                UpdateColor();
+                jl7_2.setText(String.format("#%02x%02x%02x", currentRed, currentGreen, currentBlue));
+                bval.setText(String.valueOf(currentBlue));
             });
             jp6_2_3.add(blue, BorderLayout.CENTER);
             jp6_2_3.add(bval, BorderLayout.EAST);
@@ -307,7 +295,6 @@ public class PaintPanel extends JFrame {
             UpdateColor(); //startup color load
 
 
-
             //ADD COLORS
             JPanel jp8 = new JPanel(new BorderLayout());
             JLabel jl8 = new JLabel("table");
@@ -317,15 +304,12 @@ public class PaintPanel extends JFrame {
             JPanel jp8_2 = new JPanel(new BorderLayout());
 
             JButton AddColor = new JButton("add Color");
-            AddColor.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    for (int i = colorButtons.size() - 1; i > 0; i--) {
-                        Color previousColor = colorButtons.get(i - 1).getBackground();
-                        colorButtons.get(i).setBackground(previousColor);
-                    }
-                    colorButtons.getFirst().setBackground(currentColor);
+            AddColor.addActionListener(e -> {
+                for (int i = colorButtons.size() - 1; i > 0; i--) {
+                    Color previousColor = colorButtons.get(i - 1).getBackground();
+                    colorButtons.get(i).setBackground(previousColor);
                 }
+                colorButtons.getFirst().setBackground(currentColor);
             });
             jp8_2.add(AddColor, BorderLayout.NORTH);
 
@@ -336,67 +320,18 @@ public class PaintPanel extends JFrame {
                 JButton btn = new JButton();
                 colorButtons.add(btn);
                 btn.setBackground(Color.WHITE);
-                btn.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        Color temp = btn.getBackground();
-                        colorPlate.setBackground(temp);
-                        red.setValue(temp.getRed());
-                        green.setValue(temp.getGreen());
-                        blue.setValue(temp.getBlue());
-                    }
+                btn.addActionListener(e -> {
+                    Color temp = btn.getBackground();
+                    colorPlate.setBackground(temp);
+                    red.setValue(temp.getRed());
+                    green.setValue(temp.getGreen());
+                    blue.setValue(temp.getBlue());
                 });
                 jp8_3.add(btn);
             }
             jp8_2.add(jp8_3);
             jp8.add(jp8_2);
             add(jp8);
-
-
-
-            //OTHER
-            JPanel jp9 = new JPanel(new BorderLayout());
-            JLabel jl9 = new JLabel("other");
-            jp9.add(jl9, BorderLayout.NORTH);
-            jl9.setHorizontalAlignment(SwingConstants.CENTER);
-
-            JPanel jp9_2 = new JPanel(new GridLayout(2,2));
-            JButton setBackGround = new JButton("BG");
-            setBackGround.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    drawingPanel.setBackground(currentColor);
-                }
-            });
-            jp9_2.add(setBackGround);
-
-
-            JToggleButton bigShape = new JToggleButton("big shape");
-            JToggleButton randomRot = new JToggleButton("random Rot");
-            bigShape.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    isBigShape = !isBigShape;
-                    JRbrush.setEnabled(!JRbrush.isEnabled());
-                    JRspray.setEnabled(!JRspray.isEnabled());
-                    randomRot.setSelected(false);
-                }
-            });
-            jp9_2.add(bigShape);
-
-            randomRot.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    isRandomRotating = randomRot.isSelected();
-                    isBigShape = false;
-                    JRbrush.setEnabled(true);
-                    JRspray.setEnabled(true);
-                    bigShape.setSelected(false);
-                }
-            });
-            jp9_2.add(randomRot);
-            jp9.add(jp9_2);
-            add(jp9);
         }
         void UpdateColor(){
             currentColor = new Color(currentRed, currentGreen, currentBlue);
@@ -404,12 +339,7 @@ public class PaintPanel extends JFrame {
         }
         void CreateShapeButton(ImageIcon ShapeIcon ,int sp, ButtonGroup bg, JPanel jp){
             JToggleButton Shape = new JToggleButton(ShapeIcon);
-            Shape.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    currentShape = sp;
-                }
-            });
+            Shape.addActionListener(e -> currentShape = sp);
             bg.add(Shape);
             jp.add(Shape);
         }
@@ -425,24 +355,6 @@ public class PaintPanel extends JFrame {
                     isBigShape = false;
             }
         }
-        /*
-        private void loadImage() {
-            JFileChooser fileChooser = new JFileChooser();
-            int returnValue = fileChooser.showDialog(null, "Wybierz");
-            if (returnValue == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
-                try {
-                    image = ImageIO.read(selectedFile);
-                    repaint();
-                    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-                    frame.setSize(frame.getWidth()+1, frame.getHeight());
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        */
     }
     class DrawingPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener, MouseWheelListener  {
 
@@ -452,6 +364,7 @@ public class PaintPanel extends JFrame {
             addMouseMotionListener(this);
         }
         private void addPoint(MouseEvent e) {
+            PaintPoint paintPoint = null;
             int x;
             int y;
             Random random = new Random();
@@ -469,13 +382,47 @@ public class PaintPanel extends JFrame {
             if(isRandomRotating){
                 rot = random.nextInt(360);
             }
-            PaintPoint paintPoint = new PaintPoint(x, y, currentSize, currentSize, currentShape ,currentColor, rot);
+
+            if(isGradienting){
+                Gradient();
+            }else{
+                currentColor = new Color(currentRed,currentGreen,currentBlue);
+            }
+
+            if(currentShape == 6){
+                paintPoint = new PaintPoint(x, y, currentSize, currentSize, currentShape, currentColor, rot, tx.getText());
+            }
+            else {
+                paintPoint = new PaintPoint(x, y, currentSize, currentSize, currentShape, currentColor, rot, null);
+            }
             paintPoints.add(paintPoint);
             repaint();
         }
 
-        private void addBigPoint(MouseEvent e) {
-            PaintPoint paintPoint = new PaintPoint((StartX + EndX) / 2, (StartY + EndY)/2, ShapeW,ShapeH, currentShape ,currentColor, 0);
+        void Gradient(){
+            Random random = new Random();
+            int newRed = currentRed + random.nextInt(50)-25;
+            int newGreen = currentGreen + random.nextInt(50)-25;
+            int newBlue = currentBlue + random.nextInt(50)-25;
+
+            if(newRed>255)newRed = 255;
+            if(newGreen>255)newGreen = 255;
+            if(newBlue>255)newBlue = 255;
+
+            if(newRed<0)newRed = 0;
+            if(newGreen<0)newGreen = 0;
+            if(newBlue<0)newBlue = 0;
+
+            currentColor = new Color(newRed,newGreen,newBlue);
+        }
+
+        private void addBigPoint() {
+            if(isGradienting){
+                Gradient();
+            }else{
+                currentColor = new Color(currentRed,currentGreen,currentBlue);
+            }
+            PaintPoint paintPoint = new PaintPoint((StartX + EndX) / 2, (StartY + EndY) / 2, ShapeW, ShapeH, currentShape, currentColor, 0, tx.getText());
             paintPoints.add(paintPoint);
             repaint();
         }
@@ -509,11 +456,9 @@ public class PaintPanel extends JFrame {
         }
         @Override
         public void mouseDragged(MouseEvent e) {
-            isDrawing = true;
+            //isDrawing = true;
             if(!isBigShape) {
-                if (isDrawing) {
-                    addPoint(e);
-                }
+                addPoint(e);
             }
         }
         public void mouseMoved(MouseEvent e) {
@@ -521,7 +466,7 @@ public class PaintPanel extends JFrame {
         }
         @Override
         public void mouseReleased(MouseEvent e) {
-            isDrawing = false;
+            //isDrawing = false;
 
             if(isBigShape) {
                 if (e.getX() > StartX) {
@@ -538,7 +483,7 @@ public class PaintPanel extends JFrame {
 
                 EndX = e.getX();
                 EndY = e.getY();
-                addBigPoint(e);
+                addBigPoint();
                 repaint();
                 System.out.println("START X  " + StartX);
                 System.out.println("END   X  " + EndX);
