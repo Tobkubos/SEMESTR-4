@@ -16,6 +16,7 @@ import java.util.Random;
 
 public class PaintPanel extends JFrame {
     ArrayList<PaintPoint> paintPoints = new ArrayList<>();
+    ArrayList<PaintPoint> RedoPaintPoints = new ArrayList<>();
     ArrayList<JButton> colorButtons = new ArrayList<>();
 
     private int StartX, StartY, EndX, EndY;
@@ -36,7 +37,7 @@ public class PaintPanel extends JFrame {
     private boolean isBigShape = false;
 
     public BufferedImage image = null;
-    private DrawingPanel drawingPanel;
+    public DrawingPanel drawingPanel;
     //private JLabel BrushTypeLabel, BrushSizeLabel, BrushColorLabel;
     ImageIcon brushIcon = new ImageIcon("brush.png");
     ImageIcon SprayIcon = new ImageIcon("spray.png");
@@ -92,47 +93,13 @@ public class PaintPanel extends JFrame {
         drawingPanel = new DrawingPanel();
         add(drawingPanel, BorderLayout.CENTER);
         add(new Toolbar(), BorderLayout.SOUTH);
-        //new ActualBrushInfo();
         NorthPanel northPanel = new NorthPanel(this);
         this.add(northPanel, BorderLayout.NORTH);
         setVisible(true);
     }
-
-    //INFORMACJA O BRUSH
-    /*
-    class ActualBrushInfo extends JFrame {
-        ActualBrushInfo() {
-            setSize(200, 200);
-            setResizable(false);
-            setAlwaysOnTop(true);
-            setLocationRelativeTo(this);
-            setLocation(900, 100);
-            setVisible(true);
-
-            JPanel info = new JPanel(new GridLayout(4,1));
-            add(info);
-
-            BrushTypeLabel = new JLabel("type: brush", brushIcon, JLabel.LEFT);
-            BrushTypeLabel.setFont(ProgramFont);
-            info.add(BrushTypeLabel);
-
-            BrushSizeLabel = new JLabel("size: 1");
-            BrushSizeLabel.setFont(ProgramFont);
-            info.add(BrushSizeLabel);
-
-            BrushColorLabel = new JLabel("color: ");
-            BrushColorLabel.setFont(ProgramFont);
-            info.add(BrushColorLabel);
-        }
-    }
-     */
     class Toolbar extends JToolBar{
         Toolbar(){
             setLayout(new GridLayout(1,5));
-
-            setPreferredSize(new Dimension(800, 100)); // Szerokość: 400, Wysokość: 50
-            setMinimumSize(new Dimension(800, 100));   // Opcjonalnie: minimalny rozmiar
-            setMaximumSize(new Dimension(800, 100));
 
             //SET SIZE
             JPanel jp1 = new JPanel(new BorderLayout());
@@ -155,6 +122,7 @@ public class PaintPanel extends JFrame {
 
 
             //LOAD IMAGE
+            /*
             JPanel jp2 = new JPanel(new BorderLayout());
             JLabel jl2 = new JLabel("load image");
             jl2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -167,7 +135,7 @@ public class PaintPanel extends JFrame {
             jp2_2.add(loadButton);
             jp2.add(jp2_2);
             add(jp2);
-
+            */
 
 
             //TOOLS
@@ -215,6 +183,7 @@ public class PaintPanel extends JFrame {
 
 
             //undo redo clear
+            /*
             JPanel jp5 = new JPanel(new BorderLayout());
             JLabel jl5 = new JLabel("functions");
             jl5.setHorizontalAlignment(SwingConstants.CENTER);
@@ -234,7 +203,7 @@ public class PaintPanel extends JFrame {
             jp5_2.add(ClearAll);
             jp5.add(jp5_2);
             add(jp5);
-
+        */
 
 
             //COLORS
@@ -456,9 +425,10 @@ public class PaintPanel extends JFrame {
                     isBigShape = false;
             }
         }
+        /*
         private void loadImage() {
             JFileChooser fileChooser = new JFileChooser();
-            int returnValue = fileChooser.showOpenDialog(null);
+            int returnValue = fileChooser.showDialog(null, "Wybierz");
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fileChooser.getSelectedFile();
                 try {
@@ -472,6 +442,7 @@ public class PaintPanel extends JFrame {
                 }
             }
         }
+        */
     }
     class DrawingPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener, MouseWheelListener  {
 
