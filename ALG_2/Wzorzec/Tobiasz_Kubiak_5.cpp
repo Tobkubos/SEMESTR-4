@@ -146,7 +146,7 @@ int main()
         // OPERACJA WYWOŁYWANIA KMP
         bool found = false;
         int patternSize = decoded.size() - 1;
-        while (patternSize > 1 && !found)
+        while (patternSize > 0 && !found) // wczesniej 1
         {
             for (int j = 0; j <= decoded.size() - patternSize; j++)
             {
