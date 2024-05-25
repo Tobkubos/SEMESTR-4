@@ -7,62 +7,91 @@ using namespace std;
 
 void Zmiot(vector<pair<int, pair<int, int>>> cords)
 {
-    int minY1 = INT_MAX;
-    int minY2 = INT_MAX;
 
-    for (const auto &cord : cords)
+    // Find closest point to first point in array
+    int dx = INT_MAX;
+    int dxtemp = 0;
+    int finalIdx1 = 0, finalIdx2 = 0;
+    const pair<int, int> &first_point = cords[0].second;
+
+    for (int i = 1; i < cords.size(); ++i)
     {
-        int y = cord.second.second;
-        if (y < minY1)
+        const pair<int, int> &current_point = cords[i].second;
+        if (current_point != first_point)
         {
-            minY2 = minY1;
-            minY1 = y;
-        }
-        else if (y < minY2 && y != minY1)
-        {
-            minY2 = y;
+            int dxtemp = abs(first_point.second - current_point.second) + abs(first_point.first - current_point.first);
+            dx = min(dx, dxtemp);
         }
     }
-    cout << "Minimum y values: " << minY1 << " and " << minY2 << endl;
+    // calculate broom size
+    int BroomHeight = dx;
+    cout << "broom Height: " << BroomHeight << endl;
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // start brooming
+    pair<int, pair<int, int>> currentPoint;
 
-    int BroomHeight = (minY2 - minY1) * 2;
-    cout << "first broom Height: " << BroomHeight << endl;
+    // idx, x, y, dst
+    // neighbours.first = point
+    // neighbours.first.first = idx
+    // neighbours.first.second.first = x;
+    // neighbours.first.second.second = y;
 
-    /////////////////
-    // algorythm
-    //-- --
-    vector<pair<int, pair<int, int>>> base;
-    vector<pair<int, pair<int, int>>> patrol;
-    int minDist = 0;
+    // neighbours.second = distance
 
-    for (const auto &cord : cords)
+    int cl = BroomHeight;
+    vector<pair<pair<int, pair<int, int>>, int>> neighbours;
+    for (int i = 0; i < cords.size(); i++)
     {
-        if (cord.second.second == minY1)
+        currentPoint = cords[i];
+        neighbours.clear();
+        // cout << "current point " << currentPoint.second.first << " " << currentPoint.second.second << endl;
+
+        for (int j = 0; j < cords.size(); j++)
         {
-            base.push_back(cord);
-            cout << "BASE :" << "(" << cord.first << ", (" << cord.second.first << ", " << cord.second.second << ")) " << endl;
+            if (abs(currentPoint.second.second - cords[j].second.second <= BroomHeight) &&
+                (currentPoint != cords[j]))
+            {
+                int len = abs(currentPoint.second.first - cords[j].second.first) + abs(currentPoint.second.second - cords[j].second.second);
+                neighbours.push_back(make_pair(cords[j], len));
+            }
         }
 
-        else if (cord.second.second < minY1 + BroomHeight)
+        for (const auto &e : neighbours)
         {
-            patrol.push_back(cord);
-            cout << "PATROL :" << "(" << cord.first << ", (" << cord.second.first << ", " << cord.second.second << ")) " << endl;
+            // cout << e.first.second.first << " " << e.first.second.second << " " << e.second << endl;
+        }
+
+        int t = INT_MAX;
+        for (int j = 0; j < neighbours.size(); j++)
+        {
+            if (neighbours[j].second < t && (currentPoint != neighbours[j].first))
+            {
+                t = neighbours[j].second;
+                if (t < cl)
+                {
+                    cl = t;
+                }
+            }
+        }
+        for (const auto &n : neighbours)
+        {
+            if (n.second == cl)
+            {
+                finalIdx1 = currentPoint.first;
+                finalIdx2 = n.first.first;
+                break;
+            }
         }
     }
-    for (const auto &b : base)
-    {
-        for (const auto &c : patrol)
-        {
-            int minDist = abs(b.second.second - c.second.second) + abs(b.second.first - c.second.first);
-            cout << minDist << " ";
-        }
-        cout << endl;
-    }
-    base.clear();
-    patrol.clear();
-
-    cout << endl;
-    cout << endl;
+    cout << "DUPA: " << finalIdx1 << " " << finalIdx2 << endl;
 }
 
 int main()
@@ -83,12 +112,15 @@ int main()
             cords.push_back(make_pair(j + 1, make_pair(x, y)));
         }
 
+        sort(cords.begin(), cords.end(), [](const pair<int, pair<int, int>> &a, const pair<int, pair<int, int>> &b)
+             { return a.second.second < b.second.second; });
+
         // view
         for (const auto &cord : cords)
         {
-            cout << "[" << cord.first << ", (" << cord.second.first << ", " << cord.second.second << ")]     ";
+            // cout << "[" << cord.first << ", (" << cord.second.first << ", " << cord.second.second << ")]     ";
         }
-        cout << endl;
+        // cout << endl;
 
         Zmiot(cords);
     }
