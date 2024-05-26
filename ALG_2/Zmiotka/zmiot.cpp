@@ -25,7 +25,7 @@ void Zmiot(vector<pair<int, pair<int, int>>> cords)
     }
     // calculate broom size
     int BroomHeight = dx;
-    cout << "broom Height: " << BroomHeight << endl;
+    // cout << "broom Height: " << BroomHeight << endl;
     //
     //
     //
@@ -35,7 +35,7 @@ void Zmiot(vector<pair<int, pair<int, int>>> cords)
     //
     //
     //
-    // start brooming
+    //  start brooming
     pair<int, pair<int, int>> currentPoint;
 
     // idx, x, y, dst
@@ -91,7 +91,7 @@ void Zmiot(vector<pair<int, pair<int, int>>> cords)
             }
         }
     }
-    cout << "DUPA: " << finalIdx1 << " " << finalIdx2 << endl;
+    cout << finalIdx1 << " " << finalIdx2 << endl;
 }
 
 int main()
