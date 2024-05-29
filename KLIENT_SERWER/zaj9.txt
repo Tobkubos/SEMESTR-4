@@ -30,3 +30,22 @@ string pisze bajty
 writer pisze znaki
 
 
+załadować sterownik
+przekazać parametry
+jaki host, jaki port, jaka sciezka do bazy
+prepare statement i statement zapis w postaci zanaków zapytania które są podmieniane seterem
+
+request - żądanie
+response - odpowiedz jako strumień bajtów - payload, to czy odpowiedz jest html text czy img to znajduje się w nagłówkach http.
+
+srodowisko ma zdeklarowane apache tomcat - odpalamy w IDE
+wygenerowanie pliku war i uzycie pliku do niezależnego zainstalowania bez IDE w tomcacie niezależnie w (startup.sh) - deploy (rozpakuj w CONTEXT) pukt zaczepienia URI start stop link 
+
+Generowanie WAR
+jeżeli 
+
+
+
+
+
+
