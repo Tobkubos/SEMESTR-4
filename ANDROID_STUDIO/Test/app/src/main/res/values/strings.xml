@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Test</string>
+    <string name="app_name">OLX</string>
+    <string name="news">Info</string>
+    <string name="icon">Ikona</string>
+    <string name="account">Konto</string>
+    <string name="addOffert">Dodaj Ogłoszenie</string>
+    <string name="searchForOfferts">Szukaj ogłoszeń</string>
+
 </resources>
