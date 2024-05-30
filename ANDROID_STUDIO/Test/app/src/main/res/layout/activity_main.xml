@@ -20,7 +20,246 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:gravity="center_horizontal"
+                android:text="@string/Categories" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:columnCount="@integer/HowManyColumns"
+                    android:layout_gravity="center"
+                    app:alignmentMode="alignMargins"
+                    app:columnOrderPreserved="false"
+                    app:useDefaultMargins="true"
+                    >
+
+
+                    <FrameLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="0dp">
+
+                        <!-- Tło okrągłego przycisku -->
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:src="@drawable/round_btn5" />
+
+                        <!-- ImageButton z ikoną -->
+                        <ImageButton
+                            android:id="@+id/roundButton1"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/antyki" />
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:background="@android:drawable/dialog_holo_light_frame"
+                            android:gravity="center_horizontal"
+                            android:text="@string/antics"
+                            android:textStyle="bold"
+
+                            />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="0dp">
+
+                        <!-- Tło okrągłego przycisku -->
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:src="@drawable/round_btn3" />
+
+                        <!-- ImageButton z ikoną -->
+                        <ImageButton
+                            android:id="@+id/roundButton2"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/cars" />
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:background="@android:drawable/dialog_holo_light_frame"
+                            android:gravity="center_horizontal"
+                            android:text="@string/cars"
+                            android:textStyle="bold"
+
+                            />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="0dp">
+
+                        <!-- Tło okrągłego przycisku -->
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:src="@drawable/round_btn" />
+
+                        <!-- ImageButton z ikoną -->
+                        <ImageButton
+                            android:id="@+id/roundButton3"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/house" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:background="@android:drawable/dialog_holo_light_frame"
+                            android:gravity="center_horizontal"
+                            android:text="@string/house"
+                            android:textStyle="bold"
+
+                            />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="0dp">
+
+                        <!-- Tło okrągłego przycisku -->
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:src="@drawable/round_btn" />
+
+                        <!-- ImageButton z ikoną -->
+                        <ImageButton
+                            android:id="@+id/roundButton4"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/antyki" />
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:background="@android:drawable/dialog_holo_light_frame"
+                            android:gravity="center_horizontal"
+                            android:text="ANTYKI"
+
+                            />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="0dp">
+
+                        <!-- Tło okrągłego przycisku -->
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:src="@drawable/round_btn" />
+
+                        <!-- ImageButton z ikoną -->
+                        <ImageButton
+                            android:id="@+id/roundButton5"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/antyki" />
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:background="@android:drawable/dialog_holo_light_frame"
+                            android:gravity="center_horizontal"
+                            android:text="ANTYKI"
+
+                            />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="0dp">
+
+                        <!-- Tło okrągłego przycisku -->
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:src="@drawable/round_btn" />
+
+                        <!-- ImageButton z ikoną -->
+                        <ImageButton
+                            android:id="@+id/roundButton6"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="top|center"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/antyki" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:background="@android:drawable/dialog_holo_light_frame"
+                            android:gravity="center_horizontal"
+                            android:text="ANTYKI"
+
+                            />
+
+                    </FrameLayout>
+
+                </androidx.gridlayout.widget.GridLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
     </ScrollView>
 
     <LinearLayout
@@ -44,14 +283,6 @@
             android:textSize="13sp"/>
 
         <Button
-            android:id="@+id/myacc"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:text="@string/account" />
-
-        <Button
             android:id="@+id/addOffert"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="0dp"
@@ -70,6 +301,17 @@
         android:background="@color/cyan"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/myacc"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/user"
+            android:text="@string/account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/appIcon"
             android:layout_width="108dp"
@@ -84,8 +326,10 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
+        android:padding="0dp"
         android:orientation="horizontal"
+        android:background="@android:drawable/dialog_holo_light_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -95,18 +339,17 @@
         <android.widget.SearchView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.4"
-            android:elevation="4dp"
+            android:layout_weight="0.3"
+            android:elevation="120dp"
             android:queryHint="@string/searchForOfferts"
             android:textColorHint="@color/black" />
 
         <Spinner
             android:id="@+id/AreaOfSearch"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="0.6"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
             />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

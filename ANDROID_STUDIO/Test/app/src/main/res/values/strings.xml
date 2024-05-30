@@ -5,5 +5,18 @@
     <string name="account">Konto</string>
     <string name="addOffert">Dodaj Ogłoszenie</string>
     <string name="searchForOfferts">Szukaj ogłoszeń</string>
+    <string name="Categories">KATEGORIE</string>
+
+    <string name="antics">Antyki</string>
+    <string name="cars">Samochody</string>
+    <string name="house">Nieruchomości</string>
+    <string name="work">Praca</string>
+    <string name="garden">Ogród</string>
+    <string name="electro">Elektronika</string>
+    <string name="clothes">Ubrania</string>
+    <string name="farm">Rolnictwo</string>
+    <string name="animals">Zwierzęta</string>
+
+
 
 </resources>
