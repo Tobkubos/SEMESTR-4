@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="HowManyColumns">3</integer>
+    <integer name="HowManyColumns2">1</integer>
+    <dimen name="width">match_parent</dimen>
+    <dimen name="margin">0dp</dimen>
 </resources>

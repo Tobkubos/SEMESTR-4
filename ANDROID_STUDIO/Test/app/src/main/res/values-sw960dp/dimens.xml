@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="HowManyColumns">6</integer>
+    <integer name="HowManyColumns2">3</integer>
+    <dimen name="width">1100dp</dimen>
+    <dimen name="margin">550dp</dimen>
+</resources>

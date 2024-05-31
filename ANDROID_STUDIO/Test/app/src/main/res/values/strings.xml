@@ -30,7 +30,17 @@
     <string name="animals2">Kategoria Zwierzęta</string>
 
 
+
+
     <string name="PromotedOFfers">Ogłoszenia promowane</string>
+
+    <string name="OffertName">Nazwa Oferty LOREM IPSUM DOLOR</string>
+    <string name="Price">250zł</string>
+    <string name="Date">28 maja 2024</string>
+    <string name="Place">Warszawa</string>
+
+
+
     <string name="StepOut">Wyróżnij się jako firma!</string>
     <string name="ForBusiness">Poznaj ofertę OLX dla biznesu</string>
     <string name="SeeMore">Zobacz szczegóły</string>

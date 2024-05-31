@@ -278,18 +278,363 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/LightGray">
 
                 <TextView
+                    android:id="@+id/Promoted"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/LightGray"
                     android:gravity="center_horizontal"
                     android:padding="5dp"
                     android:text="@string/PromotedOFfers"
-                    android:textSize="30sp">
+                    android:textSize="30sp" />
 
-                </TextView>
+                <androidx.gridlayout.widget.GridLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:alignmentMode="alignMargins"
+                    app:columnCount="@integer/HowManyColumns2"
+                    app:columnOrderPreserved="false"
+                    app:useDefaultMargins="true">
+
+
+                    <FrameLayout
+                        android:layout_width="380dp"
+                        android:layout_height="330dp"
+                        android:layout_margin="5dp">
+
+                        <ImageButton
+                            android:layout_width="380dp"
+                            android:layout_height="330dp"
+                            android:layout_gravity="top|center"
+                            android:contentDescription="@string/antics"
+                            android:src="@drawable/square" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/OffertPhoto1"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:layout_gravity="top|center"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="@string/antics2"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/offert1" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView20"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/OffertName"
+                                    android:textSize="27sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView21"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Price"
+                                    android:textSize="27sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView22"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Place"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView23"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Date"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="380dp"
+                        android:layout_height="330dp"
+                        android:layout_margin="5dp">
+
+                        <ImageButton
+                            android:layout_width="380dp"
+                            android:layout_height="330dp"
+                            android:layout_gravity="top|center"
+                            android:contentDescription="@string/antics"
+                            android:src="@drawable/square" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/OffertPhoto2"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:layout_gravity="top|center"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="@string/antics2"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/offert1" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView30"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/OffertName"
+                                    android:textSize="27sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView31"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Price"
+                                    android:textSize="27sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView32"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Place"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView33"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Date"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="380dp"
+                        android:layout_height="330dp"
+                        android:layout_margin="5dp">
+
+                        <ImageButton
+                            android:layout_width="380dp"
+                            android:layout_height="330dp"
+                            android:layout_gravity="top|center"
+                            android:contentDescription="@string/antics"
+                            android:src="@drawable/square" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/OffertPhoto3"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:layout_gravity="top|center"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="@string/antics2"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/offert1" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView40"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/OffertName"
+                                    android:textSize="27sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView41"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Price"
+                                    android:textSize="27sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView42"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Place"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView43"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Date"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="380dp"
+                        android:layout_height="330dp"
+                        android:layout_margin="5dp">
+
+                        <ImageButton
+                            android:layout_width="380dp"
+                            android:layout_height="330dp"
+                            android:layout_gravity="top|center"
+                            android:contentDescription="@string/antics"
+                            android:src="@drawable/square" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/OffertPhoto4"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:layout_gravity="top|center"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="@string/antics2"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/offert1" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView50"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/OffertName"
+                                    android:textSize="27sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView51"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Price"
+                                    android:textSize="27sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView52"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Place"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView53"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Date"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="380dp"
+                        android:layout_height="330dp"
+                        android:layout_margin="5dp">
+
+                        <ImageButton
+                            android:layout_width="380dp"
+                            android:layout_height="330dp"
+                            android:layout_gravity="top|center"
+                            android:contentDescription="@string/antics"
+                            android:src="@drawable/square" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/OffertPhoto5"
+                                android:layout_width="386dp"
+                                android:layout_height="180dp"
+                                android:layout_gravity="top|center"
+                                android:background="@android:color/transparent"
+                                android:contentDescription="@string/antics2"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/offert1" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textView60"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/OffertName"
+                                    android:textSize="27sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView61"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Price"
+                                    android:textSize="27sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView62"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Place"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/textView63"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/Date"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </FrameLayout>
+
+
+                </androidx.gridlayout.widget.GridLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -405,12 +750,13 @@
         </LinearLayout>
     </ScrollView>
 
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/cyan"
-        android:gravity="center_vertical"
+        android:gravity="center|right"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -419,18 +765,19 @@
         <Button
             android:id="@+id/news"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="0dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.25"
+
             android:text="@string/news"
             android:textSize="13sp"/>
 
         <Button
             android:id="@+id/addOffert"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="0dp"
+            android:layout_marginEnd="5dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+
             android:background="@android:color/white"
             android:text="@string/addOffert"
             android:textColor="@android:color/black" />
@@ -468,7 +815,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/width"
         android:layout_height="60dp"
         android:padding="0dp"
         android:orientation="horizontal"
