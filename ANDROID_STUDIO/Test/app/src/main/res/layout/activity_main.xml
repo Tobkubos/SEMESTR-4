@@ -639,7 +639,8 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="@color/cyan">
+                    android:background="@color/cyan"
+                    tools:ignore="TooManyViews">
 
                     <androidx.gridlayout.widget.GridLayout
                         android:layout_width="355dp"
@@ -756,7 +757,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/cyan"
-        android:gravity="center|right"
+        android:gravity="center|end"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
