@@ -1,11 +1,13 @@
 <resources>
+    <string name="MainScrollView">Widok główny</string>
+
     <string name="app_name">OLX</string>
     <string name="news">Info</string>
     <string name="icon">Ikona</string>
     <string name="account">Konto</string>
     <string name="addOffert">Dodaj Ogłoszenie</string>
     <string name="searchForOfferts">Szukaj ogłoszeń</string>
-    <string name="Categories">KATEGORIE</string>
+    <string name="Categories">Kategorie główne</string>
 
     <string name="antics">Antyki</string>
     <string name="cars">Samochody</string>
@@ -17,6 +19,25 @@
     <string name="farm">Rolnictwo</string>
     <string name="animals">Zwierzęta</string>
 
+    <string name="antics2">Kategoria Antyki</string>
+    <string name="cars2">Kategoria Samochody</string>
+    <string name="house2">Kategoria Nieruchomości</string>
+    <string name="work2">Kategoria Praca</string>
+    <string name="garden2">Kategoria Ogród</string>
+    <string name="electro2">Kategoria Elektronika</string>
+    <string name="clothes2">Kategoria Ubrania</string>
+    <string name="farm2">Kategoria Rolnictwo</string>
+    <string name="animals2">Kategoria Zwierzęta</string>
+
+
+    <string name="PromotedOFfers">Ogłoszenia promowane</string>
+    <string name="StepOut">Wyróżnij się jako firma!</string>
+    <string name="ForBusiness">Poznaj ofertę OLX dla biznesu</string>
+    <string name="SeeMore">Zobacz szczegóły</string>
+    <string name="app_desc">OLX.pl to darmowe ogłoszenia lokalne w kategoriach: Moda, Zwierzęta, Dla Dzieci, Sport i Hobby, Muzyka i Edukacja. Szybko znajdziesz tu ciekawe ogłoszenia i łatwo skontaktujesz się z ogłoszeniodawcą.</string>
+    <string name="joinUs">Dołącz do nas:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

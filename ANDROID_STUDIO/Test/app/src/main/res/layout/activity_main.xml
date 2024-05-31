@@ -11,7 +11,7 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:contentDescription="MainScrollView"
+        android:contentDescription="@string/MainScrollView"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,29 +22,28 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:gravity="center_horizontal"
-                android:text="@string/Categories" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/Categories"
+                    android:textSize="30sp" />
 
                 <androidx.gridlayout.widget.GridLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:columnCount="@integer/HowManyColumns"
                     android:layout_gravity="center"
                     app:alignmentMode="alignMargins"
+                    app:columnCount="@integer/HowManyColumns"
                     app:columnOrderPreserved="false"
-                    app:useDefaultMargins="true"
-                    >
+                    app:useDefaultMargins="true">
 
 
                     <FrameLayout
@@ -57,6 +56,7 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
+                            android:contentDescription="@string/antics"
                             android:src="@drawable/round_btn5" />
 
                         <!-- ImageButton z ikoną -->
@@ -66,6 +66,7 @@
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
                             android:background="@android:color/transparent"
+                            android:contentDescription="@string/antics2"
                             android:scaleType="centerInside"
                             android:src="@drawable/antyki" />
 
@@ -92,6 +93,7 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
+                            android:contentDescription="@string/cars"
                             android:src="@drawable/round_btn3" />
 
                         <!-- ImageButton z ikoną -->
@@ -101,6 +103,7 @@
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
                             android:background="@android:color/transparent"
+                            android:contentDescription="@string/cars2"
                             android:scaleType="centerInside"
                             android:src="@drawable/cars" />
 
@@ -120,13 +123,15 @@
                     <FrameLayout
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:layout_margin="0dp">
+                        android:layout_margin="0dp"
+                        tools:ignore="TextSizeCheck">
 
                         <!-- Tło okrągłego przycisku -->
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
+                            android:contentDescription="@string/house"
                             android:src="@drawable/round_btn" />
 
                         <!-- ImageButton z ikoną -->
@@ -136,6 +141,7 @@
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
                             android:background="@android:color/transparent"
+                            android:contentDescription="@string/house2"
                             android:scaleType="centerInside"
                             android:src="@drawable/house" />
 
@@ -162,7 +168,8 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
-                            android:src="@drawable/round_btn" />
+                            android:contentDescription="@string/work"
+                            android:src="@drawable/round_btn4" />
 
                         <!-- ImageButton z ikoną -->
                         <ImageButton
@@ -171,8 +178,9 @@
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
                             android:background="@android:color/transparent"
+                            android:contentDescription="@string/work2"
                             android:scaleType="centerInside"
-                            android:src="@drawable/antyki" />
+                            android:src="@drawable/work" />
 
                         <TextView
                             android:id="@+id/textView4"
@@ -181,7 +189,8 @@
                             android:layout_gravity="bottom|center"
                             android:background="@android:drawable/dialog_holo_light_frame"
                             android:gravity="center_horizontal"
-                            android:text="ANTYKI"
+                            android:text="@string/work"
+                            android:textStyle="bold"
 
                             />
                     </FrameLayout>
@@ -196,6 +205,7 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
+                            android:contentDescription="@string/garden"
                             android:src="@drawable/round_btn" />
 
                         <!-- ImageButton z ikoną -->
@@ -205,8 +215,9 @@
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
                             android:background="@android:color/transparent"
+                            android:contentDescription="@string/garden2"
                             android:scaleType="centerInside"
-                            android:src="@drawable/antyki" />
+                            android:src="@drawable/garden" />
 
                         <TextView
                             android:id="@+id/textView5"
@@ -215,7 +226,8 @@
                             android:layout_gravity="bottom|center"
                             android:background="@android:drawable/dialog_holo_light_frame"
                             android:gravity="center_horizontal"
-                            android:text="ANTYKI"
+                            android:text="@string/garden"
+                            android:textStyle="bold"
 
                             />
                     </FrameLayout>
@@ -230,7 +242,8 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
-                            android:src="@drawable/round_btn" />
+                            android:contentDescription="@string/electro"
+                            android:src="@drawable/round_btn2" />
 
                         <!-- ImageButton z ikoną -->
                         <ImageButton
@@ -239,8 +252,9 @@
                             android:layout_height="100dp"
                             android:layout_gravity="top|center"
                             android:background="@android:color/transparent"
+                            android:contentDescription="@string/electro2"
                             android:scaleType="centerInside"
-                            android:src="@drawable/antyki" />
+                            android:src="@drawable/electro" />
 
                         <TextView
                             android:id="@+id/textView6"
@@ -249,7 +263,8 @@
                             android:layout_gravity="bottom|center"
                             android:background="@android:drawable/dialog_holo_light_frame"
                             android:gravity="center_horizontal"
-                            android:text="ANTYKI"
+                            android:text="@string/electro"
+                            android:textStyle="bold"
 
                             />
 
@@ -257,6 +272,134 @@
 
                 </androidx.gridlayout.widget.GridLayout>
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/LightGray"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text="@string/PromotedOFfers"
+                    android:textSize="30sp">
+
+                </TextView>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/cyan">
+
+                    <androidx.gridlayout.widget.GridLayout
+                        android:layout_width="355dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:alignmentMode="alignMargins"
+                        app:columnCount="2"
+                        app:columnOrderPreserved="false"
+                        app:useDefaultMargins="true">
+
+                        <Button
+                            android:id="@+id/button2"
+                            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/white"
+                            android:text="@string/SeeMore"
+                            android:textColor="@color/black"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/StepOut"
+                                android:textColor="@color/LightBlue" />
+
+                            <TextView
+                                android:id="@+id/textView7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ForBusiness"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+                    </androidx.gridlayout.widget.GridLayout>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/LightBlue"
+                    android:orientation="vertical">
+
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/appicon2"
+                        android:contentDescription="@string/icon" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
+                        android:text="@string/app_desc"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
+                        android:text="@string/joinUs"
+                        android:textSize="13sp" />
+
+                    <androidx.gridlayout.widget.GridLayout
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:alignmentMode="alignMargins"
+                        app:columnCount="5"
+                        app:columnOrderPreserved="false"
+                        app:useDefaultMargins="true">
+
+                        <ImageView
+                            android:id="@+id/icon1"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/facebook" />
+
+                        <ImageView
+                            android:id="@+id/icon2"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/instagram" />
+
+                        <ImageView
+                            android:id="@+id/icon3"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/youtube" />
+
+                    </androidx.gridlayout.widget.GridLayout>
+
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
