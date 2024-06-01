@@ -34,10 +34,30 @@
 
     <string name="PromotedOFfers">Ogłoszenia promowane</string>
 
-    <string name="OffertName">Nazwa Oferty LOREM IPSUM DOLOR</string>
-    <string name="Price">250zł</string>
-    <string name="Date">28 maja 2024</string>
-    <string name="Place">Warszawa</string>
+    <string name="OffertName1">Cegły budowlane</string>
+    <string name="Price1" translatable="false">250zł</string>
+    <string name="Date1">28 maja 2024</string>
+    <string name="Place1" translatable="false">Warszawa</string>
+
+    <string name="OffertName2" translatable="false">Rower górski igła nie śmigany</string>
+    <string name="Price2" translatable="false">7400zł</string>
+    <string name="Date2">22 kwietnia 2024</string>
+    <string name="Place2" translatable="false">Gdańsk</string>
+
+    <string name="OffertName3" translatable="false">Osuszanie po zalaniu, Ozonowanie pomieszczeń</string>
+    <string name="Price3" translatable="false">10zł/h</string>
+    <string name="Date3">1 czerwca 2024</string>
+    <string name="Place3" translatable="false">Bydgoszcz</string>
+
+    <string name="OffertName4" translatable="false">Styrta</string>
+    <string name="Price4" translatable="false">4zł</string>
+    <string name="Date4">12 luty 2008</string>
+    <string name="Place4" translatable="false">Lipinki Łużyckie</string>
+
+    <string name="OffertName5" translatable="false">Piłka Jabulani - unikat</string>
+    <string name="Price5" translatable="false">900zł</string>
+    <string name="Date5">30 październik 2023</string>
+    <string name="Place5" translatable="false">Łódź Bałuty</string>
 
 
 

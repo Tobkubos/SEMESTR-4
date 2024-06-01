@@ -2,4 +2,5 @@
 <resources>
     <integer name="HowManyColumns">5</integer>
     <integer name="HowManyColumns2">1</integer>
+
 </resources>

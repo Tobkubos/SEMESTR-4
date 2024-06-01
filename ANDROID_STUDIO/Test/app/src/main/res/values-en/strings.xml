@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="MainScrollView">Main view</string>
+    <string name="app_name">OLX</string>
+    <string name="news">Info</string>
+    <string name="icon">Icon</string>
+    <string name="account">Account</string>
+    <string name="addOffert">Add Offert</string>
+    <string name="searchForOfferts">Search Offerts</string>
+    <string name="Categories">Main categories</string>
+    <string name="antics">Antics</string>
+    <string name="cars">Cars</string>
+    <string name="house">Estates</string>
+    <string name="work">Work</string>
+    <string name="garden">Garden</string>
+    <string name="electro">Electronic</string>
+    <string name="clothes">Clothes</string>
+    <string name="farm">Farming</string>
+    <string name="animals">Animals</string>
+    <string name="antics2">Antics Category</string>
+    <string name="cars2">Cars Category</string>
+    <string name="house2">Estates Category</string>
+    <string name="work2">Work Category</string>
+    <string name="garden2">Garden Category</string>
+    <string name="electro2">Electronic Category</string>
+    <string name="clothes2">Clothes Category</string>
+    <string name="farm2">Farming Category</string>
+    <string name="animals2">Animals Category</string>
+    <string name="PromotedOFfers">Promoted offers</string>
+    <string name="OffertName1">Building bricks</string>
+    <string name="StepOut">Stand out as Company!</string>
+    <string name="ForBusiness">Discover the OLX business offer</string>
+    <string name="SeeMore">See details</string>
+    <string name="app_desc">"OLX.pl offers free local ads in the following categories: Fashion, Animals, For Children, Sports and Hobbies, Music and Education. You will quickly find interesting ads here and easily contact the advertiser. "</string>
+    <string name="joinUs">Join us:</string>
+    <string name="Date1">28 may 2024</string>
+    <string name="Date2">22 april 2024</string>
+    <string name="Date3">1 july 2024</string>
+    <string name="Date4">12 february 2008</string>
+    <string name="Date5">30 october 2023</string>
+</resources>

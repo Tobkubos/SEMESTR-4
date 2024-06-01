@@ -309,7 +309,7 @@
                             android:layout_width="380dp"
                             android:layout_height="330dp"
                             android:layout_gravity="top|center"
-                            android:contentDescription="@string/antics"
+                            android:contentDescription="@string/OffertName1"
                             android:src="@drawable/square" />
 
                         <LinearLayout
@@ -323,8 +323,8 @@
                                 android:layout_height="180dp"
                                 android:layout_gravity="top|center"
                                 android:background="@android:color/transparent"
-                                android:contentDescription="@string/antics2"
                                 android:scaleType="centerCrop"
+                                android:contentDescription="@string/OffertName1"
                                 android:src="@drawable/offert1" />
 
                             <LinearLayout
@@ -336,7 +336,7 @@
                                     android:id="@+id/textView20"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/OffertName"
+                                    android:text="@string/OffertName1"
                                     android:textSize="27sp"
                                     android:textStyle="bold" />
 
@@ -344,7 +344,7 @@
                                     android:id="@+id/textView21"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Price"
+                                    android:text="@string/Price1"
                                     android:textSize="27sp"
                                     android:textStyle="bold" />
 
@@ -352,14 +352,14 @@
                                     android:id="@+id/textView22"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Place"
+                                    android:text="@string/Place1"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/textView23"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Date"
+                                    android:text="@string/Date1"
                                     android:textStyle="bold" />
                             </LinearLayout>
                         </LinearLayout>
@@ -374,7 +374,7 @@
                             android:layout_width="380dp"
                             android:layout_height="330dp"
                             android:layout_gravity="top|center"
-                            android:contentDescription="@string/antics"
+                            android:contentDescription="@string/OffertName2"
                             android:src="@drawable/square" />
 
                         <LinearLayout
@@ -388,8 +388,8 @@
                                 android:layout_height="180dp"
                                 android:layout_gravity="top|center"
                                 android:background="@android:color/transparent"
-                                android:contentDescription="@string/antics2"
                                 android:scaleType="centerCrop"
+                                android:contentDescription="@string/OffertName2"
                                 android:src="@drawable/offert1" />
 
                             <LinearLayout
@@ -401,7 +401,7 @@
                                     android:id="@+id/textView30"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/OffertName"
+                                    android:text="@string/OffertName2"
                                     android:textSize="27sp"
                                     android:textStyle="bold" />
 
@@ -409,7 +409,7 @@
                                     android:id="@+id/textView31"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Price"
+                                    android:text="@string/Price2"
                                     android:textSize="27sp"
                                     android:textStyle="bold" />
 
@@ -417,14 +417,14 @@
                                     android:id="@+id/textView32"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Place"
+                                    android:text="@string/Place2"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/textView33"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Date"
+                                    android:text="@string/Date2"
                                     android:textStyle="bold" />
                             </LinearLayout>
                         </LinearLayout>
@@ -439,7 +439,7 @@
                             android:layout_width="380dp"
                             android:layout_height="330dp"
                             android:layout_gravity="top|center"
-                            android:contentDescription="@string/antics"
+                            android:contentDescription="@string/OffertName3"
                             android:src="@drawable/square" />
 
                         <LinearLayout
@@ -453,8 +453,8 @@
                                 android:layout_height="180dp"
                                 android:layout_gravity="top|center"
                                 android:background="@android:color/transparent"
-                                android:contentDescription="@string/antics2"
                                 android:scaleType="centerCrop"
+                                android:contentDescription="@string/OffertName3"
                                 android:src="@drawable/offert1" />
 
                             <LinearLayout
@@ -466,7 +466,7 @@
                                     android:id="@+id/textView40"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/OffertName"
+                                    android:text="@string/OffertName3"
                                     android:textSize="27sp"
                                     android:textStyle="bold" />
 
@@ -474,7 +474,7 @@
                                     android:id="@+id/textView41"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Price"
+                                    android:text="@string/Price3"
                                     android:textSize="27sp"
                                     android:textStyle="bold" />
 
@@ -482,14 +482,14 @@
                                     android:id="@+id/textView42"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Place"
+                                    android:text="@string/Place3"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/textView43"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Date"
+                                    android:text="@string/Date3"
                                     android:textStyle="bold" />
                             </LinearLayout>
                         </LinearLayout>
@@ -504,7 +504,7 @@
                             android:layout_width="380dp"
                             android:layout_height="330dp"
                             android:layout_gravity="top|center"
-                            android:contentDescription="@string/antics"
+                            android:contentDescription="@string/OffertName4"
                             android:src="@drawable/square" />
 
                         <LinearLayout
@@ -518,8 +518,8 @@
                                 android:layout_height="180dp"
                                 android:layout_gravity="top|center"
                                 android:background="@android:color/transparent"
-                                android:contentDescription="@string/antics2"
                                 android:scaleType="centerCrop"
+                                android:contentDescription="@string/OffertName4"
                                 android:src="@drawable/offert1" />
 
                             <LinearLayout
@@ -531,7 +531,7 @@
                                     android:id="@+id/textView50"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/OffertName"
+                                    android:text="@string/OffertName4"
                                     android:textSize="27sp"
                                     android:textStyle="bold" />
 
@@ -539,7 +539,7 @@
                                     android:id="@+id/textView51"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Price"
+                                    android:text="@string/Price4"
                                     android:textSize="27sp"
                                     android:textStyle="bold" />
 
@@ -547,14 +547,14 @@
                                     android:id="@+id/textView52"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Place"
+                                    android:text="@string/Place4"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/textView53"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Date"
+                                    android:text="@string/Date4"
                                     android:textStyle="bold" />
                             </LinearLayout>
                         </LinearLayout>
@@ -569,8 +569,8 @@
                             android:layout_width="380dp"
                             android:layout_height="330dp"
                             android:layout_gravity="top|center"
-                            android:contentDescription="@string/antics"
-                            android:src="@drawable/square" />
+                            android:src="@drawable/square"
+                            android:contentDescription="@string/OffertName5"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -583,8 +583,8 @@
                                 android:layout_height="180dp"
                                 android:layout_gravity="top|center"
                                 android:background="@android:color/transparent"
-                                android:contentDescription="@string/antics2"
                                 android:scaleType="centerCrop"
+                                android:contentDescription="@string/OffertName5"
                                 android:src="@drawable/offert1" />
 
                             <LinearLayout
@@ -596,7 +596,7 @@
                                     android:id="@+id/textView60"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/OffertName"
+                                    android:text="@string/OffertName5"
                                     android:textSize="27sp"
                                     android:textStyle="bold" />
 
@@ -604,7 +604,7 @@
                                     android:id="@+id/textView61"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Price"
+                                    android:text="@string/Price5"
                                     android:textSize="27sp"
                                     android:textStyle="bold" />
 
@@ -612,14 +612,14 @@
                                     android:id="@+id/textView62"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Place"
+                                    android:text="@string/Place5"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/textView63"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/Date"
+                                    android:text="@string/Date5"
                                     android:textStyle="bold" />
                             </LinearLayout>
                         </LinearLayout>
@@ -702,11 +702,14 @@
 
                     <TextView
                         android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/margin"
+                        android:layout_marginRight="@dimen/margin"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:padding="5dp"
                         android:text="@string/app_desc"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        tools:ignore="VisualLintLongText" />
 
                     <TextView
                         android:layout_width="match_parent"
