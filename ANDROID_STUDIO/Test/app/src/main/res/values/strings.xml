@@ -34,7 +34,7 @@
 
     <string name="PromotedOFfers">Ogłoszenia promowane</string>
 
-    <string name="OffertName1">Cegły budowlane</string>
+    <string name="OffertName1" translatable="false">Cegły budowlane</string>
     <string name="Price1" translatable="false">250zł</string>
     <string name="Date1">28 maja 2024</string>
     <string name="Place1" translatable="false">Warszawa</string>
