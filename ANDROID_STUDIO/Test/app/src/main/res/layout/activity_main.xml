@@ -51,7 +51,7 @@
                         android:layout_height="120dp"
                         android:layout_margin="0dp">
 
-                        <!-- Tło okrągłego przycisku -->
+
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
@@ -59,7 +59,7 @@
                             android:contentDescription="@string/antics"
                             android:src="@drawable/round_btn5" />
 
-                        <!-- ImageButton z ikoną -->
+
                         <ImageButton
                             android:id="@+id/roundButton1"
                             android:layout_width="100dp"
@@ -88,7 +88,7 @@
                         android:layout_height="120dp"
                         android:layout_margin="0dp">
 
-                        <!-- Tło okrągłego przycisku -->
+
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
@@ -96,7 +96,7 @@
                             android:contentDescription="@string/cars"
                             android:src="@drawable/round_btn3" />
 
-                        <!-- ImageButton z ikoną -->
+
                         <ImageButton
                             android:id="@+id/roundButton2"
                             android:layout_width="100dp"
@@ -126,7 +126,7 @@
                         android:layout_margin="0dp"
                         tools:ignore="TextSizeCheck">
 
-                        <!-- Tło okrągłego przycisku -->
+
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
@@ -134,7 +134,7 @@
                             android:contentDescription="@string/house"
                             android:src="@drawable/round_btn" />
 
-                        <!-- ImageButton z ikoną -->
+
                         <ImageButton
                             android:id="@+id/roundButton3"
                             android:layout_width="100dp"
@@ -163,7 +163,7 @@
                         android:layout_height="120dp"
                         android:layout_margin="0dp">
 
-                        <!-- Tło okrągłego przycisku -->
+
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
@@ -171,7 +171,7 @@
                             android:contentDescription="@string/work"
                             android:src="@drawable/round_btn4" />
 
-                        <!-- ImageButton z ikoną -->
+
                         <ImageButton
                             android:id="@+id/roundButton4"
                             android:layout_width="100dp"
@@ -200,7 +200,7 @@
                         android:layout_height="120dp"
                         android:layout_margin="0dp">
 
-                        <!-- Tło okrągłego przycisku -->
+
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
@@ -208,7 +208,7 @@
                             android:contentDescription="@string/garden"
                             android:src="@drawable/round_btn" />
 
-                        <!-- ImageButton z ikoną -->
+
                         <ImageButton
                             android:id="@+id/roundButton5"
                             android:layout_width="100dp"
@@ -237,7 +237,7 @@
                         android:layout_height="120dp"
                         android:layout_margin="0dp">
 
-                        <!-- Tło okrągłego przycisku -->
+
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
@@ -245,7 +245,7 @@
                             android:contentDescription="@string/electro"
                             android:src="@drawable/round_btn2" />
 
-                        <!-- ImageButton z ikoną -->
+
                         <ImageButton
                             android:id="@+id/roundButton6"
                             android:layout_width="100dp"
@@ -265,7 +265,6 @@
                             android:gravity="center_horizontal"
                             android:text="@string/electro"
                             android:textStyle="bold"
-
                             />
 
                     </FrameLayout>
@@ -732,18 +731,21 @@
                             android:id="@+id/icon1"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:contentDescription="@string/app_name"
                             android:background="@drawable/facebook" />
 
                         <ImageView
                             android:id="@+id/icon2"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:contentDescription="@string/app_name"
                             android:background="@drawable/instagram" />
 
                         <ImageView
                             android:id="@+id/icon3"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:contentDescription="@string/app_name"
                             android:background="@drawable/youtube" />
 
                     </androidx.gridlayout.widget.GridLayout>

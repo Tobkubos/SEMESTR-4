@@ -1,0 +1,9 @@
+linux 	 syslog		
+windows eventlog	
+
+man syslog
+man man
+man 3 syslog   -  wywolanie man z 3 kategorii
+
+logforj
+java logging
