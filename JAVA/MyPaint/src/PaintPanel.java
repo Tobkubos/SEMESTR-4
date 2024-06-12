@@ -99,7 +99,6 @@ public class PaintPanel extends JFrame {
             setLayout(new GridLayout(1,5));
 
 
-
             //SET SIZE
             JPanel jp1 = new JPanel(new BorderLayout());
             JPanel jp1_2 = new JPanel(new GridLayout(2,1));

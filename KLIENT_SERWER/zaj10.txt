@@ -16,3 +16,129 @@ sudo chmod 777 /etc/syslog-ng/syslog-ng.conf  (w pliku deklaracja destination, f
 sudo chown root:adm /var/log/user.info.log
 sudo systemctl restart syslog-ng
 logger -p user.info ajajajjjaas
+
+
+
+mail to podstawa w unixie - zawsze działa i istnieje wewnątrz systemu i przyjmuje przynajmniej maila z systemu wewnętrznego z samego systemu
+
+Krom demon ma plik jak tablica i tak info kiedy jak często co ma uruchomić w systemie
+Kromtab
+
+czy zadania zostały uruchomione/ zakończone i czy nie wystapily bledy
+
+systemy pocztowe skladaja się z kilku niezależnych komponentow
+MUA mail user agent - agent maila użytkownika, wysylanie i redagownanie
+
+to co robi klient to wiadomość pocztowa - za wyslanie wiadomoscie odpowieada komponent
+MTA mail transfer agent
+
+MAIL MESSAGE{
+from
+to
+topic
+body
+}
+jak dotarła wiadomość bez nadawcy i odbiorcy z sama trescia?
+zestaw znakow jest przez MUA transmitowany na MTA (port 25) nastepuje wymiana uprzejmości przez protokół kiedyś  SMTP teraz ESMTP
+simple mail transfer protocol
+
+
+dopiero gry obie strony chcą wspolpracowac wystepuje "." i po niej wysylana jest wiadomość czyli ciag bajtów.
+ZNACZENIE MA TYLKO TO CO ZOSTALO WYNIENIONE W PROTOKOLE STP
+
+
+serwer: www.mailx.com
+zamieniane na adres IP
+polaczenie
+i mowi ze chce wyslac do send to test@wfiis.edu.pl
+
+serwer zaglada i mowi : NO WAY ja obsluguje domene mailx.com i  ich uzytkownikow.
+Nie przedstawiles się i zadasz przeslania do jakiegoś test??????/
+pojebalo cie??
+
+a jeżeli zgodzi się na wyslanie to - SPAAAAAAAAM FOLDER ACTIVATEDDD!!! SPAM NA POCZTE SPAM SPAM SPAM ESSA
+
+nigdy nie robic openrel bo może to prowadzic do generacji spamu
+
+ale jeżeli wysle do test@mailx.com
+to serwer to przyjmie i zajzy do swoich regul i znajdzie ze jest taki użytkownik to wrzucam do jego katalogu z poczta tego maila.
+
+MDI mail delivery agent zaglada do katalogu, pokazuje wszystkie maile które sa i wszystkie maila które nie zostały otworzone.
+
+
+wiekszosc ma opcje pokaz nagłówki i tresc całej wiadomości
+nazewnictwo header 
+
+MTA Zaglada do zlecenia, chce wyslac do www.wp.pl pozwolono bo się zalogowal
+wezmie tego maila i zapisze specjalnym miejscu SPOOL przyjalem do wykonania i sprobuje dostarczyć
+
+1. Zajrzy do DNS to jest baza danych która zawiera z jednej strony nazwy adresow np. wp.pl a z drugiej zamienia je na adresy IP
+ipv4 A
+ipv6 AAA
+cname nazwa wskazujaca na inna nazwe www.wp.pl --> server.wp.pl
+MX - mail exchange - przekaźnik
+
+jeżeli serwer nie ma rekordu SPF nie dostanie maila od gogle
+
+ten MTA poszuka gdzie jest skrzynka pocztowa i tam wrzuci
+
+pojawily się protokoly które pozwalają zajzec do skrzynki poprez inny komputer
+POP3
+IMAP4
+
+
+
+apache foundation - rozpropagowala apache server, masa bibliotek na wslasnej licencji
+wymienić jakie dzialaja na apache foundation
+
+sekcja JAVA - derby
+spache commons eczesc przeszlo do java a nas interesuje apache commons net
+
+
+
+uruhcamiamy program w którym jesta apache commons i odwolujamy się do protokolu SMTP adrsesujemy użytkownika na serwerze linuksowym wysylamy maila z windowsa na linuxa i sprawdzamy
+
+MIME - standard informowania co jest w mailu
+
+
+-
+\
+|
+/
+-
+
+
+sudo netstat -antp
+a nasluchujace
+n nie zamieniaj na nazwe
+t tcp
+p program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
