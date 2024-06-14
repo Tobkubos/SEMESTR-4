@@ -88,8 +88,8 @@ void ConvexHull(vector<Point> LL, vector<Point> SL){
         int counter = 0;
         for(int i = 0; i<SL.size(); i++){
             bool isInside = true;
-            for(int j = 0; j<hull.size()-2; j++){
-                if(direction(hull[j], hull[j+1], SL[i]) < 0){
+            for(int j = 0; j<hull.size(); j++){
+                if(direction(hull[j], hull[(j+1) % hull.size()], SL[i]) < 0){
                     isInside = false;
                     break;
                 }
