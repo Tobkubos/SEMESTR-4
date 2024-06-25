@@ -4,8 +4,6 @@
 #include <algorithm>
 #include <cmath>
 
-//ostatnia krawedz z pierwsza TODO
-
 using namespace std;
 
 struct Point{
