@@ -7,6 +7,8 @@
 
 using namespace std;
 
+const double PI = 3.14159265358979323846;
+
 struct Point
 {
     int x;
@@ -15,7 +17,7 @@ struct Point
     double dist;
 };
 
-bool compare(const Point &a, const Point &b)
+bool compare(const Point& a, const Point& b)
 {
     if (a.angle == b.angle)
         return a.x < b.x;
@@ -46,11 +48,11 @@ void ConvexHull(vector<Point> LL, vector<Point> SL)
 
     // cout<<p0.x<<" "<<p0.y<<endl;
 
-    // Wylicz kąty do osi X
+    // Wylicz kÄ…ty do osi X
     for (int i = 0; i < LL.size(); i++)
     {
         double angle = atan2(LL[i].y - p0.y, LL[i].x - p0.x);
-        angle = angle * (180 / M_PI);
+        angle = angle * (180 / PI);
         LL[i].angle = angle;
     }
 
@@ -91,7 +93,7 @@ void ConvexHull(vector<Point> LL, vector<Point> SL)
     }
     */
 
-    // ILE MAŁYCH LATARNI W OTOCZCE???
+    // ILE MAĹYCH LATARNI W OTOCZCE???
     int counter = 0;
     for (int i = 0; i < SL.size(); i++)
     {
