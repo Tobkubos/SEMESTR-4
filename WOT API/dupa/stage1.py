@@ -34,7 +34,7 @@ def save_to_json(data, filename):
     with open(filename, 'w') as f:
         json.dump(existing_data, f, indent=4)
 # Odczytanie clan ID z pliku JSON
-with open("clan_ids.json", "r") as f:
+with open("clan_ids2.json", "r") as f:
     clan_id_data = json.load(f)
     if isinstance(clan_id_data, list) and clan_id_data:
         for clan_id in clan_id_data:

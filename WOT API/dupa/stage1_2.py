@@ -26,7 +26,7 @@ def is_clan_from_poland(clan_info):
     return clan_info.get('client_language') == 'pl'
 
 # Odczytanie listy identyfikatorów klanów z pliku JSON
-with open("clan_ids.json", "r") as f:
+with open("clan_ids2.json", "r") as f:
     clan_ids = json.load(f)
 
 # Pobieranie informacji o klanie i zapisywanie odpowiednich danych do listy

@@ -42,7 +42,7 @@ if clan_ratings_data:
     
     if clan_ids:
         # Zapisanie clan_id do pliku JSON
-        save_to_json(clan_ids, "clan_ids.json")
+        save_to_json(clan_ids, "clan_ids2.json")
         print("clan_id zapisane do pliku 'clan_ids.json'.")
 else:
     print("Brak danych do zapisania.")

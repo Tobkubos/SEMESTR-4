@@ -22,7 +22,7 @@ def save_to_json(data, filename):
         json.dump(data, f, indent=4)
 
 # Odczytanie listy identyfikatorów graczy z pliku JSON
-with open("all_player_ids.json", "r") as f:
+with open("all_clan_members2.json", "r") as f:
     player_ids = json.load(f)
 
 # Pobieranie informacji o graczu i zapisywanie ich do jednego pliku JSON
