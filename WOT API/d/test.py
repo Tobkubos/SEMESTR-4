@@ -8,7 +8,7 @@ def get_clan_ratings():
         "rank_field": "fort_elo_rating_10",
         "language": "pl",
         "fields": "clan_id,clan_tag",
-        "limit": 999
+        "limit": 300
     }
 
     response = requests.get(url, params=params)
